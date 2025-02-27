@@ -1,16 +1,14 @@
 # FairCharge - Sistema de Cobrança e Faturamento
 > Repositório do projeto FairCharge, no qual será atualizado de acordo com o desenvolvimento da aplicação.  
 > Está disponível a apresentação inicial em slides, através do link a seguir. - [ApresentaçãoInicial](https://1drv.ms/p/c/80d7c904e44eaca4/EeGGJoyYgxxAvsVpmIJQhl4BpD2HHR9fa2NDespsTJreSQ?e=KVI6EJ)
-</br>
 
-# Equipe do projeto
+Equipe do projeto  - 
 [@GFavareto](https://github.com/GFavareto)
 [@Liliansod](https://github.com/Liliansod)
 [@Joao-PauloDev](https://github.com/Joao-PauloDev)
 [@tulionet](https://github.com/tulionet)
 [@igorViotto](https://github.com/igorViotto)
 
-</br>
 </br>
 
 # 1. Apresentação do Projeto
