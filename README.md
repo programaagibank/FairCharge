@@ -1,11 +1,23 @@
 # FairCharge - Sistema de Cobrança e Faturamento
 > Repositório do projeto FairCharge, no qual será atualizado de acordo com o desenvolvimento da aplicação.  
 > Está disponível a apresentação inicial em slides, através do link a seguir. - [ApresentaçãoInicial](https://1drv.ms/p/c/80d7c904e44eaca4/EeGGJoyYgxxAvsVpmIJQhl4BpD2HHR9fa2NDespsTJreSQ?e=KVI6EJ)
+</br>
+
+# Equipe do projeto
+[@GFavareto](https://github.com/GFavareto)
+[@Liliansod](https://github.com/Liliansod)
+[@Joao-PauloDev](https://github.com/Joao-PauloDev)
+[@tulionet](https://github.com/tulionet)
+[@igorViotto](https://github.com/igorViotto)
+
+</br>
+</br>
 
 # 1. Apresentação do Projeto
 O FairCharge é um sistema de cobrança e faturamento desenvolvido para auxiliar bancos e instituições financeiras no **gerenciamento de cobranças, inadimplência e faturamento**.
 Ele garante que todas as cobranças sejam registradas corretamente, monitoradas em tempo real e atualizadas conforme o status de pagamento.
-
+</br>
+</br>
 
 # 2. Objetivos
 - Automatizar o processo de cobrança, garantindo maior eficiência financeira.  
@@ -14,6 +26,7 @@ Ele garante que todas as cobranças sejam registradas corretamente, monitoradas 
 - Gerar relatórios financeiros detalhados para auditoria e controle de faturamento.  
 - Integrar-se com sistemas de terceiros, como plataformas de pagamentos e análise de risco.  
 
+</br>
 
 # 3. Público-Alvo
 O FairCharge é voltado para **instituições financeiras, bancos e empresas** que necessitam de:  
@@ -21,15 +34,22 @@ O FairCharge é voltado para **instituições financeiras, bancos e empresas** q
 -  Automatização no processo de cobrança.
 -  Redução da inadimplência e melhor previsão financeira.
 
+</br>
 
 # 4. Principais Funcionalidades
 **Registro de Cobranças** - Cadastro de cobranças automáticas (tarifas, empréstimos, boletos) com valores, datas de vencimento e status.  
+
 **Gerenciamento de Pagamentos** - Atualiza cobranças pagas através da comunicação com sistemas externos.  
+
 **Aplicação de Juros e Multas** - Cálculo automático de encargos sobre cobranças vencidas.  
+
 **Monitoramento de DDA** - Registro de cobranças eletrônicas sem necessidade de boletos físicos.  
+
 **Relatórios Financeiros** - Geração de relatórios sobre valores cobrados, recebidos e inadimplência.  
+
 **Integração com Outros Sistemas** - Conexão com sistemas de pagamentos e análise de risco.  
 
+</br>
 
 # 5. Requisitos Técnicos
 - Linguagem de Programação: **Java (versão 8 ou superior)**.  
@@ -38,6 +58,7 @@ O FairCharge é voltado para **instituições financeiras, bancos e empresas** q
 - Controle de Versão: **Git (repositório no GitHub)**.  
 - Plataforma: **Back-end executado no servidor e acessado via banco**.  
 
+</br>
 
 # 6. Fluxo de Uso
 1. O sistema <ins>recebe dados de cobranças</ins> de sistemas externos (exemplo: Empréstimos, Tarifas Bancárias). 
@@ -52,6 +73,7 @@ O FairCharge é voltado para **instituições financeiras, bancos e empresas** q
 
 6. O <ins>sistema gera um relatório de faturamento</ins> com todas as cobranças, pagamentos e inadimplências.
 
+</br>
 
 # 7. Exemplo de Interação via CLI
 Gerar Relatório de Faturamento
