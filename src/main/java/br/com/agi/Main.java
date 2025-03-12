@@ -1,5 +1,7 @@
 package br.com.agi;
 
+import br.com.agi.view.MenuView;
+
 import java.sql.Connection;
 
 public class Main {
@@ -11,5 +13,9 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Erro ao conectar: " + e.getMessage());
         }
+
+        //todo, Integração do Menu de seleção inicial *Igor*
+        MenuView menu = new MenuView();
+        menu.ExibirMenuInicial();;
     }
 }
