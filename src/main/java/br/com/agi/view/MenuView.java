@@ -35,7 +35,8 @@ public class MenuView {
                     System.out.println("🚧 Menu de Faturamento - Em desenvolvimento...");
                     break;
                 case '4':
-                    System.out.println("🚧 Ajuste de Taxas - Em desenvolvimento...");
+                    TaxaMenuView taxaMenuView = new TaxaMenuView();  //alterado por Tulio
+                    taxaMenuView.telaInicial();
                     break;
                 case '5':
                     System.out.println("🚧 Lista de Cobranças - Em desenvolvimento... ");
