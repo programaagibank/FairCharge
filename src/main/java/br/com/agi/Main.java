@@ -16,6 +16,6 @@ public class Main {
 
         //todo, Integração do Menu de seleção inicial *Igor*
         MenuView menu = new MenuView();
-        menu.ExibirMenuInicial();;
+        menu.ExibirMenu();
     }
 }
