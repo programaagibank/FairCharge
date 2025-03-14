@@ -9,11 +9,14 @@ public class MenuView {
         this.sc = new Scanner(System.in);
     }
 
+
     public void ExibirMenu() {
         char opcao;
 
         while (true) {
-            System.out.print("\n==============================\n");
+            System.out.println("\nAguardando desenvolvimento do 'WelcomeView'...");
+            System.out.print("==============================\n");
+            System.out.println("Conecte e explore o sistema!:");
             System.out.println("1 - Acessar conta");
             System.out.println("2 - Criar conta");
             System.out.println("3 - Sair");
@@ -70,7 +73,7 @@ public class MenuView {
         char opcao;
 
         while (true) {
-            System.out.print("\n==============================\n");
+            System.out.print("\n================================\n");
             System.out.println("1 - Relatorio de faturamento"); // Alterado por Lilian
             System.out.println("2 - Ajustar taxas");
             System.out.println("3 - Listar cobrancas por cliente");
@@ -80,6 +83,8 @@ public class MenuView {
             System.out.print(":");
             opcao = sc.next().charAt(0);
             sc.nextLine();
+            System.out.print("==================================\n");
+
 
             switch (opcao) {
                 case '1':
@@ -95,14 +100,15 @@ public class MenuView {
                     break;
                 case '4':
                     String textoSobreNos = """
-                            ======================FAIRCHARGE=============================
-                            O FairCharge e um sistema bancario especializado
+                            
+                                                FAIRCHARGE
+                            "O FairCharge e um sistema bancario especializado
                             em gestao de cobranca e faturamento, garantindo que os
                             valores devidos ao banco sejam registrados, gerenciados
                             e acompanhados. Ele nao processa pagamentos, mas interage
                             com o sistema de Plataforma de Pagamentos Digitais para
-                            atualizacao dos status das cobrancas.
-                            =============================================================
+                            atualizacao dos status das cobrancas."
+                                                                Jacinto, Tulio. 14/03/2025
                             """;
                     System.out.print(textoSobreNos);
                     break;

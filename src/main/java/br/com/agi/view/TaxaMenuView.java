@@ -14,9 +14,9 @@ public class TaxaMenuView{
 
         while (true) {
             String textoMenu = """
-                    
-                    Escolha uma das opções para ajustar as taxas:
-                    1 - Taxa de Juros Diários
+                    =============================================
+                    Escolha uma das opçoes para ajustar as taxas:
+                    1 - Taxa de Juros Diarios
                     2 - Multa por Atraso
                     3 - Voltar ao Menu Principal""";
 
@@ -26,7 +26,7 @@ public class TaxaMenuView{
 
             switch (opcao) {
                 case 1:
-                    System.out.println("🚧 Ajuste de taxas diárias - Em desenvolvimento...");
+                    System.out.println("🚧 Ajuste de taxas diarias - Em desenvolvimento...");
                     break;
                 case 2:
                     System.out.println("🚧 Ajuste de multas por Atraso - Em desenvolvimento...");
@@ -35,7 +35,7 @@ public class TaxaMenuView{
                     System.out.println("Voltando ao Menu Principal!");
                     return;
                 default:
-                    System.out.println("Opção inválida! Tente novamente");
+                    System.out.println("Opçao invalida! Tente novamente");
             }
         }
     }
