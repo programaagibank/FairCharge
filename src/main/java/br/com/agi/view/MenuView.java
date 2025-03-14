@@ -15,7 +15,7 @@ public class MenuView {
             System.out.print("\n==============================\n");
             System.out.println("1 - Criar conta");
             System.out.println("2 - Acessar conta");
-            System.out.println("3 - Menu de faturamento");
+            System.out.println("3 - Relatório de faturamento"); // Alterado por Lilian
             System.out.println("4 - Ajustar taxas");
             System.out.println("5 - Listar cobranças por cliente");
             System.out.println("6 - Sair");
@@ -32,7 +32,8 @@ public class MenuView {
                     ExibirTelaLogin();
                     break;
                 case '3':
-                    System.out.println("🚧 Menu de Faturamento - Em desenvolvimento...");
+                    RelatorioFaturamentoView relatorio = new RelatorioFaturamentoView();  // Alterado por Lilian
+                    relatorio.ExibirRelatorio();
                     break;
                 case '4':
                     TaxaMenuView taxaMenuView = new TaxaMenuView();  //alterado por Tulio
