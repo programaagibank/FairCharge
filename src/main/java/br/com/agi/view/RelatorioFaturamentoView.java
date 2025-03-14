@@ -1,10 +1,12 @@
+package br.com.agi.view;
+
 public class RelatorioFaturamentoView{
 
 
     public void ExibirRelatorio(){
-        int mesRelatorio, anoRelatorio,cobrancasRegisTotal;
-        double recebidosTotal,pendentesTotal,inadimplentesTotal, emprestimosReceb,emprestimosPend,
-                tarifasReceb,tarifasPend,bolEmpresReceb,bolEmpresInad;
+        int mesRelatorio = 0, anoRelatorio = 0,cobrancasRegisTotal = 0;
+        double recebidosTotal = 0,pendentesTotal = 0,inadimplentesTotal = 0, emprestimosReceb = 0,emprestimosPend = 0,
+                tarifasReceb = 0,tarifasPend = 0,bolEmpresReceb = 0,bolEmpresInad = 0;
 
 
         System.out.println(" Relatório de Faturamento - Mês: " +mesRelatorio+ "/" +anoRelatorio);

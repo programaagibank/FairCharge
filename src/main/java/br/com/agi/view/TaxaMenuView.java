@@ -2,7 +2,7 @@ package br.com.agi.view;
 
 import java.util.Scanner;
 
-public class TaxaMenuView {
+public class TaxaMenuView{
     private Scanner sc;
 
     public TaxaMenuView() {
