@@ -108,7 +108,6 @@ public class MenuView {
                             e acompanhados. Ele nao processa pagamentos, mas interage
                             com o sistema de Plataforma de Pagamentos Digitais para
                             atualizacao dos status das cobrancas."
-                                                                Jacinto, Tulio. 14/03/2025
                             """;
                     System.out.print(textoSobreNos);
                     break;
