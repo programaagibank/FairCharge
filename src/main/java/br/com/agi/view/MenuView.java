@@ -5,44 +5,12 @@ import br.com.agi.dao.UsuarioDAO;
 public class MenuView {
     private Scanner sc;
 
+
     public MenuView() {
         this.sc = new Scanner(System.in);
     }
 
 
-    public void ExibirMenu() {
-        char opcao;
-
-        while (true) {
-            System.out.println("\nAguardando desenvolvimento do 'WelcomeView'...");
-            System.out.print("==============================\n");
-            System.out.println("Conecte e explore o sistema!:");
-            System.out.println("1 - Acessar conta");
-            System.out.println("2 - Criar conta");
-            System.out.println("3 - Sair");
-
-            System.out.print(":");
-            opcao = sc.next().charAt(0);
-            sc.nextLine();
-
-            switch (opcao) {
-                case '1':
-                    ExibirTelaLogin();
-                    break;
-                case '2':
-                    TelaCadastro();
-                    break;
-                case '3':
-                    System.out.println("Saindo do sistema... Até logo!");
-                    sc.close();
-                    return;
-                default:
-                    System.out.println("Opção inválida! Tente novamente.");
-
-            }
-
-        }
-    }
 
     private void ExibirTelaLogin() {
         System.out.println("\n===== LOGIN =====");

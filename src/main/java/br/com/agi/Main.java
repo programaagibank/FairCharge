@@ -1,6 +1,7 @@
 package br.com.agi;
 
 import br.com.agi.view.MenuView;
+import br.com.agi.view.TelaInicial;
 import br.com.agi.view.WelcomeView;
 
 import java.sql.Connection;
@@ -16,7 +17,9 @@ public class Main {
         }
         WelcomeView welcome = new WelcomeView();
         welcome.telaBoasVindas();
-        MenuView menu = new MenuView();
-        menu.ExibirMenu();
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.TelaMenu();
+        //MenuView menu = new MenuView();
+        //menu.ExibirMenuInicial();
     }
 }
