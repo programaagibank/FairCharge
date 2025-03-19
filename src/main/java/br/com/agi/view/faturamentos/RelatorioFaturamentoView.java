@@ -1,4 +1,4 @@
-package br.com.agi.view;
+package br.com.agi.view.faturamentos;
 
 public class RelatorioFaturamentoView{
 

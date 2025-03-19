@@ -3,7 +3,7 @@ package br.com.agi.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import br.com.agi.databaseConnection;
+import br.com.agi.database.databaseConnection;
 
 public class UsuarioDAO {
 

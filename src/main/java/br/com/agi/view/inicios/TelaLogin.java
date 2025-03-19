@@ -1,6 +1,7 @@
-package br.com.agi.view;
+package br.com.agi.view.inicios;
 
 import br.com.agi.dao.UsuarioDAO;
+import br.com.agi.view.MenuView;
 
 import java.util.Scanner;
 
@@ -27,8 +28,9 @@ public class TelaLogin {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         if (usuarioDAO.validarLogin(email, senha)) {
             System.out.println("Login bem-sucedido! Bem-vindo ao sistema.");
-            menuView.ExibirMenuInicial();
+
         } else {
+            menuView.ExibirMenuInicial();
             System.out.println("E-mail ou senha incorretos! Tente novamente.");
         }
     }

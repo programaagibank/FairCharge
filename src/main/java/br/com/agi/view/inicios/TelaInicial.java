@@ -1,4 +1,5 @@
-package br.com.agi.view;
+package br.com.agi.view.inicios;
+
 import java.util.Scanner;
 
 public class TelaInicial {

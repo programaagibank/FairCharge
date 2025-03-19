@@ -1,4 +1,4 @@
-package br.com.agi;
+package br.com.agi.database;
 
 import java.io.FileInputStream;
 import java.io.IOException;
