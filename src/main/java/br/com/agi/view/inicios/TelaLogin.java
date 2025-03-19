@@ -28,9 +28,8 @@ public class TelaLogin {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         if (usuarioDAO.validarLogin(email, senha)) {
             System.out.println("Login bem-sucedido! Bem-vindo ao sistema.");
-
-        } else {
             menuView.ExibirMenuInicial();
+        } else {
             System.out.println("E-mail ou senha incorretos! Tente novamente.");
         }
     }

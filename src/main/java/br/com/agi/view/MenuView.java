@@ -1,6 +1,8 @@
 package br.com.agi.view;
 import java.util.Scanner;
 import br.com.agi.dao.UsuarioDAO;
+import br.com.agi.view.faturamentos.RelatorioFaturamentoView;
+import br.com.agi.view.taxas.TaxaMenuView;
 
 public class MenuView {
     private Scanner sc;
@@ -47,29 +49,6 @@ public class MenuView {
 
             }
 
-        }
-    }
-
-
-
-    private void TelaCadastro() {
-        System.out.println("\n===== CADASTRO DE USUÁRIO =====");
-
-        System.out.print("Digite seu nome: ");
-        String nome = sc.nextLine();
-
-        System.out.print("Digite seu email: ");
-        String email = sc.nextLine();
-
-        System.out.print("Digite sua senha: ");
-        String senha = sc.nextLine();
-
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-
-        if (usuarioDAO.cadastrarUsuario(nome, email, senha)) {
-            System.out.println(" Usuário cadastrado com sucesso!");
-        } else {
-            System.out.println("Erro ao cadastrar usuário! Tente novamente.");
         }
     }
 }

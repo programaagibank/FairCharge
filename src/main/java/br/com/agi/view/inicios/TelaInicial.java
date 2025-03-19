@@ -1,5 +1,4 @@
 package br.com.agi.view.inicios;
-
 import java.util.Scanner;
 
 public class TelaInicial {
@@ -26,7 +25,8 @@ public class TelaInicial {
                     telaLogin.telaDeLogin();
                     break;
                 case '2':
-                    //TelaCadastro();
+                    TelaCadastro telaCadastro = new TelaCadastro();
+                    telaCadastro.iniciarCadastro();
                     break;
                 case '3':
                     System.out.println("Saindo do sistema... Até logo!");
