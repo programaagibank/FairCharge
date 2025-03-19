@@ -1,8 +1,7 @@
 package br.com.agi.view;
 import java.util.Scanner;
 import br.com.agi.dao.UsuarioDAO;
-import br.com.agi.view.faturamentos.RelatorioFaturamentoView;
-import br.com.agi.view.taxas.TaxaMenuView;
+import br.com.agi.view.faturamentos.RelatorioFaturamentoUsuarioView;
 
 public class MenuView {
     private Scanner sc;
@@ -16,7 +15,7 @@ public class MenuView {
 
         while (true) {
             System.out.print("\n================================\n");
-            System.out.println("1 - Relatorio de faturamento");
+            System.out.println("1 - Menu Relatorio de Faturamento");
             System.out.println("2 - Ajustar taxas");
             System.out.println("3 - Listar cobrancas por cliente");
             System.out.println("4 - Sair");
@@ -29,8 +28,8 @@ public class MenuView {
 
             switch (opcao) {
                 case '1':
-                    RelatorioFaturamentoView relatorio = new RelatorioFaturamentoView();
-                    relatorio.ExibirRelatorio();
+                    MenuFaturamentoView menu = new MenuFaturamentoView(); //Alterado por Lilian
+                    menu.TelaMenu();
                     break;
                 case '2':
                     TaxaMenuView taxaMenuView = new TaxaMenuView();
@@ -49,6 +48,29 @@ public class MenuView {
 
             }
 
+        }
+    }
+
+
+
+    private void TelaCadastro() {
+        System.out.println("\n===== CADASTRO DE USUÁRIO =====");
+
+        System.out.print("Digite seu nome: ");
+        String nome = sc.nextLine();
+
+        System.out.print("Digite seu email: ");
+        String email = sc.nextLine();
+
+        System.out.print("Digite sua senha: ");
+        String senha = sc.nextLine();
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        if (usuarioDAO.cadastrarUsuario(nome, email, senha)) {
+            System.out.println(" Usuário cadastrado com sucesso!");
+        } else {
+            System.out.println("Erro ao cadastrar usuário! Tente novamente.");
         }
     }
 }
