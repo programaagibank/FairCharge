@@ -10,7 +10,8 @@ public class TelaInicial {
 
         while (true) {
 
-            System.out.println("Escolha a opção desejada:");
+            System.out.print("\n====================================================\n");
+            System.out.println("Escolha a opcao desejada:");
             System.out.println("1 - Acessar conta");
             System.out.println("2 - Criar conta");
             System.out.println("3 - Sair");
