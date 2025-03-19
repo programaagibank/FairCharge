@@ -7,6 +7,9 @@ import br.com.agi.view.WelcomeView;
 import java.sql.Connection;
 
 public class Main {
+    private static WelcomeView welcome = new WelcomeView();
+    private static TelaInicial telaInicial = new TelaInicial();
+
     public static void main(String[] args) {
         try (Connection connection = databaseConnection.getConnection()) {
             if (connection != null) {
@@ -14,12 +17,11 @@ public class Main {
             }
         } catch (Exception e) {
             System.out.println("🚧 Erro ao conectar: " + e.getMessage());
+            return;
         }
-        WelcomeView welcome = new WelcomeView();
+
         welcome.telaBoasVindas();
-        TelaInicial telaInicial = new TelaInicial();
         telaInicial.TelaMenu();
-        //MenuView menu = new MenuView();
-        //menu.ExibirMenuInicial();
+
     }
 }

@@ -2,13 +2,14 @@ package br.com.agi.view;
 import java.util.Scanner;
 
 public class TelaInicial {
+    TelaLogin telaLogin = new TelaLogin();
     Scanner sc = new Scanner(System.in);
+
     public void TelaMenu() {
         char opcao;
 
         while (true) {
 
-            System.out.print("==============================\n");
             System.out.println("Escolha a opção desejada:");
             System.out.println("1 - Acessar conta");
             System.out.println("2 - Criar conta");
@@ -20,7 +21,7 @@ public class TelaInicial {
 
             switch (opcao) {
                 case '1':
-                    //ExibirTelaLogin();
+                    telaLogin.telaDeLogin();
                     break;
                 case '2':
                     //TelaCadastro();
@@ -31,9 +32,7 @@ public class TelaInicial {
                     return;
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
-
             }
-
         }
     }
 }
