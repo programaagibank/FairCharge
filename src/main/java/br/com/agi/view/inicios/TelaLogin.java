@@ -6,6 +6,7 @@ import br.com.agi.view.MenuView;
 import java.util.Scanner;
 
 public class TelaLogin {
+    ExibirMenu exibirMenu = new ExibirMenu();
     private MenuView menuView = new MenuView();
     private Scanner sc = new Scanner(System.in);
 
@@ -28,7 +29,7 @@ public class TelaLogin {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         if (usuarioDAO.validarLogin(email, senha)) {
             System.out.println("Login bem-sucedido! Bem-vindo ao sistema.");
-            menuView.ExibirMenuInicial();
+            exibirMenu.ExibirMenuInicial();
         } else {
             System.out.println("E-mail ou senha incorretos! Tente novamente.");
         }
