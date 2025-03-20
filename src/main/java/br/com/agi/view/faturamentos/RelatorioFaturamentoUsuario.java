@@ -20,7 +20,7 @@ public class RelatorioFaturamentoUsuario{
         System.out.println("\n**Relatorio ainda sem dados, aguardando desenvolvimento...");//todo, Excluir quando os dados forem colocados.
 
         // Exibir Relatório
-        System.out.println("RELATORIO DE FATURAMENTO BANCO - Mês: " +mesRelatorio+ "/" +anoRelatorio+ "\n");
+        System.out.println("RELATORIO DE FATURAMENTO BANCO - Mes: " +mesRelatorio+ "/" +anoRelatorio+ "\n");
         System.out.println("Total de cobrancas registradas: " +cobrancasRegisTotal);
         System.out.println("Total recebido: " +recebidosTotal);
         System.out.println("Total pendente: " +pendentesTotal );
