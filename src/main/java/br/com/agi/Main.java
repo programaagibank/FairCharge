@@ -15,7 +15,7 @@ public class Main {
                 System.out.println("Conexao bem-sucedida!");
             }
         } catch (Exception e) {
-            System.out.println("🚧 Erro ao conectar: " + e.getMessage());
+            System.out.println("🚧telaBoasVindas(); Erro ao conectar: " + e.getMessage());
             return;
         }
 
