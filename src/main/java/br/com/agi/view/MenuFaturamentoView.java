@@ -18,10 +18,9 @@ public class MenuFaturamentoView {
         // Opções do menu Faturamento
         while (true) {
             String textoMenu = """
-                    =============================================
-                    Escolha uma das opçoes para gerar Relatório de Faturamento:
-                    1 - Faturamento Usuário
-                    2 - Faturamento Cliente do Banco
+                    Escolha uma das opcoes para gerar Relatorio de Faturamento:
+                    1 - Faturamento Usuario
+                    2 - Faturamento do Banco
                     3 - Voltar ao Menu Principal""";
 
             System.out.println(textoMenu);
@@ -29,22 +28,21 @@ public class MenuFaturamentoView {
             System.out.println();
 
             switch (opcao) {
-                case '1':
-                    RelatorioFaturamentoUsuario relatorio = new RelatorioFaturamentoUsuario();
-                    relatorio.ExibirRelatorioUsuario();
-                    break;
-                case '2':
+                case 1:
                     System.out.println("🚧 Relatório de Cliente - Em desenvolvimento... ");
                     break;
                     /*RelatorioFaturamentoCliente relatorio = new RelatorioFaturamentoUsuarioView();
                     relatorio.ExibirRelatorioCliente();*/
-                case '3':
-                    System.out.println("Saindo do sistema... Ate logo!");
-                    sc.close();
+                case 2:
+                    RelatorioFaturamentoUsuario relatorio = new RelatorioFaturamentoUsuario();
+                    relatorio.ExibirRelatorioUsuario();
+                    break;
+                case 3:
+                    System.out.println("Voltando ao Menu Principal!");
                     return;
 
                 default:
-                    System.out.println("Opção inválida! Tente novamente.");
+                    System.out.println("Opção invalida! Tente novamente.");
 
             }
             }
