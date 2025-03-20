@@ -25,8 +25,8 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean cadastrarUsuario(String nome, String email, String senha) {
-        String sql = "INSERT INTO Usuario (nome, email, senha) VALUES (?, ?, ?)";
+    public boolean cadastrarUsuario(String nome, String email, String senha, String permissao) {
+        String sql = "INSERT INTO Usuario (nome, email, senha, permissao) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -34,6 +34,7 @@ public class UsuarioDAO {
             stmt.setString(1, nome);
             stmt.setString(2, email);
             stmt.setString(3, senha);
+            stmt.setString(4, permissao);
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
