@@ -1,5 +1,4 @@
 package br.com.agi.utils;
-
 import br.com.agi.dao.UsuarioDAO;
 
 public class Parametros {

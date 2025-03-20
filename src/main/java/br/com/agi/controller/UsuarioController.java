@@ -7,12 +7,21 @@ public class UsuarioController {
     UsuarioDAO dao = new UsuarioDAO();
 
     public boolean cadastroUsuario(String nome, String email, String senha, String permissao) {
-        boolean vlrs = param.verificaCadastroVazio(nome, email, senha, permissao);
-        if (vlrs) {
+        boolean vlrsCadastro = param.verificaCadastroVazio(nome, email, senha, permissao);
+        if (vlrsCadastro) {
             dao.cadastrarUsuario(nome, email, senha, permissao);
             return true;
         } else {
             return false;
         }
     }
+
+    public boolean acessarLogin(String email, String senha){
+        boolean vlrsLogin = param.verificaLogin(email, senha);
+        if (vlrsLogin){
+            return dao.validarLogin(email, senha);
+        }
+        return false;
+    }
+
 }

@@ -1,11 +1,16 @@
 package br.com.agi.view.inicios;
-
+import br.com.agi.controller.UsuarioController;
 import br.com.agi.dao.UsuarioDAO;
 import java.util.Scanner;
 
 public class TelaLogin {
     ExibirMenu exibirMenu = new ExibirMenu();
     private Scanner sc = new Scanner(System.in);
+    public UsuarioController usuarioController;
+
+    public TelaLogin(){
+        this.usuarioController = new UsuarioController();
+    }
 
     protected void telaDeLogin() {
         System.out.println("\n===== LOGIN =====");
@@ -23,8 +28,7 @@ public class TelaLogin {
             }
         } while (senha.isEmpty());
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        if (usuarioDAO.validarLogin(email, senha)) {
+        if (usuarioController.acessarLogin(email, senha)) {
             System.out.println("Login bem-sucedido! Bem-vindo ao sistema.");
             exibirMenu.ExibirMenuInicial();
         } else {
