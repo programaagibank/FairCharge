@@ -25,7 +25,6 @@ public class UsuarioDAO {
         }
     }
 
-
     public boolean cadastrarUsuario(String nome, String email, String senha) {
         String sql = "INSERT INTO Usuario (nome, email, senha) VALUES (?, ?, ?)";
 
@@ -46,7 +45,7 @@ public class UsuarioDAO {
     }
 
     public boolean updateUsuario(String nome, String senha,String email, String permissao){
-        String sql = " UPDATE usuario SET (nome, senha, email, permissao) VALUES (?, ?, ?, ?) ";
+        String sql = " UPDATE Usuario SET (nome, senha, email, permissao) VALUES (?, ?, ?, ?) ";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -63,6 +62,22 @@ public class UsuarioDAO {
             System.out.println("Erro ao atualizar uma ou mais informações : " + e.getMessage());
             return false;
         }
+    }
 
+    public boolean deletarUsuario(String email) {
+        String sql = "DELETE FROM Usuario WHERE email = ?";
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+            int rowsAffected = stmt.executeUpdate();
+
+            return rowsAffected > 0;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao deletar usuário: " + e.getMessage());
+            return false;
+        }
     }
 }

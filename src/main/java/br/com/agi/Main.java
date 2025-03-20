@@ -21,6 +21,5 @@ public class Main {
 
         welcome.telaBoasVindas();
         telaInicial.TelaMenu();
-
     }
 }
