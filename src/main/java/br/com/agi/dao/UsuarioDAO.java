@@ -80,4 +80,25 @@ public class UsuarioDAO {
             return false;
         }
     }
+
+    public void listarUsuarios() {
+        String sql = "SELECT * FROM Usuario";
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            System.out.println("\n===== LISTA DE USUÁRIOS =====");
+            while (rs.next()) {
+                int id = rs.getInt("usuario_id");
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+
+                System.out.println("ID: " + id + " | Nome: " + nome + " | Email: " + email);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao listar usuários: " + e.getMessage());
+        }
+    }
 }
