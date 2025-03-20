@@ -1,13 +1,10 @@
 package br.com.agi.view.inicios;
 
 import br.com.agi.dao.UsuarioDAO;
-import br.com.agi.view.MenuView;
-
 import java.util.Scanner;
 
 public class TelaLogin {
     ExibirMenu exibirMenu = new ExibirMenu();
-    private MenuView menuView = new MenuView();
     private Scanner sc = new Scanner(System.in);
 
     protected void telaDeLogin() {

@@ -8,13 +8,13 @@ import br.com.agi.database.databaseConnection;
 public class UsuarioDAO {
 
     public boolean validarLogin(String email, String senha) {
-        String sql = "SELECT * FROM Usuario u INNER JOIN Cliente c ON u.cliente_id = c.cliente_id WHERE u.email = ? AND u.senha = ?";
+        String sql = "SELECT * FROM Usuario WHERE email = ? AND senha = ?";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, email); //
-            stmt.setString(2, senha); //
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();
 
             return rs.next();
@@ -24,6 +24,7 @@ public class UsuarioDAO {
             return false;
         }
     }
+
 
     public boolean cadastrarUsuario(String nome, String email, String senha) {
         String sql = "INSERT INTO Usuario (nome, email, senha) VALUES (?, ?, ?)";
