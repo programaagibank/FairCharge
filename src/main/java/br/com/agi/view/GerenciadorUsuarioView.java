@@ -1,5 +1,6 @@
 package br.com.agi.view;
 
+import br.com.agi.dao.UsuarioDAO;
 import org.w3c.dom.ls.LSOutput;
 
 import java.util.Scanner;
@@ -20,6 +21,8 @@ public class GerenciadorUsuarioView {
             case 1:
                 System.out.println("Listando Usuários");
                 //Listar Usuario;
+                UsuarioDAO listaUser = new UsuarioDAO();
+                listaUser.listarUsuarios();
                 break;
             case 2:
                 System.out.println("Digite o nome do Usuário");
@@ -31,49 +34,50 @@ public class GerenciadorUsuarioView {
                         "1 - Alterar Senha:" +
                         "2 - Alterar E-mail" +
                         "3 - Alterar Permissão" +
-                        "4 - Retorna ao menu" +
-                        "5 - Encerrar");
+                        "4 - Remover Nome:" +
+                        "5 - Delete Usuário:" +
+                        "6 - Retorna ao menu" +
+                        "7 - Encerrar");
                 opcao = sc.nextInt();
-                switch (opcao){
+                switch (opcao) {
                     case 1:
                         //chama o método alterar senha
+                        UsuarioDAO senha = new UsuarioDAO();
+                        senha.updateSenha();
                         break;
                     case 2:
                         //chama o método alterar e-mail
+                        UsuarioDAO email = new UsuarioDAO();
+                        email.updateEmail();
                         break;
                     case 3:
-                        //chama o método alterar permissão
+                        //chama o método alterar Nome
+                        UsuarioDAO nome = new UsuarioDAO();
+                        nome.UpdateNome();
                         break;
                     case 4:
-                        //chama o método retornar ao menu
+                        //chama o método alterar permissão
+                        UsuarioDAO permissao = new UsuarioDAO();
+                        permissao.updatePermissao();
                         break;
+                    case 5:
+                        //chama o método alterar Delete
+                        UsuarioDAO delete = new UsuarioDAO();
+                        delete.deletarUsuario();
+                        break;
+                    case 6:
+                        //chama o método retornar ao menu
+                        System.out.println("Voltando ao Menu Principal!");
+                        return;
                     default:
                         System.out.println("Encerrando");
                 }
-//                }else {
-//                print "Usuario não existe"}
-//
-                //Alterar Nome
-                break;
-            case 3:
-                System.out.println("Alterar senha");
-                //Alterar Senha
-                break;
-            case 4:
-                System.out.println("Alterar e-Mail");
-                //Alterar e-mail
-                break;
-            case 5:
-                //Alterar Permissões
-                break;
             default:
-                System.out.println("Encerrado");
-        };
+                System.out.println("Encerrando");
+        }
     }
 
     public void TelaDeAlteracao(){
         // buscar nome no banco
     }
-
-    // listar todos os usuarios, opções de alteração de usuario, o que quer alterar(senha, nome, permissão, email
 }

@@ -2,6 +2,8 @@ package br.com.agi.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import br.com.agi.database.databaseConnection;
 
 public class UsuarioDAO {
@@ -44,32 +46,54 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean updateUsuario(String nome, String senha,String email, String permissao){
-        String sql = " UPDATE Usuario SET (nome, senha, email, permissao) VALUES (?, ?, ?, ?) ";
+    // Updade Usuário
+    public boolean UpdateNome(){
+        String sql = "UPDATE Usuario SET nome = ? WHERE email = ?";
+        String nome="",email="";
+        return executeUpdate(sql, nome, email);
+    }
 
+    public boolean updateSenha() {
+        String sql = "UPDATE Usuario SET senha = ? WHERE email = ?";
+        String senha = "", email = "";
+        return executeUpdate(sql, senha, email);
+    }
+
+    public boolean updatePermissao() {
+        String sql = "UPDATE Usuario SET permissao = ? WHERE email = ?";
+        String permissao = "", email = "";
+        return executeUpdate(sql, permissao, email);
+    }
+
+    public boolean updateEmail() {
+        String sql = "UPDATE Usuario SET email = ? WHERE permissao = ?";
+        String permissao = "",email = "";
+        return executeUpdate(sql,email, permissao);
+    }
+
+    private boolean executeUpdate(String sql, String valor, String email) {
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, nome);
+            stmt.setString(1, valor);
             stmt.setString(2, email);
-            stmt.setString(3, senha);
-            stmt.setString(4, permissao);
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
 
-        } catch (Exception e) {
-            System.out.println("Erro ao atualizar uma ou mais informações : " + e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar campo: " + e.getMessage());
             return false;
         }
     }
 
-    public boolean deletarUsuario(String email) {
+    public boolean deletarUsuario() {
         String sql = "DELETE FROM Usuario WHERE email = ?";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            String email="";
             stmt.setString(1, email);
             int rowsAffected = stmt.executeUpdate();
 
