@@ -43,7 +43,7 @@ public class ExibirMenu {
                     break;
                 case '5':
                     System.out.println("Saindo do sistema... Ate logo!");
-                    sc.close();
+
                     return;
 
                 default:
