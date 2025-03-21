@@ -6,6 +6,7 @@ import org.w3c.dom.ls.LSOutput;
 import java.util.Scanner;
 
 public class GerenciadorUsuarioView {
+
     public void GerenciadorDeUsuario(){
         Scanner sc = new Scanner(System.in);
 
@@ -31,13 +32,12 @@ public class GerenciadorUsuarioView {
                 //if(usuario existe){
                 //TelaDeAlteracao();
                 System.out.println("Escolha uma opção:\n" +
-                        "1 - Alterar Senha:" +
-                        "2 - Alterar E-mail" +
-                        "3 - Alterar Permissão" +
-                        "4 - Remover Nome:" +
-                        "5 - Delete Usuário:" +
-                        "6 - Retorna ao menu" +
-                        "7 - Encerrar");
+                        "1 - Alterar Senha:\n" +
+                        "2 - Alterar E-mail\n" +
+                        "3 - Alterar Permissão\n" +
+                        "4 - Remover Nome:\n" +
+                        "5 - Delete Usuário\n:" +
+                        "6 - Retorna ao menu\n");
                 opcao = sc.nextInt();
                 switch (opcao) {
                     case 1:
@@ -61,7 +61,7 @@ public class GerenciadorUsuarioView {
                         permissao.updatePermissao();
                         break;
                     case 5:
-                        //chama o método alterar Delete
+                        //chama o método Delete
                         UsuarioDAO delete = new UsuarioDAO();
                         delete.deletarUsuario();
                         break;
@@ -70,10 +70,10 @@ public class GerenciadorUsuarioView {
                         System.out.println("Voltando ao Menu Principal!");
                         return;
                     default:
-                        System.out.println("Encerrando");
+                        System.out.println("Opcao indisponivel!");
                 }
             default:
-                System.out.println("Encerrando");
+                System.out.println("Opcao indisponivel!");
         }
     }
 
