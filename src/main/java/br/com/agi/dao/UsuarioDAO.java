@@ -87,13 +87,12 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean deletarUsuario() {
+    public boolean deletarUsuario(String email) {
         String sql = "DELETE FROM Usuario WHERE email = ?";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            String email="";
             stmt.setString(1, email);
             int rowsAffected = stmt.executeUpdate();
 

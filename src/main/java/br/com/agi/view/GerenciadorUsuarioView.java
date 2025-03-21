@@ -61,9 +61,11 @@ public class GerenciadorUsuarioView {
                         permissao.updatePermissao();
                         break;
                     case 5:
-                        //chama o método Delete
+                        System.out.println("Digite o email do Usuario!");
+                        sc.nextLine(); // Limpa o buffer após nextInt()
+                        String emails = sc.nextLine(); // Agora o usuário pode digitar o email
                         UsuarioDAO delete = new UsuarioDAO();
-                        delete.deletarUsuario();
+                        delete.deletarUsuario(emails);
                         break;
                     case 6:
                         //chama o método retornar ao menu

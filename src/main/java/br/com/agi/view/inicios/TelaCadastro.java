@@ -4,14 +4,10 @@ import br.com.agi.dao.UsuarioDAO;
 import java.util.Scanner;
 
 public class TelaCadastro {
-    private final UsuarioDAO usuarioDAO;
-    private TelaInicial telaInicial = new TelaInicial();
     private UsuarioController usuarioController;
     private Scanner sc = new Scanner(System.in);
 
     public TelaCadastro(){
-        this.telaInicial = new TelaInicial();
-        this.usuarioDAO = new UsuarioDAO();
         this.usuarioController = new UsuarioController();
     }
 
