@@ -72,7 +72,7 @@ public class GerenciadorUsuarioView {
                         System.out.println("Voltando ao Menu Principal!");
                         return;
                     default:
-                        System.out.println("Opcao indisponivel!");
+                        System.out.println("Deletado com sucesso!");
                 }
             default:
                 System.out.println("Opcao indisponivel!");

@@ -116,8 +116,9 @@ public class UsuarioDAO {
                 int id = rs.getInt("usuario_id");
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
+                String permissao = rs.getString("permissao");
 
-                System.out.println("ID: " + id + " | Nome: " + nome + " | Email: " + email);
+                System.out.println("ID: " + id + " | Nome: " + nome + " | Email: " + email + " | Permissão: " + permissao);
             }
 
         } catch (Exception e) {
