@@ -18,4 +18,13 @@ public class Parametros {
         return true;
     }
 
+    public boolean validaMes(int mes) {
+        return mes >= 1 && mes <= 12;
+    }
+
+    public boolean validaAno(int ano) {
+        return ano > 0;
+    }
+
+
 }

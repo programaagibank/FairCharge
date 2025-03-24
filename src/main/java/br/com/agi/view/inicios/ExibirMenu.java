@@ -1,7 +1,7 @@
 package br.com.agi.view.inicios;
 
 import br.com.agi.view.GerenciadorUsuarioView;
-import br.com.agi.view.MenuFaturamentoView;
+import br.com.agi.view.faturamentos.MenuFaturamentoView;
 import br.com.agi.view.taxas.TaxaMenuView;
 
 import java.util.Scanner;
