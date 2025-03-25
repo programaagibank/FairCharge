@@ -5,11 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
-//todo, *******************************************
-//todo, CÓDIGO SUJEITO A ALTERAÇÕES APÓS A ANÁLISE:
-//todo, *******************************************
-
-//responsável por acessar o banco de dados e manipular as informações da tabela Cobranca.
 public class CobrancaDAO {
     private Connection connection;
 
@@ -17,7 +12,6 @@ public class CobrancaDAO {
         this.connection = connection;
     }
 
-    // Criar uma nova cobrança
     public void criarCobranca(Cobranca cobranca) throws SQLException {
         String sql = "INSERT INTO Cobranca (fatura_id, cobranca_referenciada_id, cliente_id, " +
                 "forma_pagamento_id, valor_total, data_criacao, data_vencimento, status) " +
@@ -36,8 +30,7 @@ public class CobrancaDAO {
         }
     }
 
-    //todo, Buscar cobranças de um cliente
-    public List<Cobranca> BuscarCobrncaCliente(int clienteId) throws SQLException {
+    public List<Cobranca> BuscarCobrancaCliente(int clienteId) throws SQLException {
         List<Cobranca> cobrancas = new ArrayList<>();
         String sql = "SELECT * FROM Cobranca WHERE cliente_id = ?";
 
@@ -63,7 +56,6 @@ public class CobrancaDAO {
         return cobrancas;
     }
 
-    //todo, Listar todas as cobranças
     public List<Cobranca> ListarCobrancas() throws SQLException {
         List<Cobranca> cobrancas = new ArrayList<>();
         String sql = "SELECT * FROM Cobranca";
@@ -88,7 +80,6 @@ public class CobrancaDAO {
         return cobrancas;
     }
 
-    //todo, Atualizar status da cobrança
     public void statusPagamento(int id, String status) throws SQLException {
         String sql = "UPDATE Cobranca SET status = ? WHERE cobranca_id = ?";
 
@@ -99,7 +90,6 @@ public class CobrancaDAO {
         }
     }
 
-    //todo, Deletar uma cobrança
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM Cobranca WHERE cobranca_id = ?";
 

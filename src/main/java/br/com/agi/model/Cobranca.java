@@ -12,7 +12,6 @@ public class Cobranca {
     private Date dataVencimento;
     private String status;
 
-    //todo, Construtor vazio existe para permitir a criação de objetos sem a necessidade de passar parâmetros na hora da instância.
     public Cobranca() {}
 
     public Cobranca(int id, int faturaId, Integer cobrancaReferenciadaId, int clienteId,
@@ -29,7 +28,6 @@ public class Cobranca {
         this.status = status;
     }
 
-    //todo, Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
