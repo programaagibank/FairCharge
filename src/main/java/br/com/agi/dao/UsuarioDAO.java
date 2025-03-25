@@ -105,7 +105,13 @@ public class UsuarioDAO {
     }
 
     public void listarUsuarios() {
-        String sql = "SELECT * FROM Usuario";
+        String sql = "SELECT usuario_id, nome, email, " +
+                "CASE " +
+                "    WHEN permissao = 1 THEN 'Administrador' " +
+                "    WHEN permissao = 2 THEN 'Cliente' " +
+                "    ELSE 'Desconhecido' " +
+                "END AS permissao " +
+                "FROM Usuario";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
