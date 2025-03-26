@@ -11,7 +11,7 @@ public class FaturamentoController {
     }
 
     public Faturamento gerarRelatorio(int mes, int ano) {
-        Faturamento faturamento = faturamentoDAO.obterRelatorioFaturamento(mes, ano);
+        Faturamento faturamento = faturamentoDAO.obterRelatorioFaturamentoBanco(mes, ano);
         if (faturamento != null) {
             return faturamento;
         } else {

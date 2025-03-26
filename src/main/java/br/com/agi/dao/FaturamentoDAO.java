@@ -1,8 +1,10 @@
 package br.com.agi.dao;
 
 import br.com.agi.database.databaseConnection;
+import br.com.agi.model.CobrancasFaturamento;
 import br.com.agi.model.Faturamento;
 import br.com.agi.model.CategoriasFaturamento;
+import br.com.agi.model.FaturamentoCliente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,27 +12,43 @@ import java.sql.ResultSet;
 
 public class FaturamentoDAO {
 
-    public Faturamento obterRelatorioFaturamento(int mes, int ano) {
+    public Faturamento obterRelatorioFaturamentoBanco(int mes, int ano) {
         String sqlTotais = """
                 SELECT 
                     COUNT(*) AS total_cobrancas,
-                    SUM(CASE WHEN status = 'Pago' THEN valor_total ELSE 0 END) AS total_recebido,
-                    SUM(CASE WHEN status = 'Aberto' THEN valor_total ELSE 0 END) AS total_pendente,
-                    SUM(CASE WHEN status = 'Atrasado' THEN valor_total ELSE 0 END) AS total_inadimplente
-                FROM Cobranca
-                WHERE YEAR(data_criacao) = ? AND MONTH(data_criacao) = ?
+                    SUM(CASE WHEN c.status = 'Pago' THEN p.valor_pago ELSE 0 END) AS total_recebido,
+                    SUM(CASE WHEN c.status = 'Aberto' THEN f.valor_fatura ELSE 0 END) AS total_pendente,
+                    SUM(CASE WHEN c.status = 'Atrasado' THEN f.valor_fatura ELSE 0 END) AS total_inadimplente
+                FROM
+                    Cobranca c
+                JOIN
+                    Fatura f ON c.fatura_id = f.fatura_id
+                LEFT JOIN
+                    Pagamento p ON c.pagamento_id = p.pagamento_id
+                WHERE
+                    YEAR(f.data_criacao) = ?
+                    AND MONTH(f.data_criacao) = ?;
+                
                 """;
 
         String sqlCategorias = """
-                SELECT 
+                SELECT
                     f.descricao AS categoria,
-                    SUM(CASE WHEN c.status = 'Pago' THEN c.valor_total ELSE 0 END) AS total_recebido,
-                    SUM(CASE WHEN c.status = 'Aberto' THEN c.valor_total ELSE 0 END) AS total_pendente,
-                    SUM(CASE WHEN c.status = 'Atrasado' THEN c.valor_total ELSE 0 END) AS total_inadimplente
-                FROM Cobranca c
-                JOIN Fatura f ON c.fatura_id = f.fatura_id
-                WHERE YEAR(c.data_criacao) = ? AND MONTH(c.data_criacao) = ?
-                GROUP BY f.descricao
+                    SUM(CASE WHEN c.status = 'Pago' THEN p.valor_pago ELSE 0 END) AS total_recebido,
+                    SUM(CASE WHEN c.status = 'Aberto' THEN f.valor_fatura ELSE 0 END) AS total_pendente,
+                    SUM(CASE WHEN c.status = 'Atrasado' THEN f.valor_fatura ELSE 0 END) AS total_inadimplente
+                FROM
+                    Cobranca c
+                JOIN
+                    Fatura f ON c.fatura_id = f.fatura_id
+                LEFT JOIN
+                    Pagamento p ON c.pagamento_id = p.pagamento_id
+                WHERE
+                    YEAR(f.data_criacao) = ?
+                    AND MONTH(f.data_criacao) = ?
+                GROUP BY
+                    f.descricao;
+                
                 """;
 
         try (Connection conn = databaseConnection.getConnection();
@@ -68,4 +86,92 @@ public class FaturamentoDAO {
             return null;
         }
     }
+
+    public FaturamentoCliente obterRelatorioFaturamentoCliente(int clienteId, int mes, int ano) {
+        String sqlTotais = """
+            SELECT 
+                cl.nome AS cliente,
+                COUNT(c.cobranca_id) AS total_cobrancas,
+                COALESCE(SUM(CASE WHEN c.status = 'Pago' THEN p.valor_pago ELSE 0 END), 0) AS total_recebido,
+                COALESCE(SUM(CASE WHEN c.status = 'Aberto' THEN f.valor_fatura ELSE 0 END), 0) AS total_pendente,
+                COALESCE(SUM(CASE WHEN c.status = 'Atrasado' THEN f.valor_fatura ELSE 0 END), 0) AS total_inadimplente
+            FROM 
+                Cobranca c
+            JOIN 
+                Fatura f ON c.fatura_id = f.fatura_id
+            JOIN 
+                Cliente cl ON f.cliente_id = cl.cliente_id
+            LEFT JOIN 
+                Pagamento p ON c.pagamento_id = p.pagamento_id
+            WHERE 
+                cl.cliente_id = ?  
+                AND YEAR(f.data_criacao) = ? 
+                AND MONTH(f.data_criacao) = ?
+            GROUP BY 
+                cl.nome;
+            """;
+
+        String sqlDetalhes = """
+            SELECT 
+                c.cobranca_id AS id,
+                f.valor_fatura AS valor,
+                DATE_FORMAT(f.data_vencimento, '%d/%m/%Y') AS vencimento,
+                c.status
+            FROM 
+                Cobranca c
+            JOIN 
+                Fatura f ON c.fatura_id = f.fatura_id
+            JOIN 
+                Cliente cl ON f.cliente_id = cl.cliente_id
+            WHERE 
+                cl.cliente_id = ?  
+                AND YEAR(f.data_criacao) = ? 
+                AND MONTH(f.data_criacao) = ?
+            ORDER BY 
+                f.data_vencimento ASC;
+            """;
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmtTotais = conn.prepareStatement(sqlTotais);
+             PreparedStatement stmtDetalhes = conn.prepareStatement(sqlDetalhes)) {
+
+            stmtTotais.setInt(1, clienteId);
+            stmtTotais.setInt(2, ano);
+            stmtTotais.setInt(3, mes);
+
+            stmtDetalhes.setInt(1, clienteId);
+            stmtDetalhes.setInt(2, ano);
+            stmtDetalhes.setInt(3, mes);
+
+            ResultSet rsTotais = stmtTotais.executeQuery();
+            FaturamentoCliente faturamentoCliente = new FaturamentoCliente(mes, ano);
+
+            if (rsTotais.next()) {
+                faturamentoCliente = new FaturamentoCliente(
+                        rsTotais.getString("cliente"),
+                        rsTotais.getInt("total_cobrancas"),
+                        rsTotais.getDouble("total_recebido"),
+                        rsTotais.getDouble("total_pendente"),
+                        rsTotais.getDouble("total_inadimplente")
+                );
+            }
+
+            ResultSet rsDetalhes = stmtDetalhes.executeQuery();
+            while (rsDetalhes.next()) {
+                faturamentoCliente.adicionarCobrancas(new CobrancasFaturamento(
+                        rsDetalhes.getInt("id"),
+                        rsDetalhes.getDouble("valor"),
+                        rsDetalhes.getString("vencimento"),
+                        rsDetalhes.getString("status")
+                ));
+            }
+            return faturamentoCliente;
+        } catch (Exception e) {
+            System.out.println("Erro ao obter dados do relatório do cliente: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+
 }
