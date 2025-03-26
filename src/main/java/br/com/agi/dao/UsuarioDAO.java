@@ -4,9 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.com.agi.controller.UsuarioController;
+import br.com.agi.view.GerenciadorUsuarioView;
+
 import br.com.agi.database.databaseConnection;
 
 public class UsuarioDAO {
+    GerenciadorUsuarioView menuGerenciador = new GerenciadorUsuarioView();
 
     public boolean validarLogin(String email, String senha) {
         String sql = "SELECT * FROM Usuario WHERE email = ? AND senha = ?";
@@ -46,7 +50,7 @@ public class UsuarioDAO {
         }
     }
 
-    public void listarUnicoUsuario(String email) {
+    public UsuarioController listarUnicoUsuario(String email) {
         String sql = "SELECT usuario_id, nome, email, permissao FROM Usuario WHERE email = ?";
 
         try (Connection conn = databaseConnection.getConnection();
@@ -72,6 +76,8 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             System.out.println("Erro ao buscar usuário: " + e.getMessage());
         }
+
+        return null;
     }
 
     public boolean updateNome(String novoNome, String email) {

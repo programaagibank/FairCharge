@@ -1,14 +1,19 @@
 package br.com.agi.view;
 import br.com.agi.dao.UsuarioDAO;
+import br.com.agi.controller.UsuarioController;
 import java.util.Scanner;
 
 public class GerenciadorUsuarioView {
+
     public void GerenciadorDeUsuario(){
         Scanner sc = new Scanner(System.in);
+        UsuarioController usuarioController = new UsuarioController();
 
         System.out.println("\n======GERENCIADOR DE USUARIO======\n" +
                 "1 - Listar Usuarios cadastrados\n" +
-                "2 - Selecionar unico Usuario");
+                "2 - Selecionar unico Usuario\n" +
+                "3 - Voltar");
+
 
         System.out.print("Opcao: ");
         int opcao = sc.nextInt();
@@ -23,8 +28,8 @@ public class GerenciadorUsuarioView {
                 sc.nextLine();
                 String emailDoUsuario = sc.nextLine();
 
-                UsuarioDAO usuarioUnico = new UsuarioDAO();
-                usuarioUnico.listarUnicoUsuario(emailDoUsuario);
+                UsuarioDAO usuario = new UsuarioDAO();
+                usuario.listarUnicoUsuario(emailDoUsuario);
 
                 String opcaoGerenciador = """
                 
@@ -35,6 +40,7 @@ public class GerenciadorUsuarioView {
                 4 - Alterar Senha
                 5 - Deletar Usuario
                 6 - Retornar ao menu
+                
                 """;
                 System.out.print(opcaoGerenciador);
                 System.out.print("Opcao: ");
@@ -46,7 +52,7 @@ public class GerenciadorUsuarioView {
                         sc.nextLine();
                         String novoNome = sc.nextLine();
 
-                        if (usuarioUnico.updateNome(novoNome, emailDoUsuario)) {
+                        if (usuarioController.atualizarNome(novoNome, emailDoUsuario)) {
                             System.out.println("Nome atualizado com sucesso!");
                         } else {
                             System.out.println("Erro ao atualizar nome.");
@@ -58,7 +64,7 @@ public class GerenciadorUsuarioView {
                         sc.nextLine();
                         String novoEmail = sc.nextLine();
 
-                        if (usuarioUnico.updateEmail(novoEmail, emailDoUsuario)) {
+                        if (usuarioController.atualizarEmail(novoEmail, emailDoUsuario)) {
                             System.out.println("Email atualizado com sucesso!");
                         } else {
                             System.out.println("Erro ao atualizar email.");
@@ -69,7 +75,7 @@ public class GerenciadorUsuarioView {
                         System.out.print("Digite a nova permissao (1 - Administrador, 2 - Cliente): ");
                         int novaPermissao = sc.nextInt();
 
-                        if (usuarioUnico.updatePermissao(novaPermissao, emailDoUsuario)) {
+                        if (usuarioController.atualizarPermissao(emailDoUsuario, novaPermissao)) {
                             System.out.println("Permissao atualizada com sucesso!");
                         } else {
                             System.out.println("Erro ao atualizar permissão.");
@@ -81,7 +87,7 @@ public class GerenciadorUsuarioView {
                         sc.nextLine();
                         String novaSenha = sc.nextLine();
 
-                        if (usuarioUnico.updateSenha(novaSenha, emailDoUsuario)) {
+                        if (usuarioController.atualizarSenha(novaSenha, emailDoUsuario)) {
                             System.out.println("Senha atualizada com sucesso!");
                         } else {
                             System.out.println("Erro ao atualizar senha.");
@@ -94,7 +100,7 @@ public class GerenciadorUsuarioView {
                         String confirmacao = sc.nextLine();
 
                         if (confirmacao.equalsIgnoreCase("S")) {
-                            if (usuarioUnico.deletarUsuario(emailDoUsuario)) {
+                            if (usuarioController.deletarUsuario(emailDoUsuario)) {
                                 System.out.println("Usuario deletado com sucesso!");
                             } else {
                                 System.out.println("Erro ao deletar usuario.");
@@ -109,6 +115,11 @@ public class GerenciadorUsuarioView {
                     default:
                         System.out.println("Opcao invalida!");
                 }
+            case 3:
+                System.out.println("voltando..");
+                return;
+            default:
+                System.out.print("Opcao invalida!");
         }
 
     }

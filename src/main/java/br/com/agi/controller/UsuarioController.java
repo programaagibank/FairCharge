@@ -24,4 +24,25 @@ public class UsuarioController {
         return false;
     }
 
+
+    public boolean atualizarNome(String email, String novoNome) {
+        return dao.updateNome(novoNome, email);
+    }
+
+    public boolean atualizarSenha(String email, String novaSenha) {
+        return dao.updateSenha(novaSenha, email);
+    }
+
+    public boolean atualizarPermissao(String email, int novaPermissao) {
+        return dao.updatePermissao(novaPermissao, email);
+    }
+
+    public boolean atualizarEmail(String emailAtual, String novoEmail) {
+        return dao.updateEmail(novoEmail, emailAtual);
+    }
+
+    public boolean deletarUsuario(String email) {
+        return dao.deletarUsuario(email);
+    }
+
 }
