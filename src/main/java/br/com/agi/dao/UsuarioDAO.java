@@ -46,29 +46,82 @@ public class UsuarioDAO {
         }
     }
 
-    // Updade Usuário
-    public boolean UpdateNome(){
+    public void listarUnicoUsuario(String email) {
+        String sql = "SELECT usuario_id, nome, email, permissao FROM Usuario WHERE email = ?";
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("usuario_id");
+                String nome = rs.getString("nome");
+                int permissao = rs.getInt("permissao");
+
+                System.out.println("\n===== USUARIO ENCONTRADO =====");
+                System.out.println("ID: " + id);
+                System.out.println("Nome: " + nome);
+                System.out.println("Email: " + email);
+                System.out.println("Permissao: " + (permissao == 1 ? "Administrador" : permissao == 2 ? "Cliente" : "Desconhecido"));
+            } else {
+                System.out.println("Usuario não encontrado.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar usuário: " + e.getMessage());
+        }
+    }
+
+    public boolean updateNome(String novoNome, String email) {
         String sql = "UPDATE Usuario SET nome = ? WHERE email = ?";
-        String nome="",email="";
-        return executeUpdate(sql, nome, email);
+        return executeUpdate(sql, novoNome, email);
     }
 
-    public boolean updateSenha() {
+    public boolean updateSenha(String novaSenha, String email) {
         String sql = "UPDATE Usuario SET senha = ? WHERE email = ?";
-        String senha = "", email = "";
-        return executeUpdate(sql, senha, email);
+        return executeUpdate(sql, novaSenha, email);
     }
 
-    public boolean updatePermissao() {
+    public boolean updatePermissao(int novaPermissao, String email) {
         String sql = "UPDATE Usuario SET permissao = ? WHERE email = ?";
-        String permissao = "", email = "";
-        return executeUpdate(sql, permissao, email);
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, novaPermissao);
+            stmt.setString(2, email);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar permissão: " + e.getMessage());
+            return false;
+        }
     }
 
-    public boolean updateEmail() {
-        String sql = "UPDATE Usuario SET email = ? WHERE permissao = ?";
-        String permissao = "",email = "";
-        return executeUpdate(sql,email, permissao);
+    public boolean updateEmail(String novoEmail, String emailAntigo) {
+        String sql = "UPDATE Usuario SET email = ? WHERE email = ?";
+        return executeUpdate(sql, novoEmail, emailAntigo);
+    }
+
+    public boolean deletarUsuario(String email) {
+        String sql = "DELETE FROM Usuario WHERE email = ?";
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+            int rowsAffected = stmt.executeUpdate();
+
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao deletar usuário: " + e.getMessage());
+            return false;
+        }
     }
 
     private boolean executeUpdate(String sql, String valor, String email) {
@@ -87,23 +140,6 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean deletarUsuario(String email) {
-        String sql = "DELETE FROM Usuario WHERE email = ?";
-
-        try (Connection conn = databaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, email);
-            int rowsAffected = stmt.executeUpdate();
-
-            return rowsAffected > 0;
-
-        } catch (Exception e) {
-            System.out.println("Erro ao deletar usuário: " + e.getMessage());
-            return false;
-        }
-    }
-
     public void listarUsuarios() {
         String sql = "SELECT usuario_id, nome, email, " +
                 "CASE " +
@@ -117,18 +153,20 @@ public class UsuarioDAO {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
-            System.out.println("\n===== LISTA DE USUÁRIOS =====");
+            System.out.println("\n===== LISTA DE USUARIOS =====");
             while (rs.next()) {
                 int id = rs.getInt("usuario_id");
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
                 String permissao = rs.getString("permissao");
 
-                System.out.println("ID: " + id + " | Nome: " + nome + " | Email: " + email + " | Permissão: " + permissao);
+                System.out.println("ID: " + id + " | Nome: " + nome + " | Email: " + email + " | Permissao: " + permissao);
             }
 
         } catch (Exception e) {
-            System.out.println("Erro ao listar usuários: " + e.getMessage());
+            System.out.println("Erro ao listar usuarios: " + e.getMessage());
         }
+
     }
+
 }
