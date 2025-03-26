@@ -14,7 +14,7 @@ public class FaturamentoDAO {
 
     public Faturamento obterRelatorioFaturamentoBanco(int mes, int ano) {
         String sqlTotais = """
-                SELECT 
+                SELECT
                     COUNT(*) AS total_cobrancas,
                     SUM(CASE WHEN c.status = 'Pago' THEN p.valor_pago ELSE 0 END) AS total_recebido,
                     SUM(CASE WHEN c.status = 'Aberto' THEN f.valor_fatura ELSE 0 END) AS total_pendente,
