@@ -1,12 +1,17 @@
 package br.com.agi.view.taxas;
 
 import java.util.Scanner;
+import br.com.agi.controller.TaxaController;
+import br.com.agi.dao.TaxaDAO;
 
 public class TaxaMenuView{
     private Scanner sc;
+    private TaxaController taxaController;
 
     public TaxaMenuView() {
+
         this.sc = new Scanner(System.in);
+        this.taxaController = new TaxaController();
     }
 
     public void telaInicial() {
@@ -26,10 +31,10 @@ public class TaxaMenuView{
 
             switch (opcao) {
                 case 1:
-                    System.out.println("🚧 Ajuste de taxas diarias - Em desenvolvimento...");
+                    taxaController.ajustarTaxaJuros();
                     break;
                 case 2:
-                    System.out.println("🚧 Ajuste de multas por Atraso - Em desenvolvimento...");
+                    taxaController.ajustarTaxaMulta();
                     break;
                 case 3:
                     System.out.println("Voltando ao Menu Principal!");
@@ -39,4 +44,6 @@ public class TaxaMenuView{
             }
         }
     }
+
+
 }
