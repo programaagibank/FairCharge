@@ -12,7 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.mysql:mysql-connector-j:8.3.0' // Última versão estável
+    implementation 'com.mysql:mysql-connector-j:8.3.0'
+    implementation "org.mindrot:jbcrypt:0.4"
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }

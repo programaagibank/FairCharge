@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.com.agi.controller.CifradorSenha;
 import br.com.agi.controller.UsuarioController;
 import br.com.agi.view.GerenciadorUsuarioView;
 
@@ -13,16 +14,22 @@ public class UsuarioDAO {
     GerenciadorUsuarioView menuGerenciador = new GerenciadorUsuarioView();
 
     public boolean validarLogin(String email, String senha) {
-        String sql = "SELECT * FROM Usuario WHERE email = ? AND senha = ?";
+        String sql = "SELECT senha FROM Usuario WHERE email = ?";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, email);
-            stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();
 
-            return rs.next();
+            if (rs.next()) {
+                String senhaArmazenada = rs.getString("senha");
+
+                CifradorSenha cifrador = new CifradorSenha();
+                return cifrador.validarSenhaCrifrada(senha, senhaArmazenada);
+            }
+
+            return false;
 
         } catch (Exception e) {
             System.out.println("Erro ao validar login: " + e.getMessage());
@@ -30,11 +37,15 @@ public class UsuarioDAO {
         }
     }
 
+
     public boolean cadastrarUsuario(String nome, String email, String senha, String permissao) {
         String sql = "INSERT INTO Usuario (nome, email, senha, permissao) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            CifradorSenha cifrador = new CifradorSenha();
+            String senhaCriptografada = cifrador.cifrarSenha(senha);
 
             stmt.setString(1, nome);
             stmt.setString(2, email);
