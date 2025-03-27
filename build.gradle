@@ -1,4 +1,6 @@
 plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
     id("java")
 }
 
@@ -13,6 +15,15 @@ dependencies {
     implementation 'com.mysql:mysql-connector-j:8.3.0' // Última versão estável
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+javafx {
+    version = '21'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+application {
+    mainClass = "br.com.agi.Main"
 }
 
 tasks.test {
