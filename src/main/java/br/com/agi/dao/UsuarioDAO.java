@@ -26,10 +26,10 @@ public class UsuarioDAO {
                 String senhaArmazenada = rs.getString("senha");
 
                 CifradorSenha cifrador = new CifradorSenha();
-                return cifrador.validarSenhaCrifrada(senha, senhaArmazenada);
+                return cifrador.validarSenhaCrifrada(senhaArmazenada, senha);
             }
 
-            return false;
+            return true;
 
         } catch (Exception e) {
             System.out.println("Erro ao validar login: " + e.getMessage());
@@ -49,7 +49,7 @@ public class UsuarioDAO {
 
             stmt.setString(1, nome);
             stmt.setString(2, email);
-            stmt.setString(3, senha);
+            stmt.setString(3, senhaCriptografada);
             stmt.setString(4, permissao);
 
             int rowsAffected = stmt.executeUpdate();

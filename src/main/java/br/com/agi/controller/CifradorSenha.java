@@ -13,7 +13,7 @@ public class CifradorSenha {
         }
 
         public boolean validarSenhaCrifrada(String senhaCifrada, String senha) {
-            return BCrypt.checkpw(senhaCifrada, senha);
+            return BCrypt.checkpw(senha, senhaCifrada);
         }
 
     }
