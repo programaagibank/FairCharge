@@ -50,7 +50,7 @@ public class UsuarioDAO {
         }
     }
 
-    public UsuarioController listarUnicoUsuario(String email) {
+    public boolean listarUnicoUsuario(String email) {
         String sql = "SELECT usuario_id, nome, email, permissao FROM Usuario WHERE email = ?";
 
         try (Connection conn = databaseConnection.getConnection();
@@ -69,6 +69,7 @@ public class UsuarioDAO {
                 System.out.println("Nome: " + nome);
                 System.out.println("Email: " + email);
                 System.out.println("Permissao: " + (permissao == 1 ? "Administrador" : permissao == 2 ? "Cliente" : "Desconhecido"));
+                return true;
             } else {
                 System.out.println("Usuario não encontrado.");
             }
@@ -76,8 +77,7 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             System.out.println("Erro ao buscar usuário: " + e.getMessage());
         }
-
-        return null;
+        return false;
     }
 
     public boolean updateNome(String novoNome, String email) {
@@ -166,7 +166,8 @@ public class UsuarioDAO {
                 String email = rs.getString("email");
                 String permissao = rs.getString("permissao");
 
-                System.out.println("ID: " + id + " | Nome: " + nome + " | Email: " + email + " | Permissao: " + permissao);
+                System.out.printf("ID: %-5s Nome: %-12s Email: %-23s Permissao: %-15s%n", id, nome, email, permissao);
+
             }
 
         } catch (Exception e) {

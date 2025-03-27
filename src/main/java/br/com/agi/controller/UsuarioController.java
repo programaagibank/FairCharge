@@ -25,11 +25,11 @@ public class UsuarioController {
     }
 
 
-    public boolean atualizarNome(String email, String novoNome) {
+    public boolean atualizarNome(String novoNome, String email) {
         return dao.updateNome(novoNome, email);
     }
 
-    public boolean atualizarSenha(String email, String novaSenha) {
+    public boolean atualizarSenha(String novaSenha, String email) {
         return dao.updateSenha(novaSenha, email);
     }
 
@@ -37,7 +37,7 @@ public class UsuarioController {
         return dao.updatePermissao(novaPermissao, email);
     }
 
-    public boolean atualizarEmail(String emailAtual, String novoEmail) {
+    public boolean atualizarEmail(String novoEmail, String emailAtual) {
         return dao.updateEmail(novoEmail, emailAtual);
     }
 
@@ -45,4 +45,13 @@ public class UsuarioController {
         return dao.deletarUsuario(email);
     }
 
+    public void listarTodosUsuarios(){
+        dao.listarUsuarios();
+    }
+
+    public boolean listarUsuario(String email) {
+        return dao.listarUnicoUsuario(email);
+    }
+
 }
+
