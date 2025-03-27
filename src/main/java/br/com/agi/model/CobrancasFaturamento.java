@@ -13,6 +13,19 @@ public class CobrancasFaturamento {
             this.status = status;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
+    public String getVencimento() {
+        return vencimento;
+    }
 
+    public double getValorCobranca() {
+        return valorCobranca;
+    }
+
+    public int getIdCobranca() {
+        return idCobranca;
+    }
 }

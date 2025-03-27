@@ -26,5 +26,12 @@ public class Parametros {
         return ano > 0;
     }
 
+    public boolean validaCPFouCNPJ(String documento) {
+        // Remove todos os caracteres não numéricos
+        documento = documento.replaceAll("\\D", "");
+
+        // Verifica se é CPF (11 dígitos) ou CNPJ (14 dígitos)
+        return documento.length() == 11 || documento.length() == 14;
+    }
 
 }

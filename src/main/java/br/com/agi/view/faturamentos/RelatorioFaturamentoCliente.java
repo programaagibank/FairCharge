@@ -1,9 +1,7 @@
 package br.com.agi.view.faturamentos;
 
 import br.com.agi.controller.FaturamentoController;
-import br.com.agi.model.CategoriasFaturamento;
 import br.com.agi.model.CobrancasFaturamento;
-import br.com.agi.model.Faturamento;
 import br.com.agi.model.FaturamentoCliente;
 
 import java.util.List;
@@ -16,48 +14,44 @@ public class RelatorioFaturamentoCliente {
         this.sc = new Scanner(System.in);
     }
 
-    public void ExibirRelatorioCliente(int mes, int ano, int cliente_id){
+    public void exibirRelatorioCliente(int mes, int ano, String cpf) {
         FaturamentoController faturamentoController = new FaturamentoController();
-        FaturamentoCliente cliente = faturamentoController.gerarRelatorioCliente(cliente_id, mes, ano);
+        FaturamentoCliente cliente = faturamentoController.gerarRelatorioCliente(cpf, mes, ano);
 
-        //List<CobrancasFaturamento> = cliente.getCobrancas();
+        if (cliente == null) {
+            System.out.println("\n**Erro ao gerar o relatório de faturamento do cliente. Tente novamente mais tarde.**");
+            return;
+        }
 
+        System.out.println("\n==============================");
+        System.out.printf(" RELATÓRIO DE FATURAMENTO CLIENTE - %02d/%d%n", mes, ano);
+        System.out.println("==============================\n");
+        System.out.printf("Cliente: %s%n", cliente.getCliente());
+        System.out.printf("Total de cobranças registradas: %d%n", cliente.getTotalCobrancas());
+        System.out.printf("Total recebido: R$ %.2f%n", cliente.getTotalRecebido());
+        System.out.printf("Total pendente: R$ %.2f%n", cliente.getTotalPendente());
+        System.out.printf("Total inadimplente: R$ %.2f%n", cliente.getTotalInadimplente());
 
-        // Variáveis do relatório
-        int mesRelatorio = 0, anoRelatorio = 0,cobrancasRegisTotal = 0;
-        double recebidosTotal = 0,pendentesTotal = 0,inadimplentesTotal = 0, emprestimosReceb = 0,emprestimosPend = 0,
-                tarifasReceb = 0,tarifasPend = 0,bolEmpresReceb = 0,bolEmpresInad = 0;
+        System.out.println("\nDETALHAMENTO POR COBRANÇAS:");
+        List<CobrancasFaturamento> cobrancas = cliente.getCobrancas();
 
-        // Mensagem Temperária
-        System.out.println("\n**Relatorio ainda sem dados, aguardando desenvolvimento...");//todo, Excluir quando os dados forem colocados.
-
-        // Exibir Relatório
-        System.out.println("RELATORIO DE FATURAMENTO CLIENTE - Mes: " +mes+ "/" +ano+ "\n");
-        System.out.printf("Total de cobrancas registradas: " ,cliente.getTotalCobrancas());
-        System.out.printf("Total recebido: %.2f " , cliente.getTotalRecebido());
-        System.out.printf("Total pendente: %.2f " , cliente.getTotalPendente() );
-        System.out.printf("Total inadimplente: %.2f " ,cliente.getTotalInadimplente());
-        System.out.println("\nDETALHAMENTO POR CATEGORIA:");
-        List<CobrancasFaturamento> categorias = cliente.getCobrancas();
-
-        if (categorias.isEmpty()) {
-            System.out.println("Nenhuma categoria encontrada.");
+        if (cobrancas.isEmpty()) {
+            System.out.println("Nenhuma cobrança encontrada.");
         } else {
-            for (CobrancasFaturamento categoria : categorias) {
-                System.out.printf("%-25s | ID: %.2f | Valor: R$ %.2f | Vencimento: %.2f% | Status: %s",
-                        categoria.getIdCobranca(),
-                        categoria.getValorCobranca(),
-                        categoria.getVencimento(),
-                        categoria.getStatus());
+            for (CobrancasFaturamento cobranca : cobrancas) {
+                System.out.printf("ID: %5s | Valor: R$ %10.2f | Vencimento: %s | Status: %-10s%n",
+                        cobranca.getIdCobranca(),
+                        cobranca.getValorCobranca(),
+                        cobranca.getVencimento(),
+                        cobranca.getStatus());
             }
         }
+
         System.out.println("\n==============================");
         System.out.println(" FIM DO RELATÓRIO ");
         System.out.println("==============================\n");
 
         System.out.println("\nPressione ENTER para voltar ao menu anterior...");
         sc.nextLine();
-
-
     }
 }

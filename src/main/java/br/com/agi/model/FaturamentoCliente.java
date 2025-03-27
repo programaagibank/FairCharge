@@ -7,7 +7,7 @@ public class FaturamentoCliente {
 
     private int mes;
     private int ano;
-    private List<CobrancasFaturamento> cobrancas;
+    private List<CobrancasFaturamento> cobrancas = new ArrayList<>();
     private String cliente;
     private int totalCobrancas;
     private double totalRecebido;
@@ -17,7 +17,6 @@ public class FaturamentoCliente {
     public FaturamentoCliente(int mes, int ano) {
         this.mes = mes;
         this.ano = ano;
-        this.cobrancas = new ArrayList<>();
     }
 
     public FaturamentoCliente(String cliente, int totalCobrancas, double totalRecebido, double totalPendente, double totalInadimplente) {

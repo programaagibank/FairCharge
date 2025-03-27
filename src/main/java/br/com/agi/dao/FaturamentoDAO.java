@@ -87,7 +87,7 @@ public class FaturamentoDAO {
         }
     }
 
-    public FaturamentoCliente obterRelatorioFaturamentoCliente(int clienteId, int mes, int ano) {
+    public FaturamentoCliente obterRelatorioFaturamentoCliente(String cpf, int mes, int ano) {
         String sqlTotais = """
             SELECT 
                 cl.nome AS cliente,
@@ -104,7 +104,7 @@ public class FaturamentoDAO {
             LEFT JOIN 
                 Pagamento p ON c.pagamento_id = p.pagamento_id
             WHERE 
-                cl.cliente_id = ?  
+                cl.cpf_cnpj = ?  
                 AND YEAR(f.data_criacao) = ? 
                 AND MONTH(f.data_criacao) = ?
             GROUP BY 
@@ -124,7 +124,7 @@ public class FaturamentoDAO {
             JOIN 
                 Cliente cl ON f.cliente_id = cl.cliente_id
             WHERE 
-                cl.cliente_id = ?  
+                cl.cpf_cnpj = ?  
                 AND YEAR(f.data_criacao) = ? 
                 AND MONTH(f.data_criacao) = ?
             ORDER BY 
@@ -135,11 +135,11 @@ public class FaturamentoDAO {
              PreparedStatement stmtTotais = conn.prepareStatement(sqlTotais);
              PreparedStatement stmtDetalhes = conn.prepareStatement(sqlDetalhes)) {
 
-            stmtTotais.setInt(1, clienteId);
+            stmtTotais.setString(1, cpf);
             stmtTotais.setInt(2, ano);
             stmtTotais.setInt(3, mes);
 
-            stmtDetalhes.setInt(1, clienteId);
+            stmtDetalhes.setString(1, cpf);
             stmtDetalhes.setInt(2, ano);
             stmtDetalhes.setInt(3, mes);
 

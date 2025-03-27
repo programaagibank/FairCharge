@@ -13,6 +13,7 @@ public class MenuFaturamentoView {
         this.parametros = new Parametros();
     }
 
+    int mes = 0, ano = 0;
     public void TelaMenu() {
         byte opcao = 0;
 
@@ -20,7 +21,7 @@ public class MenuFaturamentoView {
         while (true) {
             String textoMenu = """
                     Escolha uma das opcoes para gerar Relatorio de Faturamento:
-                    1 - Faturamento Usuario
+                    1 - Faturamento de Cliente
                     2 - Faturamento do Banco
                     3 - Voltar ao Menu Principal""";
 
@@ -30,41 +31,24 @@ public class MenuFaturamentoView {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("🚧 Relatório de Cliente - Em desenvolvimento... ");
-                    break;
-                    /*RelatorioFaturamentoCliente relatorio = new RelatorioFaturamentoUsuarioView();
-                    relatorio.ExibirRelatorioCliente();*/
-                case 2:
-                    int mes = 0, ano = 0;
+                    String documentoCliente;
+                    solicitaMesAno();
                     while (true) {
-                        System.out.print("Digite o mês para o relatório (1-12): ");
-                        if (sc.hasNextInt()) {
-                            mes = sc.nextInt();
-                            if (parametros.validaMes(mes)) {
-                                break;
-                            } else {
-                                System.out.println("Mês inválido! Digite um valor entre 1 e 12.");
-                            }
+                        System.out.print("Digite o CPF ou CNPJ do cliente: ");
+                        String entrada = sc.next();
+                        if (parametros.validaCPFouCNPJ(entrada)) {
+                            documentoCliente = entrada.replaceAll("\\D", "");
+                            break;
                         } else {
-                            System.out.println("Entrada inválida! Digite um número inteiro entre 1 e 12.");
-                            sc.next();
+                            System.out.println("Documento inválido! Digite um CPF ou CNPJ válido.");
                         }
                     }
 
-                    while (true) {
-                        System.out.print("Digite o ano para o relatório: ");
-                        if (sc.hasNextInt()) {
-                            ano = sc.nextInt();
-                            if (parametros.validaAno(ano)) {
-                                break;
-                            } else {
-                                System.out.println("Ano inválido! Digite um ano válido.");
-                            }
-                        } else {
-                            System.out.println("Entrada inválida! Digite um número válido para o ano.");
-                            sc.next();
-                        }
-                    }
+                    RelatorioFaturamentoCliente relatorioCliente = new RelatorioFaturamentoCliente();
+                    relatorioCliente.exibirRelatorioCliente(mes, ano, documentoCliente);
+                    break;
+                case 2:
+                    solicitaMesAno();
                     RelatorioFaturamentoBanco relatorio = new RelatorioFaturamentoBanco();
                     relatorio.exibirRelatorioBanco(mes, ano);
                     break;
@@ -76,8 +60,39 @@ public class MenuFaturamentoView {
                     System.out.println("Opção invalida! Tente novamente.");
 
             }
+        }
+    }
+
+    private void solicitaMesAno() {
+        while (true) {
+            System.out.print("Digite o mês para o relatório (1-12): ");
+            if (sc.hasNextInt()) {
+                mes = sc.nextInt();
+                if (parametros.validaMes(mes)) {
+                    break;
+                } else {
+                    System.out.println("Mês inválido! Digite um valor entre 1 e 12.");
+                }
+            } else {
+                System.out.println("Entrada inválida! Digite um número inteiro entre 1 e 12.");
+                sc.next();
             }
         }
 
+        while (true) {
+            System.out.print("Digite o ano para o relatório: ");
+            if (sc.hasNextInt()) {
+                ano = sc.nextInt();
+                if (parametros.validaAno(ano)) {
+                    break;
+                } else {
+                    System.out.println("Ano inválido! Digite um ano válido.");
+                }
+            } else {
+                System.out.println("Entrada inválida! Digite um número válido para o ano.");
+                sc.next();
+            }
+        }
+    }
 
 }
