@@ -23,10 +23,11 @@ public class TaxaMenuView {
         while (true) {
             System.out.println("""
                     =============================================
-                    Escolha uma das opções para visualizar as taxas:
-                    1 - Taxa de Juros Diários
-                    2 - Multa por Atraso
-                    3 - Voltar ao Menu Principal
+                            Menu Taxas:
+                    1 - Visualização Taxa de Juros Diários e Multa
+                    2 - Adição de Taxa de Juros
+                    3 - Adiçao de Taxa de Multa
+                    4 - Voltar ao Menu Principal
                     =============================================""");
 
             byte opcao = sc.nextByte();
@@ -43,8 +44,7 @@ public class TaxaMenuView {
                     } else {
                         System.out.println("Nenhuma taxa de juros encontrada.");
                     }
-                    break;
-                case 2:
+
                     TaxaMulta multa = taxaController.getMultaPorAtraso();
                     if (multa != null) {
                         System.out.println("Multa por Atraso");
@@ -55,7 +55,27 @@ public class TaxaMenuView {
                         System.out.println("Nenhuma multa encontrada.");
                     }
                     break;
+                case 2:
+                    TaxaJuros jurosAdd = taxaController.addTaxaJuros();
+
+                    System.out.println("Atualização da Taxa de Juros Diários");
+                    System.out.println("ID: " + jurosAdd.isertJurosId());
+                    System.out.println("Percentual: " + jurosAdd.inserPercentualDiario() + "%");
+                    System.out.println("Criado em: " + sdf.format(jurosAdd.intertDataCriacao()));
+
+
                 case 3:
+                    TaxaMulta multaAdd = taxaController.addTaxaMulta();
+                    if (multaAdd != null) {
+                        System.out.println("Multa por Atraso");
+                        System.out.println("ID: " + multaAdd.insertMulta());
+                        System.out.println("Percentual: " + multaAdd.inserPercentualMulta() + "%");
+                        System.out.println("Criado em: " + sdf.format(multaAdd.intertDataCriacaoMulta()));
+                    } else {
+                        System.out.println("Nenhuma multa encontrada.");
+                    }
+                    break;
+                case 4:
                     System.out.println("Voltando ao Menu Principal...");
                     return;
                 default:
