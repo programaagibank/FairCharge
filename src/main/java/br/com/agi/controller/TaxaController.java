@@ -1,7 +1,6 @@
 package br.com.agi.controller;
 
 import br.com.agi.dao.TaxaDAO;
-import br.com.agi.model.Multa;
 import br.com.agi.model.TaxaJuros;
 import br.com.agi.model.TaxaMulta;
 

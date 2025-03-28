@@ -1,45 +1,29 @@
 package br.com.agi;
-<<<<<<< HEAD
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-=======
 import br.com.agi.database.databaseConnection;
 import br.com.agi.view.inicios.TelaInicial;
 import br.com.agi.view.inicios.WelcomeView;
 
 
 import java.sql.Connection;
->>>>>>> 502a96afa09800089534da836499c7ef0999fabb
 
-public class Main extends Application {
-
-    @Override
-    public void start(Stage primaryStage) {
-        // Cria um componente de texto
-        Label helloLabel = new Label("Hello, World!");
-
-        // Cria um layout e adiciona o texto
-        StackPane root = new StackPane();
-        root.getChildren().add(helloLabel);
-
-        // Cria uma cena contendo o layout e define seu tamanho
-        Scene scene = new Scene(root, 300, 200);
-
-        // Configura a janela (stage)
-        primaryStage.setTitle("Hello World App");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+public class Main {
+    private static WelcomeView welcome = new WelcomeView();
+    private static TelaInicial telaInicial = new TelaInicial();
 
     public static void main(String[] args) {
-        launch(args); // Inicia a aplicação JavaFX
+        try (Connection connection = databaseConnection.getConnection()) {
+            if (connection != null) {
+                System.out.println("Conexao bem-sucedida!");
+            }
+        } catch (Exception e) {
+            System.out.println("🚧telaBoasVindas(); Erro ao conectar: " + e.getMessage());
+            return;
+        }
+
+        welcome.telaBoasVindas();
+        telaInicial.TelaMenu();
     }
 }
-<<<<<<< HEAD
-=======
 
 /*
 package br.com.agi;
@@ -74,4 +58,3 @@ public class Main extends Application {
     }
 }
 */
->>>>>>> 502a96afa09800089534da836499c7ef0999fabb
