@@ -3,18 +3,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.agi.controller.CifradorSenha;
 import br.com.agi.controller.UsuarioController;
+import br.com.agi.model.Usuario;
+import br.com.agi.utils.SessaoLogon;
 import br.com.agi.view.GerenciadorUsuarioView;
 
 import br.com.agi.database.databaseConnection;
 
 public class UsuarioDAO {
-    GerenciadorUsuarioView menuGerenciador = new GerenciadorUsuarioView();
+    CifradorSenha cifrador = new CifradorSenha();
 
     public boolean validarLogin(String email, String senha) {
-        String sql = "SELECT senha FROM Usuario WHERE email = ?";
+        String sql = "SELECT senha, permissao FROM Usuario WHERE email = ?";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -24,12 +28,14 @@ public class UsuarioDAO {
 
             if (rs.next()) {
                 String senhaArmazenada = rs.getString("senha");
+                int permissao = rs.getInt("permissao");
 
+                SessaoLogon.setLoggedUser(new Usuario(email, null, permissao));
                 CifradorSenha cifrador = new CifradorSenha();
                 return cifrador.validarSenhaCrifrada(senhaArmazenada, senha);
             }
 
-            return true;
+            return false;
 
         } catch (Exception e) {
             System.out.println("Erro ao validar login: " + e.getMessage());
@@ -44,7 +50,7 @@ public class UsuarioDAO {
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            CifradorSenha cifrador = new CifradorSenha();
+
             String senhaCriptografada = cifrador.cifrarSenha(senha);
 
             stmt.setString(1, nome);
@@ -171,6 +177,7 @@ public class UsuarioDAO {
              ResultSet rs = stmt.executeQuery()) {
 
             System.out.println("\n===== LISTA DE USUARIOS =====");
+
             while (rs.next()) {
                 int id = rs.getInt("usuario_id");
                 String nome = rs.getString("nome");
@@ -186,5 +193,52 @@ public class UsuarioDAO {
         }
 
     }
+
+    public List<Usuario> listarTodosUsuarios() {
+        String sql = "SELECT usuario_id, nome, email, permissao FROM Usuario";
+
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario(
+                rs.getString("email"),
+                rs.getString("nome"),
+                rs.getInt("permissao"));
+
+                usuarios.add(usuario);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao listar usuários: " + e.getMessage());
+        }
+
+        return usuarios;
+    }
+
+    public boolean atualizarUsuarioFX(Usuario usuario) {
+        String sql = "UPDATE Usuario SET nome = ?, email = ?, senha = ?, permissao = ? WHERE email = ?";
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            String senhaCriptografada = cifrador.cifrarSenha(usuario.getSenha());
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, senhaCriptografada);
+            stmt.setInt(4, usuario.getPermissao());
+            stmt.setString(5, usuario.getEmail());
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar usuário: " + e.getMessage());
+            return false;
+        }
+    }
+
 
 }

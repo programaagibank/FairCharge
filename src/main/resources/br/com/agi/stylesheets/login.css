@@ -1,0 +1,29 @@
+#loginBackground {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 20, 0, 0, 10);
+}
+
+#loginButton {
+    -fx-background-color: #0068ff;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px;
+    -fx-border-radius: 45px;
+    -fx-background-radius: 45px;
+}
+
+#teste {
+    -fx-background-color: #ffff;
+}
+#loginButton:hover {
+    -fx-background-color: #9BA4B5;
+}
+
+#camposTxt {
+    -fx-background-color: #e6e6e6;
+    -fx-text-fill: black;
+    -fx-padding: 8px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 10px;
+}
