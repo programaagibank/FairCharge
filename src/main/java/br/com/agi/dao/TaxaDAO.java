@@ -1,58 +1,57 @@
 package br.com.agi.dao;
-import br.com.agi.database.databaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+import br.com.agi.database.databaseConnection;
+import br.com.agi.model.TaxaJuros;
+import br.com.agi.model.TaxaMulta;
+
 public class TaxaDAO {
 
-    // Método para buscar a taxa de Multa ou Juros no banco de dados
-    public double buscarTaxa(String tipo) {
-        String sql = "SELECT valor FROM Taxa WHERE tipo = ?";
-        try (Connection conn = databaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, tipo);
-            ResultSet rs = stmt.executeQuery();
+    private databaseConnection DatabaseConnection;
+
+    public TaxaJuros buscarTaxaJurosDiarios() {
+        String sql = "SELECT juros_id, percentual_juros_diario, data_criacao FROM Juros ORDER BY data_criacao DESC LIMIT 1";
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
             if (rs.next()) {
-                return rs.getDouble("valor");
+                return new TaxaJuros(
+                        rs.getInt("juros_id"),
+                        rs.getDouble("percentual_juros_diario"),
+                        rs.getDate("data_criacao")
+                );
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao buscar taxa '" + tipo + "': " + e.getMessage());
+            System.err.println("Erro ao buscar taxa de juros diários: " + e.getMessage());
         }
-
-        // Valores padrão caso a taxa não esteja no banco
-        if (tipo.equalsIgnoreCase("Multa")) return 5.0;  // Multa padrão de 5%
-        if (tipo.equalsIgnoreCase("Juros")) return 3.0;  // Juros padrão de 3% ao dia
-
-        return 0.0;
+        return null; // Retorna null caso não encontre nada
     }
 
-    // Método para atualizar uma taxa existente no banco de dados
-    public boolean atualizarTaxa(String tipo, double novoValor) {
-        String sql = "UPDATE Taxa SET valor = ? WHERE tipo = ?";
+    public TaxaMulta buscarMultaPorAtraso() {
+        String sql = "SELECT multa_id, percentual_multa, data_criacao FROM Multa ORDER BY data_criacao DESC LIMIT 1";
 
-        try (Connection conn = databaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
-            stmt.setDouble(1, novoValor);
-            stmt.setString(2, tipo);
-
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Taxa '" + tipo + "' atualizada com sucesso para " + novoValor + "%.");
-                return true;
-            } else {
-                System.out.println("Nenhuma taxa foi atualizada. Verifique se o tipo informado é válido.");
-                return false;
+            if (rs.next()) {
+                return new TaxaMulta(
+                        rs.getInt("multa_id"),
+                        rs.getDouble("percentual_multa"),
+                        rs.getDate("data_criacao")
+                );
             }
-
         } catch (SQLException e) {
-            System.err.println("Erro ao atualizar taxa '" + tipo + "': " + e.getMessage());
-            return false;
+            System.err.println("Erro ao buscar multa por atraso: " + e.getMessage());
         }
+        return null; // Retorna null caso não encontre nada
     }
-
 }

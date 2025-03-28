@@ -1,49 +1,71 @@
 package br.com.agi.view.taxas;
 
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
-import br.com.agi.controller.TaxaController;
-import br.com.agi.dao.TaxaDAO;
 
-public class TaxaMenuView{
+import br.com.agi.controller.TaxaController;
+import br.com.agi.model.TaxaJuros;
+import br.com.agi.model.TaxaMulta;
+import br.com.agi.model.TaxaMulta;
+
+public class TaxaMenuView {
     private Scanner sc;
     private TaxaController taxaController;
 
     public TaxaMenuView() {
-
         this.sc = new Scanner(System.in);
         this.taxaController = new TaxaController();
     }
 
     public void telaInicial() {
-        byte opcao = 0;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         while (true) {
-            String textoMenu = """
+            System.out.println("""
                     =============================================
-                    Escolha uma das opçoes para ajustar as taxas:
-                    1 - Taxa de Juros Diarios
+                    Escolha uma das opções para visualizar as taxas:
+                    1 - Taxa de Juros Diários
                     2 - Multa por Atraso
-                    3 - Voltar ao Menu Principal""";
+                    3 - Voltar ao Menu Principal
+                    =============================================""");
 
-            System.out.println(textoMenu);
-            opcao = sc.nextByte();
+            byte opcao = sc.nextByte();
             System.out.println();
 
             switch (opcao) {
                 case 1:
-                    taxaController.ajustarTaxaJuros();
+                    TaxaJuros juros = taxaController.getTaxaJurosDiarios();
+                    if (juros != null) {
+                        System.out.println("Taxa de Juros Diários");
+                        System.out.println("ID: " + juros.getJurosId());
+                        System.out.println("Percentual: " + juros.getPercentualJurosDiario() + "% ao dia");
+                        System.out.println("Criado em: " + sdf.format(juros.getDataCriacao()));
+                    } else {
+                        System.out.println("Nenhuma taxa de juros encontrada.");
+                    }
                     break;
                 case 2:
-                    taxaController.ajustarTaxaMulta();
+                    TaxaMulta multa = taxaController.getMultaPorAtraso();
+                    if (multa != null) {
+                        System.out.println("Multa por Atraso");
+                        System.out.println("ID: " + multa.getMultaId());
+                        System.out.println("Percentual: " + multa.getPercentualMulta() + "%");
+                        System.out.println("Criado em: " + sdf.format(multa.getDataCriacao()));
+                    } else {
+                        System.out.println("Nenhuma multa encontrada.");
+                    }
                     break;
                 case 3:
-                    System.out.println("Voltando ao Menu Principal!");
+                    System.out.println("Voltando ao Menu Principal...");
                     return;
                 default:
-                    System.out.println("Opçao invalida! Tente novamente");
+                    System.out.println("Opção inválida! Tente novamente.");
             }
         }
     }
 
-
+    public static void main(String[] args) {
+        TaxaMenuView menu = new TaxaMenuView();
+        menu.telaInicial();
+    }
 }
