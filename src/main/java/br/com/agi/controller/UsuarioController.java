@@ -1,6 +1,9 @@
 package br.com.agi.controller;
 import br.com.agi.dao.UsuarioDAO;
+import br.com.agi.model.Usuario;
 import br.com.agi.utils.Parametros;
+
+import java.util.List;
 
 public class UsuarioController {
     Parametros param = new Parametros();
@@ -49,9 +52,16 @@ public class UsuarioController {
         dao.listarUsuarios();
     }
 
+    public List<Usuario> listarTodosUsuariosFX(){
+        return dao.listarTodosUsuarios();
+    }
+
     public boolean listarUsuario(String email) {
         return dao.listarUnicoUsuario(email);
     }
 
+    public boolean atualizarUsuarioFX(Usuario usuario) {
+        return dao.atualizarUsuarioFX(usuario);
+    }
 }
 
