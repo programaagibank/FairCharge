@@ -1,6 +1,5 @@
 package br.com.agi.controller;
 
-import br.com.agi.dao.UsuarioDAO;
 import br.com.agi.model.Usuario;
 import br.com.agi.utils.Alerta;
 import br.com.agi.utils.DialogHelper;
@@ -8,10 +7,10 @@ import br.com.agi.utils.Navegador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Pair;
 
 import java.util.Optional;
 
@@ -28,7 +27,7 @@ public class GerenciadorUsuariosController {
     private TableColumn<Usuario, String> colEmail;
 
     @FXML
-    private TableColumn<Usuario, String> colPermissao;
+    private TableColumn<Usuario, Integer> colPermissao;
 
     @FXML
     void handleExcluirUsuario() {
@@ -55,7 +54,6 @@ public class GerenciadorUsuariosController {
         }
     }
 
-
     @FXML
     void handleEditarUsuario() {
         Usuario usuarioSelecionado = userTable.getSelectionModel().getSelectedItem();
@@ -75,7 +73,6 @@ public class GerenciadorUsuariosController {
             Alerta.mostrarAviso("Nenhum Usuário Selecionado", null, "Por favor, selecione um usuário na tabela para editar.");
         }
     }
-
 
     @FXML
     void handleAdicionarUsuario() {
@@ -98,12 +95,23 @@ public class GerenciadorUsuariosController {
         Navegador.getHome();
     }
 
-
     @FXML
     public void initialize() {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
         colPermissao.setCellValueFactory(new PropertyValueFactory<>("permissao"));
+        colPermissao.setCellFactory(column -> new TableCell<Usuario, Integer>() {
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(converterPermissao(item));
+                }
+            }
+        });
 
         preencherTabela();
     }
@@ -111,5 +119,16 @@ public class GerenciadorUsuariosController {
     private void preencherTabela() {
         ObservableList<Usuario> usuarios = FXCollections.observableArrayList(controller.listarTodosUsuariosFX());
         userTable.setItems(usuarios);
+    }
+
+    private String converterPermissao(int permissao) {
+        switch (permissao) {
+            case 1:
+                return "Administrador";
+            case 2:
+                return "Financeiro";
+            default:
+                return "Desconhecido";
+        }
     }
 }
