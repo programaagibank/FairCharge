@@ -30,7 +30,7 @@ public class UsuarioDAO {
                 String senhaArmazenada = rs.getString("senha");
                 int permissao = rs.getInt("permissao");
 
-                SessaoLogon.setLoggedUser(new Usuario(email, null, permissao));
+                SessaoLogon.setLoggedUser(new Usuario(email, permissao));
                 CifradorSenha cifrador = new CifradorSenha();
                 return cifrador.validarSenhaCrifrada(senhaArmazenada, senha);
             }

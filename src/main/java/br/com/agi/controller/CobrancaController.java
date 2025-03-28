@@ -14,12 +14,25 @@ public class CobrancaController {
         this.cobrancaDAO = new CobrancaDAO(connection);
     }
 
-    public List<Cobranca> listarPorCliente(int clienteId) throws SQLException {
-        return cobrancaDAO.BuscarCobrancaCliente(clienteId);
-    }
 
     public void atualizarStatusCobranca(int id, String status) throws SQLException {
         cobrancaDAO.statusPagamento(id, status);
+    }
+
+
+
+
+
+    public boolean atualizarPendencias() {
+        return cobrancaDAO.atualizarCobrancasVencidas();
+    }
+
+    public List<Cobranca> listarCobrancasVencidas() {
+        return cobrancaDAO.listarCobrancasVencidas();
+    }
+
+    public List<Cobranca> gerarRelatorioCobrancas() {
+        return cobrancaDAO.gerarRelatorioCobrancasVencidas();
     }
 
 }

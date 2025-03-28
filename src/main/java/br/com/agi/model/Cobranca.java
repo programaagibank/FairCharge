@@ -1,57 +1,64 @@
 package br.com.agi.model;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Cobranca {
-    private int id;
+    private int cobranca_id;
     private int faturaId;
     private Integer cobrancaReferenciadaId; // Pode ser null
     private int clienteId;
     private Integer formaPagamentoId; // Pode ser null
     private double valorTotal;
+    private double valorTotalComMultas;
     private Date dataCriacao;
-    private Date dataVencimento;
+    private LocalDate dataVencimento;
     private String status;
+    private String nomeCliente;
 
-    public Cobranca() {}
-
-    public Cobranca(int id, int faturaId, Integer cobrancaReferenciadaId, int clienteId,
-                    Integer formaPagamentoId, double valorTotal, Date dataCriacao,
-                    Date dataVencimento, String status) {
-        this.id = id;
+    public Cobranca(int cobranca_id, int faturaId, String nomeCliente, double valorTotal, double valorTotalComMultas, LocalDate dataVencimento, String status) {
+        this.cobranca_id = cobranca_id;
         this.faturaId = faturaId;
-        this.cobrancaReferenciadaId = cobrancaReferenciadaId;
-        this.clienteId = clienteId;
-        this.formaPagamentoId = formaPagamentoId;
+        this.nomeCliente = nomeCliente;
+        this.valorTotalComMultas = valorTotalComMultas;
         this.valorTotal = valorTotal;
-        this.dataCriacao = dataCriacao;
         this.dataVencimento = dataVencimento;
         this.status = status;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Cobranca(int cobranca_id, int faturaId, String nomeCliente, String status, double valorTotalComMultas, LocalDate dataVencimento) {
+        this.cobranca_id = cobranca_id;
+        this.faturaId = faturaId;
+        this.nomeCliente = nomeCliente;
+        this.status = status;
+        this.valorTotalComMultas = valorTotalComMultas;
+        this.dataVencimento = dataVencimento;
+    }
 
-    public int getFaturaId() { return faturaId; }
-    public void setFaturaId(int faturaId) { this.faturaId = faturaId; }
+    public double getValorTotal() {
+        return valorTotal;
+    }
 
-    public Integer getCobrancaReferenciadaId() { return cobrancaReferenciadaId; }
-    public void setCobrancaReferenciadaId(Integer cobrancaReferenciadaId) {this.cobrancaReferenciadaId = cobrancaReferenciadaId;}
+    public int getCobranca_id() {
+        return cobranca_id;
+    }
 
-    public int getClienteId() { return clienteId; }
-    public void setClienteId(int clienteId) { this.clienteId = clienteId; }
+    public int getFaturaId() {
+        return faturaId;
+    }
 
-    public Integer getFormaPagamentoId() { return formaPagamentoId; }
-    public void setFormaPagamentoId(Integer formaPagamentoId) { this.formaPagamentoId = formaPagamentoId; }
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
 
-    public double getValorTotal() { return valorTotal; }
-    public void setValorTotal(double valorTotal) { this.valorTotal = valorTotal; }
+    public double getValorTotalComMultas() {
+        return valorTotalComMultas;
+    }
 
-    public Date getDataCriacao() { return dataCriacao; }
-    public void setDataCriacao(Date dataCriacao) { this.dataCriacao = dataCriacao; }
+    public LocalDate getDataVencimento() {
+        return dataVencimento;
+    }
 
-    public Date getDataVencimento() { return dataVencimento; }
-    public void setDataVencimento(Date dataVencimento) { this.dataVencimento = dataVencimento; }
-
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public String getStatus() {
+        return status;
+    }
 }

@@ -1,7 +1,9 @@
 package br.com.agi.view.inicios;
 
+import br.com.agi.controller.CobrancaController;
 import br.com.agi.dao.PagamentoDAO;
 import br.com.agi.view.GerenciadorUsuarioView;
+import br.com.agi.view.cobranca.MenuCobrancaView;
 import br.com.agi.view.faturamentos.MenuFaturamentoView;
 import br.com.agi.view.taxas.TaxaMenuView;
 
@@ -17,10 +19,10 @@ public class ExibirMenu {
 
         while (true) {
             System.out.print("\n================================\n");
-            System.out.println("1 - Menu Relatorio de Faturamento");
+            System.out.println("1 - Menu de Faturamento");
             System.out.println("2 - Listar Pagamentos");
             System.out.println("3 - Ajustar taxas");
-            System.out.println("4 - Listar cobrancas por cliente");
+            System.out.println("4 - Menu de Cobranças");
             System.out.println("5 - Gerenciar Usuário");
             System.out.println("6 - Sair");
 
@@ -44,7 +46,8 @@ public class ExibirMenu {
                     taxaMenuView.telaInicial();
                     break;
                 case '4':
-                    System.out.println("🚧 Lista de Cobrancas - Em desenvolvimento... ");
+                    MenuCobrancaView menuCobranca = new MenuCobrancaView();
+                    menuCobranca.telaMenuCobranca();
                     break;
                 case '5':
                     gerenciadorUsuario.GerenciadorDeUsuario();

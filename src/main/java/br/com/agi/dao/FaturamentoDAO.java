@@ -14,42 +14,74 @@ public class FaturamentoDAO {
 
     public Faturamento obterRelatorioFaturamentoBanco(int mes, int ano) {
         String sqlTotais = """
-                SELECT
-                    COUNT(*) AS total_cobrancas,
-                    SUM(CASE WHEN c.status = 'Pago' THEN p.valor_pago ELSE 0 END) AS total_recebido,
-                    SUM(CASE WHEN c.status = 'Aberto' THEN f.valor_fatura ELSE 0 END) AS total_pendente,
-                    SUM(CASE WHEN c.status = 'Atrasado' THEN f.valor_fatura ELSE 0 END) AS total_inadimplente
-                FROM
-                    Cobranca c
-                JOIN
-                    Fatura f ON c.fatura_id = f.fatura_id
-                LEFT JOIN
-                    Pagamento p ON c.pagamento_id = p.pagamento_id
-                WHERE
-                    YEAR(f.data_criacao) = ?
-                    AND MONTH(f.data_criacao) = ?;
-                
-                """;
+            SELECT 
+                COUNT(*) AS total_cobrancas,
+                SUM(CASE 
+                    WHEN c.status = 'Pago' THEN p.valor_pago 
+                    ELSE 0
+                END) AS total_recebido,
+                SUM(CASE 
+                    WHEN c.status = 'Aberto' THEN f.valor_fatura 
+                    WHEN c.status = 'Atrasado' THEN 
+                        (f.valor_fatura + IFNULL(m.percentual_multa, 0) / 100 * f.valor_fatura) * 
+                        POW(1 + IFNULL(j.percentual_juros_diario, 0) / 100, DATEDIFF(CURDATE(), f.data_vencimento)) 
+                    ELSE 0
+                END) AS total_pendente,
+                SUM(CASE 
+                    WHEN c.status = 'Atrasado' THEN f.valor_fatura 
+                    ELSE 0
+                END) AS total_inadimplente
+            FROM
+                Cobranca c
+            JOIN
+                Fatura f ON c.fatura_id = f.fatura_id
+            LEFT JOIN
+                Pagamento p ON c.pagamento_id = p.pagamento_id
+            LEFT JOIN
+                Multa m ON c.multa_atraso_id = m.multa_id
+            LEFT JOIN
+                Juros j ON c.juros_diario_id = j.juros_id
+            WHERE
+                YEAR(f.data_criacao) = ?
+                AND MONTH(f.data_criacao) = ?;
+        """;
+
 
         String sqlCategorias = """
-                SELECT
-                    f.descricao AS categoria,
-                    SUM(CASE WHEN c.status = 'Pago' THEN p.valor_pago ELSE 0 END) AS total_recebido,
-                    SUM(CASE WHEN c.status = 'Aberto' THEN f.valor_fatura ELSE 0 END) AS total_pendente,
-                    SUM(CASE WHEN c.status = 'Atrasado' THEN f.valor_fatura ELSE 0 END) AS total_inadimplente
-                FROM
-                    Cobranca c
-                JOIN
-                    Fatura f ON c.fatura_id = f.fatura_id
-                LEFT JOIN
-                    Pagamento p ON c.pagamento_id = p.pagamento_id
-                WHERE
-                    YEAR(f.data_criacao) = ?
-                    AND MONTH(f.data_criacao) = ?
-                GROUP BY
-                    f.descricao;
-                
-                """;
+    SELECT 
+        f.descricao AS categoria,
+        SUM(CASE 
+            WHEN c.status = 'Pago' THEN p.valor_pago 
+            ELSE 0
+        END) AS total_recebido,
+        SUM(CASE 
+            WHEN c.status = 'Aberto' THEN f.valor_fatura 
+            WHEN c.status = 'Atrasado' THEN 
+                (f.valor_fatura + IFNULL(m.percentual_multa, 0) / 100 * f.valor_fatura) * 
+                POW(1 + IFNULL(j.percentual_juros_diario, 0) / 100, DATEDIFF(CURDATE(), f.data_vencimento)) 
+            ELSE 0
+        END) AS total_pendente,
+        SUM(CASE 
+            WHEN c.status = 'Atrasado' THEN f.valor_fatura 
+            ELSE 0
+        END) AS total_inadimplente
+    FROM
+        Cobranca c
+    JOIN
+        Fatura f ON c.fatura_id = f.fatura_id
+    LEFT JOIN
+        Pagamento p ON c.pagamento_id = p.pagamento_id
+    LEFT JOIN
+        Multa m ON c.multa_atraso_id = m.multa_id
+    LEFT JOIN
+        Juros j ON c.juros_diario_id = j.juros_id
+    WHERE
+        YEAR(f.data_criacao) = ?
+        AND MONTH(f.data_criacao) = ?
+    GROUP BY
+        f.descricao;
+""";
+
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmtTotais = conn.prepareStatement(sqlTotais);
@@ -89,27 +121,44 @@ public class FaturamentoDAO {
 
     public FaturamentoCliente obterRelatorioFaturamentoCliente(String cpf, int mes, int ano) {
         String sqlTotais = """
-            SELECT 
-                cl.nome AS cliente,
-                COUNT(c.cobranca_id) AS total_cobrancas,
-                COALESCE(SUM(CASE WHEN c.status = 'Pago' THEN p.valor_pago ELSE 0 END), 0) AS total_recebido,
-                COALESCE(SUM(CASE WHEN c.status = 'Aberto' THEN f.valor_fatura ELSE 0 END), 0) AS total_pendente,
-                COALESCE(SUM(CASE WHEN c.status = 'Atrasado' THEN f.valor_fatura ELSE 0 END), 0) AS total_inadimplente
-            FROM 
-                Cobranca c
-            JOIN 
-                Fatura f ON c.fatura_id = f.fatura_id
-            JOIN 
-                Cliente cl ON f.cliente_id = cl.cliente_id
-            LEFT JOIN 
-                Pagamento p ON c.pagamento_id = p.pagamento_id
-            WHERE 
-                cl.cpf_cnpj = ?  
-                AND YEAR(f.data_criacao) = ? 
-                AND MONTH(f.data_criacao) = ?
-            GROUP BY 
-                cl.nome;
-            """;
+    SELECT 
+        cl.nome AS cliente,
+        COUNT(c.cobranca_id) AS total_cobrancas,
+        COALESCE(SUM(CASE 
+            WHEN c.status = 'Pago' THEN p.valor_pago 
+            ELSE 0
+        END), 0) AS total_recebido,
+        COALESCE(SUM(CASE 
+            WHEN c.status = 'Aberto' THEN f.valor_fatura 
+            WHEN c.status = 'Atrasado' THEN 
+                (f.valor_fatura + IFNULL(m.percentual_multa, 0) / 100 * f.valor_fatura) * 
+                POW(1 + IFNULL(j.percentual_juros_diario, 0) / 100, DATEDIFF(CURDATE(), f.data_vencimento)) 
+            ELSE 0
+        END), 0) AS total_pendente,
+        COALESCE(SUM(CASE 
+            WHEN c.status = 'Atrasado' THEN f.valor_fatura 
+            ELSE 0
+        END), 0) AS total_inadimplente
+    FROM 
+        Cobranca c
+    JOIN 
+        Fatura f ON c.fatura_id = f.fatura_id
+    JOIN 
+        Cliente cl ON f.cliente_id = cl.cliente_id
+    LEFT JOIN 
+        Pagamento p ON c.pagamento_id = p.pagamento_id
+    LEFT JOIN 
+        Multa m ON c.multa_atraso_id = m.multa_id
+    LEFT JOIN 
+        Juros j ON c.juros_diario_id = j.juros_id
+    WHERE 
+        cl.cpf_cnpj = ?  
+        AND YEAR(f.data_criacao) = ? 
+        AND MONTH(f.data_criacao) = ?
+    GROUP BY 
+        cl.nome;
+""";
+
 
         String sqlDetalhes = """
             SELECT 

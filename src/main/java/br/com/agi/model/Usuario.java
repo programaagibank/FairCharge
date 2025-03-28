@@ -10,7 +10,14 @@ public class Usuario {
     public Usuario(){}
 
     //todo, CONSTRUTOR DOS ATRIBUTOS
-    public Usuario(String email, String nome,int permissao){
+
+
+    public Usuario(String email, int permissao) {
+        this.email = email;
+        this.permissao = permissao;
+    }
+
+    public Usuario(String email, String nome, int permissao){
         this.email = email;
         this.nome = nome;
         this.permissao = permissao;
