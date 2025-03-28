@@ -35,9 +35,7 @@ public class Cobranca {
     public void setFaturaId(int faturaId) { this.faturaId = faturaId; }
 
     public Integer getCobrancaReferenciadaId() { return cobrancaReferenciadaId; }
-    public void setCobrancaReferenciadaId(Integer cobrancaReferenciadaId) {
-        this.cobrancaReferenciadaId = cobrancaReferenciadaId;
-    }
+    public void setCobrancaReferenciadaId(Integer cobrancaReferenciadaId) {this.cobrancaReferenciadaId = cobrancaReferenciadaId;}
 
     public int getClienteId() { return clienteId; }
     public void setClienteId(int clienteId) { this.clienteId = clienteId; }

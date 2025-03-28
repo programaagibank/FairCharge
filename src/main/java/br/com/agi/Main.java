@@ -1,5 +1,4 @@
 package br.com.agi;
-
 import br.com.agi.database.databaseConnection;
 import br.com.agi.view.inicios.TelaInicial;
 import br.com.agi.view.inicios.WelcomeView;

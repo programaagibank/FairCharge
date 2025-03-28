@@ -1,6 +1,5 @@
 package br.com.agi.model;
 
-//todo, ATRIBUTOS USUARIO
 public class Usuario {
     private String email;
     private String senha;
@@ -9,7 +8,6 @@ public class Usuario {
 
     public Usuario(){}
 
-    //todo, CONSTRUTOR DOS ATRIBUTOS
     public Usuario(String email, String senha, String nome,String permissao){
         this.email = email;
         this.senha = senha;
@@ -17,8 +15,7 @@ public class Usuario {
         this.permissao = permissao;
     }
 
-    //todo, GETTER AND SETTER'S
-    //todo, controle de acesso os tornando-os publicos
+
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
 

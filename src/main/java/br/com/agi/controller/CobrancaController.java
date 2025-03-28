@@ -18,20 +18,8 @@ public class CobrancaController {
         return cobrancaDAO.BuscarCobrancaCliente(clienteId);
     }
 
-    public List<Cobranca> listarTodas() throws SQLException {
-        return cobrancaDAO.ListarCobrancas();
-    }
-
-
-    public void criarCobranca(Cobranca cobranca) throws SQLException {
-        cobrancaDAO.criarCobranca(cobranca);
-    }
-
     public void atualizarStatusCobranca(int id, String status) throws SQLException {
         cobrancaDAO.statusPagamento(id, status);
     }
 
-    public void excluirCobranca(int cobrancaId) throws SQLException {
-        cobrancaDAO.delete(cobrancaId);
-    }
 }
