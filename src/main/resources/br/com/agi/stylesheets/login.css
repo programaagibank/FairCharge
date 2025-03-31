@@ -1,8 +1,6 @@
 #backgroundMain {
-        -fx-background-image: url("../photos/fundo.jpg");
-        -fx-background-size: cover;
-        -fx-pref-width: 900px;
-        -fx-pref-height: 500px;
+
+
 }
 
 #loginBackground {
