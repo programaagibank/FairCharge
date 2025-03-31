@@ -26,7 +26,11 @@ public class Navegador {
         SceneLoader.loadScene(primaryStage, "usuarios/gerenciadorUsuarios");
     }
 
-    public static void getRelatorioBanco() {
-        SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento", "Banco");
+    public static void getMenuRelatorio() {
+        SceneLoader.loadScene(primaryStage, "faturamento/RelatorioFaturamento");
+    }
+
+    public static void getRelatorioBanco(String parametro) {
+        SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento", parametro);
     }
 }
