@@ -13,7 +13,7 @@ import br.com.agi.model.TaxaMulta;
 public class TaxaDAO {
 
     public TaxaJuros buscarTaxaJurosDiarios() {
-        String sql = "SELECT juros_id, percentual_juros_diario, data_criacao FROM Juros ORDER BY data_criacao DESC LIMIT 1";
+        String sql = "SELECT * FROM Juros ORDER BY data_criacao DESC LIMIT 1";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -32,16 +32,16 @@ public class TaxaDAO {
         return null;
     }
 
-    public void addTaxaJuros(int jurosId, double percentualJurosDiario, Date dataCriacao) {
-        String sql = "INSERT INTO Juros (juros_id, percentual_juros_diario, data_criacao) VALUES (?, ?, ?)";
+    public boolean addTaxaJuros(double percentualJurosDiario) {
+        String sql = "INSERT INTO Juros (percentual_juros_diario, data_criacao) VALUES (?, CURRENT_DATE)";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, jurosId);
-            stmt.setDouble(2, percentualJurosDiario);
-            stmt.setDate(3, dataCriacao);
+            stmt.setDouble(1, percentualJurosDiario);
+
             stmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao adicionar taxa de juros: " + e.getMessage(), e);
         }
@@ -67,16 +67,15 @@ public class TaxaDAO {
         return null;
     }
 
-    public void addTaxaMulta(int multaId, double percentualMulta, Date dataCriacao) {
-        String sql = "INSERT INTO Multa (multa_id, percentual_multa, data_criacao) VALUES (?, ?, ?)";
+    public boolean addTaxaMulta(double percentualMulta) {
+        String sql = "INSERT INTO Multa (percentual_multa, data_criacao) VALUES (?, CURRENT_DATE)";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, multaId);
-            stmt.setDouble(2, percentualMulta);
-            stmt.setDate(3, dataCriacao);
+            stmt.setDouble(1, percentualMulta);
             stmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao adicionar taxa de multa: " + e.getMessage(), e);
         }
