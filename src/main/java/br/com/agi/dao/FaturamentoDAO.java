@@ -193,7 +193,7 @@ public class FaturamentoDAO {
             stmtDetalhes.setInt(3, mes);
 
             ResultSet rsTotais = stmtTotais.executeQuery();
-            FaturamentoCliente faturamentoCliente = new FaturamentoCliente(mes, ano);
+            FaturamentoCliente faturamentoCliente = new FaturamentoCliente();
 
             if (rsTotais.next()) {
                 faturamentoCliente = new FaturamentoCliente(
@@ -201,7 +201,9 @@ public class FaturamentoDAO {
                         rsTotais.getInt("total_cobrancas"),
                         rsTotais.getDouble("total_recebido"),
                         rsTotais.getDouble("total_pendente"),
-                        rsTotais.getDouble("total_inadimplente")
+                        rsTotais.getDouble("total_inadimplente"),
+                        mes,
+                        ano
                 );
             }
 

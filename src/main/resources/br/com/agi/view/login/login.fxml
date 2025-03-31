@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="backgroundMain" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.LoginController">
+<AnchorPane fx:id="backgroundMain" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.LoginController">
     <VBox fx:id="loginBackground" alignment="CENTER" fillWidth="false" layoutX="372.0" layoutY="88.0" prefHeight="374.0" prefWidth="415.0" spacing="10.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="88.0">
         <Label id="textLogin" style="-fx-font-size: 30px; -fx-font-weight: bold;" text="FairCharge - Login" textFill="#1766d3">
          <VBox.margin>

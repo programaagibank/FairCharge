@@ -1,9 +1,8 @@
-package br.com.agi.controller;
+package br.com.agi.controller.fx;
 
 import br.com.agi.model.Usuario;
 import br.com.agi.utils.Navegador;
 import br.com.agi.utils.SessaoLogon;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -32,7 +31,7 @@ public class HomeController {
 
     @FXML
     void handleRelatorioFaturamento() {
-
+        Navegador.getRelatorioBanco();
     }
 
     @FXML

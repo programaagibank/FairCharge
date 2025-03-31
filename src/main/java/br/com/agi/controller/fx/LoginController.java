@@ -1,14 +1,11 @@
-package br.com.agi.controller;
+package br.com.agi.controller.fx;
 
-import br.com.agi.dao.UsuarioDAO;
+import br.com.agi.controller.UsuarioController;
 import br.com.agi.utils.Navegador;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 public class LoginController {
     @FXML private TextField txtEmail;

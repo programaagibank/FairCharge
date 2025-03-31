@@ -1,5 +1,6 @@
-package br.com.agi.controller;
+package br.com.agi.controller.fx;
 
+import br.com.agi.controller.UsuarioController;
 import br.com.agi.model.Usuario;
 import br.com.agi.utils.Alerta;
 import br.com.agi.utils.DialogHelper;

@@ -14,17 +14,17 @@ public class FaturamentoCliente {
     private double totalPendente;
     private double totalInadimplente;
 
-    public FaturamentoCliente(int mes, int ano) {
-        this.mes = mes;
-        this.ano = ano;
-    }
+    public FaturamentoCliente() {
 
-    public FaturamentoCliente(String cliente, int totalCobrancas, double totalRecebido, double totalPendente, double totalInadimplente) {
+    }
+    public FaturamentoCliente(String cliente, int totalCobrancas, double totalRecebido, double totalPendente, double totalInadimplente, int mes, int ano ) {
         this.cliente = cliente;
         this.totalCobrancas = totalCobrancas;
         this.totalRecebido = totalRecebido;
         this.totalPendente = totalPendente;
         this.totalInadimplente = totalInadimplente;
+        this.mes = mes;
+        this.ano = ano;
     }
 
 

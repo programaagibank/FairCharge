@@ -25,4 +25,8 @@ public class Navegador {
     public static void getGerenciadorUsuario() {
         SceneLoader.loadScene(primaryStage, "usuarios/gerenciadorUsuarios");
     }
+
+    public static void getRelatorioBanco() {
+        SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento", "Banco");
+    }
 }

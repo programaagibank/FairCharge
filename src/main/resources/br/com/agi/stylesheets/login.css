@@ -13,9 +13,6 @@
     -fx-background-radius: 45px;
 }
 
-#teste {
-    -fx-background-color: #ffff;
-}
 #loginButton:hover {
     -fx-background-color: #9BA4B5;
 }

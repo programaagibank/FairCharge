@@ -17,6 +17,12 @@
     -fx-background-color: #9BA4B5;
 }
 
+.button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-effect: dropshadow(gaussian, greenyellow, 4, 0, 0, 0);
+}
+
 .criticalButton {
     -fx-background-color: #ff4d4d;
     -fx-text-fill: #ffffff;
