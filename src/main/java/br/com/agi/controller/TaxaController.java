@@ -7,6 +7,7 @@ import br.com.agi.model.TaxaMulta;
 public class TaxaController {
     private TaxaDAO taxaDAO;
 
+
     public TaxaController() {this.taxaDAO = new TaxaDAO(); }
 
     public TaxaJuros getTaxaJurosDiarios() {
@@ -17,7 +18,11 @@ public class TaxaController {
         return taxaDAO.buscarMultaPorAtraso();
     }
 
-    public TaxaJuros addTaxaJuros() {return taxaDAO.addTaxaJuros();}
+    public boolean addTaxaJuros(double percentualJuros) {
+        return taxaDAO.addTaxaJuros(percentualJuros);
+    }
 
-    public TaxaMulta addTaxaMulta() {return taxaDAO.addTaxaMulta();}
+    public boolean addTaxaMulta(double multaControler) {
+        return taxaDAO.addTaxaMulta(multaControler);
+    }
 }

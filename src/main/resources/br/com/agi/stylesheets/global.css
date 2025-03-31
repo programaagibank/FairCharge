@@ -1,13 +1,8 @@
-
-#backgroundMain {
-    -fx-background-color: #e6e6e6;
-}
-
 .button {
     -fx-background-color: #0068ff;
     -fx-text-fill: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
     -fx-padding: 10px;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
@@ -26,8 +21,8 @@
 .criticalButton {
     -fx-background-color: #ff4d4d;
     -fx-text-fill: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
     -fx-padding: 10px;
     -fx-font-weight: bold;
     -fx-font-size: 14px;

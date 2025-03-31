@@ -1,7 +1,14 @@
+#backgroundMain {
+        -fx-background-image: url("../photos/fundo.jpg");
+        -fx-background-size: cover;
+        -fx-pref-width: 900px;
+        -fx-pref-height: 500px;
+}
+
 #loginBackground {
     -fx-background-color: #ffffff;
-    -fx-border-radius: 50px;
-    -fx-background-radius: 50px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 20, 0, 0, 10);
 }
 

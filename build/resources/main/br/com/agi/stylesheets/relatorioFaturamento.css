@@ -4,13 +4,8 @@ GridPane {
     -fx-border-width: 1px;
 }
 
-#totalCobrancas, #totalRecebido, #totalPendente, #totalInadimplente {
-    -fx-font-size: 20px;
-    -fx-text-fill: #0068ff;
-    -fx-font-weight: bold;
-}
-#mesAno {
-    -fx-font-size: 28px;
+#mesAno, #totalCobrancas, #totalRecebido, #totalPendente, #totalInadimplente {
+    -fx-font-size: 24px;
     -fx-text-fill: #0068ff;
     -fx-font-weight: bold;
 }
