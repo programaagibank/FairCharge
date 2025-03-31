@@ -1,7 +1,12 @@
+#backgroundHome{
+    -fx-background-image: url("../photos/fundo.jpg");
+    -fx-background-size: cover;
+}
+
 #menuContainer {
     -fx-background-color: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
     -fx-padding: 20px;
     -fx-spacing: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
@@ -26,8 +31,8 @@ VBox {
 #buttonOption {
     -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
     -fx-text-fill: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
     -fx-padding: 10px;
     -fx-font-weight: bold;
     -fx-font-size: 16px; /* Fonte um pouco maior */
@@ -45,8 +50,8 @@ VBox {
 #criticalButton {
     -fx-background-color: linear-gradient(to right, #ff4d4d, #cc0000);
     -fx-text-fill: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
     -fx-padding: 10px;
     -fx-font-weight: bold;
     -fx-font-size: 16px;

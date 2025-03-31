@@ -17,7 +17,7 @@ public class TaxaController {
         return taxaDAO.buscarMultaPorAtraso();
     }
 
-    public TaxaJuros addTaxaJuros() {return taxaDAO.addTaxaJuros();}
-
-    public TaxaMulta addTaxaMulta() {return taxaDAO.addTaxaMulta();}
+//    public TaxaJuros addTaxaJuros() {return taxaDAO.addTaxaJuros();}
+//
+//    public TaxaMulta addTaxaMulta() {return taxaDAO.addTaxaMulta();}
 }
