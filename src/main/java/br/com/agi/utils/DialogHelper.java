@@ -129,8 +129,56 @@ public class DialogHelper {
             }
             return null;
         });
-
         return dialog.showAndWait();
     }
 
+    public static String[] solicitarMesAno() {
+        // Criando a caixa de diálogo
+        Dialog<String[]> dialog = new Dialog<>();
+        dialog.setTitle("Selecionar Mês e Ano");
+        dialog.setHeaderText("Informe o mês e o ano:");
+
+        ButtonType salvarButtonType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(salvarButtonType, ButtonType.CANCEL);
+
+        // ComboBox para o mês
+        ComboBox<String> mesComboBox = new ComboBox<>();
+        mesComboBox.getItems().addAll(
+                "Janeiro", "Fevereiro", "Março", "Abril",
+                "Maio", "Junho", "Julho", "Agosto",
+                "Setembro", "Outubro", "Novembro", "Dezembro"
+        );
+        mesComboBox.setValue("Janeiro"); // Valor padrão
+
+        // TextField para o ano
+        TextField anoField = new TextField();
+        anoField.setPromptText("Ano");
+
+        // GridPane para organização dos componentes
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.add(new Label("Mês:"), 0, 0);
+        grid.add(mesComboBox, 1, 0);
+        grid.add(new Label("Ano:"), 0, 1);
+        grid.add(anoField, 1, 1);
+
+        // Adicionando o GridPane à caixa de diálogo
+        dialog.getDialogPane().setContent(grid);
+
+        // Conversão do resultado ao pressionar "Salvar"
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == salvarButtonType) {
+                String mesSelecionado = mesComboBox.getValue();
+                String ano = anoField.getText();
+                return new String[]{mesSelecionado, ano};
+            }
+            return null;
+        });
+
+        // Exibindo a caixa de diálogo e aguardando a entrada do usuário
+        return dialog.showAndWait().orElse(null);
+    }
 }
+
+

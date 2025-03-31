@@ -1,0 +1,61 @@
+#menuContainer {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
+    -fx-border-color: #d1d1d1;
+    -fx-border-width: 1px;
+}
+
+VBox {
+    -fx-alignment: center;
+    -fx-padding: 30px 20px;
+    -fx-spacing: 13px;
+}
+
+
+#homeTitle {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1766d3;
+    -fx-padding: 10px;
+}
+
+#buttonOption {
+    -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px; /* Fonte um pouco maior */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+}
+
+#buttonOption:hover {
+    -fx-background-color: linear-gradient(to right, #0055cc, #0033aa);
+    -fx-text-fill: #f0f0f0; /* Texto mais claro no hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3); /* Aumentar sombra no hover */
+    -fx-cursor: hand; /* Indicador de cursor no hover */
+}
+
+
+#criticalButton {
+    -fx-background-color: linear-gradient(to right, #ff4d4d, #cc0000);
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#criticalButton:hover {
+    -fx-background-color: linear-gradient(to right, #cc0000, #990000);
+    -fx-text-fill: #f8f8f8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
+    -fx-cursor: hand;
+}
+

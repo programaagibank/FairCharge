@@ -31,7 +31,7 @@ public class HomeController {
 
     @FXML
     void handleRelatorioFaturamento() {
-        Navegador.getRelatorioBanco();
+        Navegador.getMenuRelatorio();
     }
 
     @FXML
