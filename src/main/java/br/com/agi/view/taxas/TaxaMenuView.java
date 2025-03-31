@@ -41,8 +41,10 @@ public class TaxaMenuView {
                         System.out.println("ID: " + juros.getJurosId());
                         System.out.println("Percentual: " + juros.getPercentualJurosDiario() + "% ao dia");
                         System.out.println("Criado em: " + juros.getDataCriacao());
+                        System.out.println("--------------------------------------");
                     } else {
                         System.out.println("Nenhuma taxa de juros encontrada.");
+                        System.out.println("--------------------------------------");
                     }
 
                     TaxaMulta multa = taxaController.getMultaPorAtraso();
@@ -65,7 +67,7 @@ public class TaxaMenuView {
                         System.out.println("Percentual: " + jurosImpressao.getPercentualJurosDiario() + "%");
                         System.out.println("Criado em: " + jurosImpressao.getDataCriacao());
                     } else System.out.println("Não foi possível atualizar o juros diário!");
-
+                    break;
                 case 3:
                     System.out.println("Digite o percentual de multa: ");
                     double percentualMulta = sc.nextDouble();
