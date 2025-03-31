@@ -3,9 +3,9 @@ package br.com.agi.model;
 import java.util.Date;
 
 public class TaxaMulta {
-    private int multaId, addMultaId;
-    private double percentualMulta, addPercentualMulta;
-    private Date dataCriacao, addDataCriacao;
+    private int multaId;
+    private double percentualMulta;
+    private Date dataCriacao;
 
 
     public TaxaMulta(int multaId, double percentualMulta, Date dataCriacao) {
@@ -13,15 +13,6 @@ public class TaxaMulta {
         this.percentualMulta = percentualMulta;
         this.dataCriacao = dataCriacao;
     }
-
-    public TaxaMulta( double addpercentualMulta,int addMultaId, Date addDataCriacao){
-        this.addMultaId = addMultaId;
-        this.addPercentualMulta = addpercentualMulta;
-        this.addDataCriacao = addDataCriacao;
-    }
-
-
-    public TaxaMulta(int multaI , double percentualMulta, java.sql.Date dataCriacao) {   }
 
 
     public int getMultaId() {
@@ -36,10 +27,5 @@ public class TaxaMulta {
         return dataCriacao;
     }
 
-    public int insertMulta() { return addMultaId;}
-
-    public double inserPercentualMulta() { return addPercentualMulta;}
-
-    public  Date intertDataCriacaoMulta() { return  addDataCriacao; }
 
 }
