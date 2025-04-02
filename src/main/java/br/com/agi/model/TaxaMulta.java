@@ -2,7 +2,7 @@ package br.com.agi.model;
 
 import java.util.Date;
 
-public class TaxaMulta {
+public class TaxaMulta implements Taxa {
     private int multaId;
     private double percentualMulta;
     private Date dataCriacao;
@@ -14,15 +14,18 @@ public class TaxaMulta {
         this.dataCriacao = dataCriacao;
     }
 
-
-    public int getMultaId() {
+    public String getTipo() {
+        return "Taxa Multa";
+    }
+    @Override
+    public int getID() {
         return multaId;
     }
-
-    public double getPercentualMulta() {
+    @Override
+    public double getPercentual() {
         return percentualMulta;
     }
-
+    @Override
     public Date getDataCriacao() {
         return dataCriacao;
     }

@@ -27,10 +27,14 @@ public class Navegador {
     }
 
     public static void getMenuRelatorio() {
-        SceneLoader.loadScene(primaryStage, "faturamento/RelatorioFaturamento");
+        SceneLoader.loadScene(primaryStage, "faturamento/MenuFaturamento");
     }
 
-    public static void getRelatorioBanco(String parametro) {
-        SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento", parametro);
+    public static void getMenuTaxa() {
+        SceneLoader.loadScene(primaryStage, "taxa/MenuTaxas");
+    }
+
+    public static void getRelatorioBanco(String parametro, int mes, int ano, String CPFCNPJ) {
+        SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento", parametro, mes, ano, CPFCNPJ);
     }
 }

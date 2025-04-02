@@ -11,7 +11,7 @@ public class HomeController {
 
     @FXML
     void handleAjustarTaxas() {
-
+        Navegador.getMenuTaxa();
     }
 
     @FXML

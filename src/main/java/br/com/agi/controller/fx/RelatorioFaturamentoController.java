@@ -36,22 +36,22 @@ public class RelatorioFaturamentoController {
     private Label labelScroll;
 
     private String relatorio = "";
-    public void selecionaRelatorio(String parametro) {
-        this.relatorio = parametro;
-        if (parametro.equals("Cliente")) relatorioCliente();
-        else if (parametro.equals("Banco")) relatorioBanco();
+    private int mes;
+    private int ano;
+    private String CPFCNPJ;
+
+    public void selecionaRelatorio(String relatorio, int mes, int ano, String CPFCNPJ) {
+        this.relatorio = relatorio;
+        this.mes = mes;
+        this.ano = ano;
+        this.CPFCNPJ = CPFCNPJ;
+        if (relatorio.equals("Cliente")) relatorioCliente(mes, ano, CPFCNPJ);
+        else if (relatorio.equals("Banco")) relatorioBanco(mes, ano);
     }
 
-
-    @FXML
-    public void initialize() {
-        if (relatorio.equals("Cliente")) relatorioCliente();
-        else if (relatorio.equals("Banco")) relatorioBanco();
-    }
-
-    public void relatorioBanco() {
+    public void relatorioBanco(int mes, int ano) {
         FaturamentoController controller = new FaturamentoController();
-        Faturamento faturamento = controller.gerarRelatorio(3, 2025);
+        Faturamento faturamento = controller.gerarRelatorio(mes, ano);
 
         mesAno.setText(faturamento.getMes() + "/" + faturamento.getAno());
         totalCobrancas.setText(String.valueOf(faturamento.getTotalCobrancas()));
@@ -73,9 +73,9 @@ public class RelatorioFaturamentoController {
         scrollPane.setContent(categoriasDetalhadas);
     }
 
-    public void relatorioCliente() {
+    public void relatorioCliente(int mes, int ano, String cpfCnpj) {
         FaturamentoController faturamentoController = new FaturamentoController();
-        FaturamentoCliente cliente = faturamentoController.gerarRelatorioCliente("12345678000101", 3, 2025);
+        FaturamentoCliente cliente = faturamentoController.gerarRelatorioCliente(cpfCnpj, mes, ano);
 
         mesAno.setText(cliente.getMes() + "/" + cliente.getAno());
         totalCobrancas.setText(String.valueOf(cliente.getTotalCobrancas()));

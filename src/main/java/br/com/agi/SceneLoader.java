@@ -24,13 +24,13 @@ public class SceneLoader {
         }
     }
 
-    public static void loadSceneRelatorios(Stage stage, String fxmlFile, String parametro) {
+    public static void loadSceneRelatorios(Stage stage, String fxmlFile, String relatorio, int mes, int ano, String CPFCNPJ) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneLoader.class.getResource("/br/com/agi/view/" + fxmlFile + ".fxml"));
 
             Parent root = loader.load();
             RelatorioFaturamentoController controller = loader.getController();
-            controller.selecionaRelatorio(parametro);
+            controller.selecionaRelatorio(relatorio, mes, ano, CPFCNPJ);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);

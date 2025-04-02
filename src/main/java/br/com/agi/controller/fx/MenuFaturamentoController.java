@@ -10,13 +10,14 @@ public class MenuFaturamentoController {
     @FXML
     void handleFaturamentoBanco() {
         String[] mesAno = DialogHelper.solicitarMesAno();
-        Navegador.getRelatorioBanco("Banco");
+
+        Navegador.getRelatorioBanco("Banco", Integer.parseInt(mesAno[0]), Integer.parseInt(mesAno[1]), null);
     }
 
     @FXML
     void handleFaturamentoCliente() {
-        String[] mesAno = DialogHelper.solicitarMesAno();
-        Navegador.getRelatorioBanco("Cliente");
+        String[] mesAnoCPFCNPJ = DialogHelper.solicitarMesAnoCPFCNPJ();
+        Navegador.getRelatorioBanco("Cliente", Integer.parseInt(mesAnoCPFCNPJ[0]), Integer.parseInt(mesAnoCPFCNPJ[1]), mesAnoCPFCNPJ[2]);
 
     }
 

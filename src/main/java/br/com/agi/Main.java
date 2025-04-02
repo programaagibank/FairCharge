@@ -1,4 +1,4 @@
-package br.com.agi;
+/*package br.com.agi;
 import br.com.agi.database.databaseConnection;
 import br.com.agi.view.inicios.TelaInicial;
 import br.com.agi.view.inicios.WelcomeView;
@@ -23,10 +23,10 @@ public class Main {
         welcome.telaBoasVindas();
         telaInicial.TelaMenu();
     }
-}
+}*/
 
 
-/*package br.com.agi;
+package br.com.agi;
 
 import br.com.agi.database.databaseConnection;
 import br.com.agi.utils.Navegador;
@@ -56,4 +56,4 @@ public class Main extends Application {
         Navegador.setPrimaryStage(primaryStage);
         Navegador.getLogin();
     }
-}*/
+}

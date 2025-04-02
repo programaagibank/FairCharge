@@ -122,7 +122,7 @@ public class DialogHelper {
             if (dialogButton == salvarButtonType) {
                 String nome = nomeField.getText();
                 String email = emailField.getText();
-                String senha = senhaField.getText().isEmpty() ? usuarioAtual.getSenha() : senhaField.getText(); // Mantém a senha atual se não for preenchida
+                String senha = senhaField.getText().isEmpty() ? usuarioAtual.getSenha() : senhaField.getText();
                 int permissao = permissaoComboBox.getValue().equals("Administrador") ? 1 : 2;
 
                 return new Usuario(email, senha, nome, permissao);
@@ -143,12 +143,8 @@ public class DialogHelper {
 
         // ComboBox para o mês
         ComboBox<String> mesComboBox = new ComboBox<>();
-        mesComboBox.getItems().addAll(
-                "Janeiro", "Fevereiro", "Março", "Abril",
-                "Maio", "Junho", "Julho", "Agosto",
-                "Setembro", "Outubro", "Novembro", "Dezembro"
-        );
-        mesComboBox.setValue("Janeiro"); // Valor padrão
+        mesComboBox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+        mesComboBox.setValue("1");
 
         // TextField para o ano
         TextField anoField = new TextField();
@@ -179,6 +175,58 @@ public class DialogHelper {
         // Exibindo a caixa de diálogo e aguardando a entrada do usuário
         return dialog.showAndWait().orElse(null);
     }
+
+    public static String[] solicitarMesAnoCPFCNPJ() {
+        Parametros param = new Parametros();
+        Dialog<String[]> dialog = new Dialog<>();
+        dialog.setTitle("Selecionar Dados");
+        dialog.setHeaderText("Informe o mês, o ano e o CPF/CNPJ:");
+
+        ButtonType salvarButtonType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(salvarButtonType, ButtonType.CANCEL);
+
+        ComboBox<String> mesComboBox = new ComboBox<>();
+        mesComboBox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+        mesComboBox.setValue("1");
+
+        TextField anoField = new TextField();
+        anoField.setPromptText("Ano");
+
+        TextField documentoField = new TextField();
+        documentoField.setPromptText("CPF ou CNPJ");
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.add(new Label("Mês:"), 0, 0);
+        grid.add(mesComboBox, 1, 0);
+        grid.add(new Label("Ano:"), 0, 1);
+        grid.add(anoField, 1, 1);
+        grid.add(new Label("CPF/CNPJ:"), 0, 2);
+        grid.add(documentoField, 1, 2);
+
+        dialog.getDialogPane().setContent(grid);
+
+        Button salvarButton = (Button) dialog.getDialogPane().lookupButton(salvarButtonType);
+        salvarButton.setDisable(true);
+
+        documentoField.textProperty().addListener((observable, oldValue, newValue) -> {
+            salvarButton.setDisable(!param.validaCPFouCNPJ(newValue));
+        });
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == salvarButtonType) {
+                String mes = mesComboBox.getValue();
+                String ano = anoField.getText();
+                String documento = documentoField.getText();
+                return new String[]{mes, ano, documento};
+            }
+            return null;
+        });
+
+        return dialog.showAndWait().orElse(null);
+    }
+
 }
 
 
