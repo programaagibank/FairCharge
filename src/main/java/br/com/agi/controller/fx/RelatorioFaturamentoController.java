@@ -5,6 +5,7 @@ import br.com.agi.model.CategoriasFaturamento;
 import br.com.agi.model.CobrancasFaturamento;
 import br.com.agi.model.Faturamento;
 import br.com.agi.model.FaturamentoCliente;
+import br.com.agi.utils.Navegador;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -34,6 +35,17 @@ public class RelatorioFaturamentoController {
 
     @FXML
     private Label labelScroll;
+
+
+    @FXML
+    private void HandleVoltarButton(){
+        Navegador.getMenuRelatorio();
+    }
+
+    @FXML
+    private void HandleExportButton(){
+
+    }
 
     private String relatorio = "";
     private int mes;

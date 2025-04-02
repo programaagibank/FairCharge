@@ -18,7 +18,7 @@
             <Button id="buttonOption" onAction="#handleAjustarTaxas" prefWidth="300" text="Ajustar Taxas" />
             <Button id="buttonOption" onAction="#handleListarCobrancasCliente" prefWidth="300" text="Listar Cobranças por Cliente" />
             <Button id="buttonOption" fx:id="gerenciarUsuarioButton" onAction="#handleGerenciarUsuario" prefWidth="300" text="Gerenciar Usuário" />
-            <Button id="criticalButton" onAction="#handleSair" prefWidth="300" text="Sair" />
+            <Button id="criticalButton" fx:id="criticalButton" onAction="#handleSair" prefWidth="300" text="Sair" />
         </children>
     </VBox>
    <stylesheets>

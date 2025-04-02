@@ -15,9 +15,9 @@
     <VBox layoutX="20.0" layoutY="60.0" prefWidth="760.0" spacing="15.0">
         
         <HBox nodeOrientation="RIGHT_TO_LEFT" spacing="20.0">
-            <Button onAction="#handleAdicionarUsuario" styleClass="actionButton" text="Adicionar" />
-            <Button onAction="#handleEditarUsuario" prefHeight="40.0" prefWidth="77.0" styleClass="actionButton" text="Editar" />
-            <Button onAction="#handleExcluirUsuario" prefHeight="40.0" prefWidth="73.0" styleClass="criticalButton" text="Excluir" />
+            <Button onAction="#handleAdicionarUsuario" text="Adicionar" />
+            <Button onAction="#handleEditarUsuario" prefHeight="40.0" prefWidth="77.0" text="Editar" />
+            <Button id="criticalButton" onAction="#handleExcluirUsuario" prefHeight="40.0" prefWidth="73.0" text="Excluir" />
          <Button onAction="#handleVoltarButton" prefHeight="40.0" prefWidth="73.0" text="Voltar" />
         </HBox>
         <TableView fx:id="userTable" prefHeight="400.0" prefWidth="760.0">
@@ -29,7 +29,7 @@
         </TableView>
     </VBox>
    <stylesheets>
-      <URL value="@../../stylesheets/gerenciadorUsuario.css" />
       <URL value="@../../stylesheets/global.css" />
+      <URL value="@../../stylesheets/gerenciadorUsuario.css" />
    </stylesheets>
 </AnchorPane>

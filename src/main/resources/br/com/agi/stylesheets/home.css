@@ -46,17 +46,6 @@ VBox {
     -fx-cursor: hand; /* Indicador de cursor no hover */
 }
 
-
-#criticalButton {
-    -fx-background-color: linear-gradient(to right, #ff4d4d, #cc0000);
-    -fx-text-fill: #ffffff;
-    -fx-border-radius: 7px;
-    -fx-background-radius: 7px;
-    -fx-padding: 10px;
-    -fx-font-weight: bold;
-    -fx-font-size: 16px;
-}
-
 #criticalButton:hover {
     -fx-background-color: linear-gradient(to right, #cc0000, #990000);
     -fx-text-fill: #f8f8f8;
