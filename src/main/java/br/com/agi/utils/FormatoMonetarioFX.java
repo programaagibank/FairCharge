@@ -5,9 +5,8 @@ import java.util.Locale;
 
 public class FormatoMonetarioFX {
 
-    public void exibirValorFormatado(Label labelValor, double valor) {
+    public void formatarLabel(Label labelValor, double valor) {
         NumberFormat formatoBR = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
         labelValor.setText(formatoBR.format(valor));
     }
-
 }

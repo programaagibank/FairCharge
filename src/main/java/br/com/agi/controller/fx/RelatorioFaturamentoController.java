@@ -5,6 +5,7 @@ import br.com.agi.model.CategoriasFaturamento;
 import br.com.agi.model.CobrancasFaturamento;
 import br.com.agi.model.Faturamento;
 import br.com.agi.model.FaturamentoCliente;
+import br.com.agi.utils.FormatoMonetarioFX;
 import br.com.agi.utils.Navegador;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -64,12 +65,15 @@ public class RelatorioFaturamentoController {
     public void relatorioBanco(int mes, int ano) {
         FaturamentoController controller = new FaturamentoController();
         Faturamento faturamento = controller.gerarRelatorio(mes, ano);
+        FormatoMonetarioFX formatador = new FormatoMonetarioFX();
 
         mesAno.setText(faturamento.getMes() + "/" + faturamento.getAno());
         totalCobrancas.setText(String.valueOf(faturamento.getTotalCobrancas()));
-        totalRecebido.setText(String.format("%.2f", faturamento.getTotalRecebido()));
-        totalPendente.setText(String.format("%.2f", faturamento.getTotalPendente()));
-        totalInadimplente.setText(String.format("%.2f", faturamento.getTotalInadimplente()));
+
+        formatador.formatarLabel(totalRecebido, faturamento.getTotalRecebido());
+        formatador.formatarLabel(totalPendente, faturamento.getTotalPendente());
+        formatador.formatarLabel(totalInadimplente, faturamento.getTotalInadimplente());
+
         labelScroll.setText("DETALHAMENTO POR CATEGORIAS:");
         List<CategoriasFaturamento> categorias = faturamento.getDetalhamentos();
 
@@ -88,12 +92,13 @@ public class RelatorioFaturamentoController {
     public void relatorioCliente(int mes, int ano, String cpfCnpj) {
         FaturamentoController faturamentoController = new FaturamentoController();
         FaturamentoCliente cliente = faturamentoController.gerarRelatorioCliente(cpfCnpj, mes, ano);
+        FormatoMonetarioFX formatador = new FormatoMonetarioFX();
 
         mesAno.setText(cliente.getMes() + "/" + cliente.getAno());
         totalCobrancas.setText(String.valueOf(cliente.getTotalCobrancas()));
-        totalRecebido.setText(String.format("%.2f", cliente.getTotalRecebido()));
-        totalPendente.setText(String.format("%.2f", cliente.getTotalPendente()));
-        totalInadimplente.setText(String.format("%.2f", cliente.getTotalInadimplente()));
+        formatador.formatarLabel(totalRecebido, cliente.getTotalRecebido());
+        formatador.formatarLabel(totalPendente, cliente.getTotalPendente());
+        formatador.formatarLabel(totalInadimplente, cliente.getTotalInadimplente());
 
         labelScroll.setText("DETALHAMENTO POR COBRANÇAS:");
         List<CobrancasFaturamento> cobrancas = cliente.getCobrancas();
