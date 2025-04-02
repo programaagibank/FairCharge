@@ -15,7 +15,7 @@
          <Label id="homeTitle" text="Menu Faturamento" />
             <Button id="buttonOption" onAction="#handleFaturamentoBanco" prefWidth="300" text="Faturamento do Banco" />
             <Button id="buttonOption" onAction="#handleFaturamentoCliente" prefWidth="300" text="Faturamento de Cliente" />
-            <Button id="criticalButton" onAction="#handleSair" prefWidth="300" text="Sair" />
+            <Button id="criticalButton" onAction="#handleSair" prefWidth="300" text="Voltar" />
         </children>
     </VBox>
    <stylesheets>
