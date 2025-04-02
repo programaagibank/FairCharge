@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
 
 import br.com.agi.database.databaseConnection;
 import br.com.agi.model.TaxaJuros;

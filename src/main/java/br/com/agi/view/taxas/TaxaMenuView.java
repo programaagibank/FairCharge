@@ -6,7 +6,6 @@ import java.util.Scanner;
 import br.com.agi.controller.TaxaController;
 import br.com.agi.model.TaxaJuros;
 import br.com.agi.model.TaxaMulta;
-import br.com.agi.model.TaxaMulta;
 
 public class TaxaMenuView {
     private Scanner sc;
@@ -38,8 +37,8 @@ public class TaxaMenuView {
                     TaxaJuros juros = taxaController.getTaxaJurosDiarios();
                     if (juros != null) {
                         System.out.println("Taxa de Juros Diários");
-                        System.out.println("ID: " + juros.getJurosId());
-                        System.out.println("Percentual: " + juros.getPercentualJurosDiario() + "% ao dia");
+                        System.out.println("ID: " + juros.getID());
+                        System.out.println("Percentual: " + juros.getPercentual() + "% ao dia");
                         System.out.println("Criado em: " + juros.getDataCriacao());
                         System.out.println("--------------------------------------");
                     } else {
@@ -50,8 +49,8 @@ public class TaxaMenuView {
                     TaxaMulta multa = taxaController.getMultaPorAtraso();
                     if (multa != null) {
                         System.out.println("Multa por Atraso");
-                        System.out.println("ID: " + multa.getMultaId());
-                        System.out.println("Percentual: " + multa.getPercentualMulta() + "%");
+                        System.out.println("ID: " + multa.getID());
+                        System.out.println("Percentual: " + multa.getPercentual() + "%");
                         System.out.println("Criado em: " + multa.getDataCriacao());
                     } else {
                         System.out.println("Nenhuma multa encontrada.");
@@ -63,8 +62,8 @@ public class TaxaMenuView {
                     if (jurosAdd) {
                         TaxaJuros jurosImpressao = taxaController.getTaxaJurosDiarios();
                         System.out.println("Atualização da Taxa de Juros Diários");
-                        System.out.println("ID: " + jurosImpressao.getJurosId());
-                        System.out.println("Percentual: " + jurosImpressao.getPercentualJurosDiario() + "%");
+                        System.out.println("ID: " + jurosImpressao.getID());
+                        System.out.println("Percentual: " + jurosImpressao.getPercentual() + "%");
                         System.out.println("Criado em: " + jurosImpressao.getDataCriacao());
                     } else System.out.println("Não foi possível atualizar o juros diário!");
                     break;
@@ -75,7 +74,7 @@ public class TaxaMenuView {
                     boolean resultadoAddMulta = multaController.addTaxaMulta(percentualMulta);
                     if (resultadoAddMulta) {
                         TaxaMulta imprimirMulta = multaController.getMultaPorAtraso();
-                        System.out.println("Percentual adicionado: " +imprimirMulta.getPercentualMulta());
+                        System.out.println("Percentual adicionado: " +imprimirMulta.getPercentual());
                         System.out.println("Multa foi adicionada com sucesso!");
                     }else System.out.println("Erro ao adicionar a Multa!");
 
