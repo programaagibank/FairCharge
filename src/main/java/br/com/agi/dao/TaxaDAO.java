@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import br.com.agi.database.databaseConnection;
 import br.com.agi.model.TaxaJuros;
 import br.com.agi.model.TaxaMulta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class TaxaDAO {
 
@@ -80,4 +82,49 @@ public class TaxaDAO {
         }
     }
 
+    public ObservableList<TaxaJuros> buscarTodasTaxasDiarias() {
+        String sql = "SELECT * FROM Juros ORDER BY data_criacao DESC";
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            ObservableList<TaxaJuros> lista = FXCollections.observableArrayList();
+            while (rs.next()) {
+                lista.add(
+                        new TaxaJuros(
+                            rs.getInt("juros_id"),
+                            rs.getDouble("percentual_juros_diario"),
+                            rs.getDate("data_criacao")
+                        )
+                );
+            }
+            return lista;
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar taxa de juros diários: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public ObservableList<TaxaMulta> buscarTodasTaxasMulta() {
+        String sql = "SELECT * FROM Multa ORDER BY data_criacao DESC";
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            ObservableList<TaxaMulta> lista = FXCollections.observableArrayList();
+            while (rs.next()) {
+                lista.add(
+                        new TaxaMulta(
+                                rs.getInt("multa_id"),
+                                rs.getDouble("percentual_multa"),
+                                rs.getDate("data_criacao")
+                        )
+                );
+            }
+            return lista;
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar taxa de juros diários: " + e.getMessage());
+        }
+        return null;
+    }
 }

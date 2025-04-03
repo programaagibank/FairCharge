@@ -34,6 +34,10 @@ public class Navegador {
         SceneLoader.loadScene(primaryStage, "taxa/MenuTaxas");
     }
 
+    public static void getHistoricoTaxas() {
+        SceneLoader.loadScene(primaryStage, "taxa/HistoricoTaxas");
+    }
+
     public static void getRelatorioBanco(String parametro, int mes, int ano, String CPFCNPJ) {
         SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento", parametro, mes, ano, CPFCNPJ);
     }

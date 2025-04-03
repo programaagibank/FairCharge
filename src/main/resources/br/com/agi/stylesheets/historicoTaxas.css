@@ -1,0 +1,51 @@
+#backgroundHome{
+    -fx-background-image: url("../photos/white.jpg");
+    -fx-background-size: cover;
+}
+
+#menuContainer {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
+    -fx-border-color: #d1d1d1;
+    -fx-border-width: 1px;
+}
+
+}
+
+
+#homeTitle {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1766d3;
+    -fx-padding: 10px;
+}
+
+#buttonOption {
+    -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px; /* Fonte um pouco maior */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+}
+
+#buttonOption:hover {
+    -fx-background-color: linear-gradient(to right, #0055cc, #0033aa);
+    -fx-text-fill: #f0f0f0; /* Texto mais claro no hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3); /* Aumentar sombra no hover */
+    -fx-cursor: hand; /* Indicador de cursor no hover */
+}
+
+#criticalButton:hover {
+    -fx-background-color: linear-gradient(to right, #cc0000, #990000);
+    -fx-text-fill: #f8f8f8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
+    -fx-cursor: hand;
+}
+

@@ -35,7 +35,7 @@ public class TaxaControllerFX {
 
     @FXML
     private void handleVisualizarHistorico() {
-
+        Navegador.getHistoricoTaxas();
     }
 
     public void initialize() {
