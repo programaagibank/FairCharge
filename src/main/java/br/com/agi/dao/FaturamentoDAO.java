@@ -50,6 +50,7 @@ public class FaturamentoDAO {
         String sqlCategorias = """
     SELECT 
         f.descricao AS categoria,
+        COUNT(*) AS total_cobrancas, -- Total de cobranças por categoria
         SUM(CASE 
             WHEN c.status = 'Pago' THEN p.valor_pago 
             ELSE 0
@@ -83,6 +84,7 @@ public class FaturamentoDAO {
 """;
 
 
+
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmtTotais = conn.prepareStatement(sqlTotais);
              PreparedStatement stmtCategorias = conn.prepareStatement(sqlCategorias)) {
@@ -109,7 +111,8 @@ public class FaturamentoDAO {
                         rsCategorias.getString("categoria"),
                         rsCategorias.getDouble("total_recebido"),
                         rsCategorias.getDouble("total_pendente"),
-                        rsCategorias.getDouble("total_inadimplente")
+                        rsCategorias.getDouble("total_inadimplente"),
+                        rsCategorias.getInt("total_cobrancas")
                 ));
             }
             return faturamento;

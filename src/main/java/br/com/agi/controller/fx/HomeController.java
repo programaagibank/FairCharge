@@ -21,7 +21,7 @@ public class HomeController {
 
     @FXML
     void handleListarCobrancasCliente() {
-
+        Navegador.getMenuCobranca();
     }
 
     @FXML

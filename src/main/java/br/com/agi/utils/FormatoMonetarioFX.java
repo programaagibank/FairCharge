@@ -9,4 +9,10 @@ public class FormatoMonetarioFX {
         NumberFormat formatoBR = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
         labelValor.setText(formatoBR.format(valor));
     }
+
+    public static String formatar(double valor) {
+        NumberFormat formatoBR = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        return formatoBR.format(valor);
+    }
+
 }

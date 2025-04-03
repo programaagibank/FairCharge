@@ -32,4 +32,13 @@ public class Parametros {
         return documento.length() == 11 || documento.length() == 14;
     }
 
+    public boolean isInteger(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }

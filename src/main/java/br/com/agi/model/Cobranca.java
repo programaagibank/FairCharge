@@ -1,4 +1,6 @@
 package br.com.agi.model;
+import br.com.agi.utils.FormatoMonetarioFX;
+
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -60,5 +62,13 @@ public class Cobranca {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getValorTotalFormatado() {
+        return FormatoMonetarioFX.formatar(valorTotal);
+    }
+
+    public String getValorTotalComMultasFormatado() {
+        return FormatoMonetarioFX.formatar(valorTotalComMultas);
     }
 }

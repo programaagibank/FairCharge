@@ -1,5 +1,7 @@
 package br.com.agi.model;
 
+import br.com.agi.utils.FormatoMonetarioFX;
+
 public class CobrancasFaturamento {
     private int idCobranca;
     private double valorCobranca;
@@ -28,4 +30,9 @@ public class CobrancasFaturamento {
     public int getIdCobranca() {
         return idCobranca;
     }
+
+    public String getValorTotalFormatado() {
+        return FormatoMonetarioFX.formatar(valorCobranca);
+    }
+
 }

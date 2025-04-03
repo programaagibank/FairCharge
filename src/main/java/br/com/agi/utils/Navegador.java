@@ -19,7 +19,7 @@ public class Navegador {
     }
 
     public static void getHome() {
-        SceneLoader.loadScene(primaryStage, "main/home");
+        SceneLoader.loadScene(primaryStage, "main/home2");
     }
 
     public static void getGerenciadorUsuario() {
@@ -40,5 +40,17 @@ public class Navegador {
 
     public static void getRelatorioBanco(String parametro, int mes, int ano, String CPFCNPJ) {
         SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento", parametro, mes, ano, CPFCNPJ);
+    }
+
+    public static void getMenuCobranca() {
+        SceneLoader.loadScene(primaryStage, "cobranca/MenuCobrancas");
+    }
+
+    public static void getCobrancasVencidas() {
+        SceneLoader.loadScene(primaryStage, "cobranca/CobrancasVencidas");
+    }
+
+    public static void getRelatorioCobrancas() {
+        SceneLoader.loadScene(primaryStage, "cobranca/RelatorioCobrancas");
     }
 }

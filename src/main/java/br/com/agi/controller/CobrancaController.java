@@ -14,15 +14,6 @@ public class CobrancaController {
         this.cobrancaDAO = new CobrancaDAO(connection);
     }
 
-
-    public void atualizarStatusCobranca(int id, String status) throws SQLException {
-        cobrancaDAO.statusPagamento(id, status);
-    }
-
-
-
-
-
     public boolean atualizarPendencias() {
         return cobrancaDAO.atualizarCobrancasVencidas();
     }
@@ -35,4 +26,12 @@ public class CobrancaController {
         return cobrancaDAO.gerarRelatorioCobrancasVencidas();
     }
 
+    public int quantidadeCobrancasVencidas() {
+        return cobrancaDAO.buscaCobrancasVencidas();
+    }
+
+
+    public boolean gerarCobranca(Integer integer) {
+        return cobrancaDAO.gerarCobranca(integer);
+    }
 }

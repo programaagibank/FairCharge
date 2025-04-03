@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="backgroundHome" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.MenuCobrancasController">
+   <fx:include source="../header.fxml" />
+
+    <!-- Container de Botões -->
+    <VBox id="menuContainer" alignment="CENTER" layoutX="279.0" layoutY="107.0" spacing="15.0">
+        <children>
+         <Label id="homeTitle" text="Menu de Cobranças" />
+            <Button id="buttonOption" onAction="#handleVisualizarVencidas" prefWidth="300" text="Visualizar Cobranças Vencidas" />
+            <Button id="buttonOption" onAction="#handleAtualizarVencidas" prefWidth="300" text="Atualizar Cobranças Vencidas" />
+            <Button id="buttonOption" onAction="#handleGerarRelatorioCobrancas" prefWidth="300.0" text="Gerar Relatório de Cobranças" />
+         <Button id="buttonOption" fx:id="botaoGerarCobrancas" onAction="#handleGerarCobrancas" prefWidth="300.0" text="Gerar Cobranças" />
+            <Button id="criticalButton" onAction="#handleSair" prefWidth="300" text="Voltar" />
+        </children>
+      <padding>
+         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
+    </VBox>
+   <VBox alignment="TOP_CENTER" layoutX="68.0" layoutY="225.0" prefHeight="131.0" prefWidth="155.0">
+      <children>
+         <Label id="textoVencidas" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="50.0" text="Quantidade de Cobranças vencidas:" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS" />
+         <Label fx:id="cobrancasVencidas" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="155.0" text="0" wrapText="true" />
+      </children>
+   </VBox>
+   <stylesheets>
+      <URL value="@../../stylesheets/global.css" />
+      <URL value="@../../stylesheets/MenuCobrancas.css" />
+   </stylesheets>
+</AnchorPane>

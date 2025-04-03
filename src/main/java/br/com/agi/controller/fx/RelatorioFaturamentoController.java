@@ -79,11 +79,12 @@ public class RelatorioFaturamentoController {
 
         VBox categoriasDetalhadas = new VBox(10);
         for (CategoriasFaturamento categoria : categorias) {
-            Label label = new Label(String.format("%-25s | Recebidos: R$ %-10.2f | Pendentes: R$ %-10.2f | Inadimplentes: R$ %-10.2f",
+            Label label = new Label(String.format("%-25s | Recebidos: %-10s | Pendentes: %-10s | Inadimplentes: %-10s | Cobranças Registradas: %-10d",
                     categoria.getCategoria(),
-                    categoria.getRecebidos(),
-                    categoria.getPendentes(),
-                    categoria.getInadimplentes()));
+                    categoria.getRecebidosFormatado(),
+                    categoria.getPendentesFormatado(),
+                    categoria.getInadimplentesFormatado(),
+                    categoria.getTotal_cobrancas()));
             categoriasDetalhadas.getChildren().add(label);
         }
         scrollPane.setContent(categoriasDetalhadas);
@@ -105,9 +106,9 @@ public class RelatorioFaturamentoController {
 
         VBox categoriasDetalhadas = new VBox(10);
         for (CobrancasFaturamento cobranca : cobrancas) {
-            Label label = new Label(String.format("ID: %-5s | Valor: R$ %-10.2f | Vencimento: %-15s | Status: %-10s",
+            Label label = new Label(String.format("ID: %-5s | Valor: %-10s | Vencimento: %-15s | Status: %-10s",
                     cobranca.getIdCobranca(),
-                    cobranca.getValorCobranca(),
+                    cobranca.getValorTotalFormatado(),
                     cobranca.getVencimento(),
                     cobranca.getStatus()));
             categoriasDetalhadas.getChildren().add(label);

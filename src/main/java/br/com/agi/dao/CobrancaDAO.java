@@ -95,7 +95,6 @@ public class CobrancaDAO {
         return false;
     }
 
-
     public List<Cobranca> gerarRelatorioCobrancasVencidas() {
         List<Cobranca> cobrancas = new ArrayList<>();
             String sql = "SELECT " +
@@ -136,8 +135,37 @@ public class CobrancaDAO {
             }
         } catch (SQLException e) {
             System.out.println("Erro ao gerar relatório de cobranças vencidas: " + e.getMessage());
+            return null;
         }
 
         return cobrancas;
+    }
+
+    public int buscaCobrancasVencidas() {
+        String sql = "SELECT COUNT(*) AS TOTAL FROM Cobranca WHERE Status = 'Atrasado'";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                        return rs.getInt("TOTAL");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao listar cobranças: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public boolean gerarCobranca(Integer inteiro) {
+        String sql = "CALL GerarFaturasAleatorias(?)";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, inteiro);
+            ResultSet rs = stmt.executeQuery();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Erro ao listar cobranças: " + e.getMessage());
+        }
+        return false;
     }
 }

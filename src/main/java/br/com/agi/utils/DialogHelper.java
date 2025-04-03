@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import java.util.Optional;
 
 public class DialogHelper {
+    static Parametros param = new Parametros();
 
     public static Optional<Usuario> solicitarInformacoesUsuario() {
         Dialog<Usuario> dialog = new Dialog<>();
@@ -177,7 +178,7 @@ public class DialogHelper {
     }
 
     public static String[] solicitarMesAnoCPFCNPJ() {
-        Parametros param = new Parametros();
+
         Dialog<String[]> dialog = new Dialog<>();
         dialog.setTitle("Selecionar Dados");
         dialog.setHeaderText("Informe o mês, o ano e o CPF/CNPJ:");
@@ -220,6 +221,42 @@ public class DialogHelper {
                 String ano = anoField.getText();
                 String documento = documentoField.getText();
                 return new String[]{mes, ano, documento};
+            }
+            return null;
+        });
+
+        return dialog.showAndWait().orElse(null);
+    }
+
+    public static Integer solicitarQuantidade() {
+        Dialog<Integer> dialog = new Dialog<>();
+        dialog.setTitle("Gerar Cobranças");
+        dialog.setHeaderText("Informe a quantidade de cobranças a serem geradas:");
+
+        ButtonType salvarButtonType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(salvarButtonType, ButtonType.CANCEL);
+
+        TextField quantidadeField = new TextField();
+        quantidadeField.setPromptText("Quantidade");
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.add(new Label("Quantidade:"), 0, 0);
+        grid.add(quantidadeField, 1, 0);
+
+        dialog.getDialogPane().setContent(grid);
+
+        Button salvarButton = (Button) dialog.getDialogPane().lookupButton(salvarButtonType);
+        salvarButton.setDisable(true);
+
+        quantidadeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            salvarButton.setDisable(!param.isInteger(newValue) || Integer.parseInt(newValue) <= 0);
+        });
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == salvarButtonType) {
+                return Integer.parseInt(quantidadeField.getText());
             }
             return null;
         });
