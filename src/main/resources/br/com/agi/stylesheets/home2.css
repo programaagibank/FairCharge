@@ -10,10 +10,6 @@
     -fx-padding: 10px;
 }
 
-#header {
-    -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
-}
-
 #buttonOption {
     -fx-background-color: #ffff;
     -fx-border-color: #0068ff;

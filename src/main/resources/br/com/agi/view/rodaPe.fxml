@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<ButtonBar buttonMinWidth="100.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="335.0" stylesheets="@../stylesheets/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <buttons>
+      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../photos/casa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button id="criticalButton" fx:id="criticalButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleSair">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../photos/angulo-esquerdo.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </buttons>
+</ButtonBar>

@@ -8,6 +8,10 @@
     -fx-font-size: 14px;
 }
 
+#header {
+    -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
+}
+
 .button:hover {
     -fx-background-color: #9BA4B5;
 }
