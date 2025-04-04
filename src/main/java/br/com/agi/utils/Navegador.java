@@ -53,4 +53,13 @@ public class Navegador {
     public static void getRelatorioCobrancas() {
         SceneLoader.loadScene(primaryStage, "cobranca/RelatorioCobrancas");
     }
+
+    public static void getMenuPagamento() {
+        SceneLoader.loadScene(primaryStage, "pagamento/MenuPagamento");
+    }
+
+    public static void getPagamentosRealizados() {
+        SceneLoader.loadScene(primaryStage, "pagamento/PagamentosRealizados");
+    }
+
 }

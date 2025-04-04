@@ -26,7 +26,7 @@ public class HomeController {
 
     @FXML
     void handleListarPagamentos() {
-
+        Navegador.getMenuPagamento();
     }
 
     @FXML

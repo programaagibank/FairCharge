@@ -59,8 +59,6 @@ public class CobrancasVencidasController {
         colunaStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         ObservableList<Cobranca> listaCobrancas =FXCollections.observableArrayList(controller.listarCobrancasVencidas());
         tabelaCobrancas.setItems(listaCobrancas);
-
-
     }
 
 }

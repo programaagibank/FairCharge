@@ -1,46 +1,90 @@
 package br.com.agi.model;
-import java.util.Date;
+
+import br.com.agi.utils.FormatoMonetarioFX;
+
+import java.time.LocalDate;
 
 public class Pagamento {
-        private int pagamento_id;
-        private int forma_pagamento_id;
-        private double valor_pago;
-        private Date data_pagamento;
-        private String cod_transacao;
-        private String detalhes;
-        private String status;
+    private int cobrancaId;
+    private int faturaId;
+    private String nomeCliente;
+    private double valorPago;
+    private LocalDate dataPagamento;
+    private String status;
+    private double valorFaturaCorrigido;
 
-        public Pagamento(){}
+    public Pagamento(int cobrancaId, int faturaId, String nomeCliente, double valorPago, LocalDate dataPagamento, String status, double valorFaturaCorrigido) {
+        this.cobrancaId = cobrancaId;
+        this.faturaId = faturaId;
+        this.nomeCliente = nomeCliente;
+        this.valorPago = valorPago;
+        this.dataPagamento = dataPagamento;
+        this.status = status;
+        this.valorFaturaCorrigido = valorFaturaCorrigido;
+    }
 
-        public Pagamento(int pagamento_id, int forma_pagamento_id, double valor_pago, Date data_pagamento, String cod_transacao, String detalhes, String status){
-            this.pagamento_id = pagamento_id;
-            this.forma_pagamento_id = forma_pagamento_id;
-            this.valor_pago = valor_pago;
-            this.data_pagamento = data_pagamento;
-            this.cod_transacao = cod_transacao;
-            this.detalhes = detalhes;
-            this.status = status;
-        }
+    public int getCobrancaId() {
+        return cobrancaId;
+    }
 
-        public int getPagamento_id() {return pagamento_id;}
-        public void setPagamento_id(int pagamento_id) {this.pagamento_id = pagamento_id;}
+    public void setCobrancaId(int cobrancaId) {
+        this.cobrancaId = cobrancaId;
+    }
 
-        public int getForma_pagamento_id() {return forma_pagamento_id;}
-        public void setForma_pagamento_id(int forma_pagamento_id) {this.forma_pagamento_id = forma_pagamento_id;}
+    public int getFaturaId() {
+        return faturaId;
+    }
 
-        public double getValor_pago() {return valor_pago;}
-        public void setValor_pago(double valorPago) {this.valor_pago = valorPago;}
+    public void setFaturaId(int faturaId) {
+        this.faturaId = faturaId;
+    }
 
-        public Date getData_pagamento() {return data_pagamento;}
-        public void setData_pagamento(Date dataVencimento) {this.data_pagamento = dataVencimento;}
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
 
-        public String getDetalhes() {return detalhes;}
-        public void setDetalhes(String detalhes) {this.detalhes = detalhes;}
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
 
-        public String getCod_transacao() {return cod_transacao;}
-        public void setCod_transacao(String codTransacao) {this.cod_transacao = codTransacao;}
+    public double getValorPago() {
+        return valorPago;
+    }
 
-        public String getStatus() {return status;}
-        public void setStatus(String status) {this.status = status;}
+    public void setValorPago(double valorPago) {
+        this.valorPago = valorPago;
+    }
+
+    public LocalDate getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public void setDataPagamento(LocalDate dataPagamento) {
+        this.dataPagamento = dataPagamento;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getValorFaturaCorrigido() {
+        return valorFaturaCorrigido;
+    }
+
+    public void setValorFaturaCorrigido(double valorFaturaCorrigido) {
+        this.valorFaturaCorrigido = valorFaturaCorrigido;
+    }
+
+    public String getValorFaturaFormatado(){
+        return FormatoMonetarioFX.formatar(valorFaturaCorrigido);
+    }
+
+    public String getValorPagoFormatado(){
+        return FormatoMonetarioFX.formatar(valorPago);
+    }
+
 }
-

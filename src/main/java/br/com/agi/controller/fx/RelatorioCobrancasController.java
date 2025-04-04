@@ -1,6 +1,7 @@
 package br.com.agi.controller.fx;
 
 import br.com.agi.controller.CobrancaController;
+import br.com.agi.controller.PagamentoController;
 import br.com.agi.model.Cobranca;
 import br.com.agi.utils.Navegador;
 import javafx.collections.FXCollections;
@@ -9,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 import java.util.Date;
 
@@ -44,9 +47,29 @@ public class RelatorioCobrancasController {
     }
 
     CobrancaController controller = new CobrancaController();
+    PagamentoController pagamentoController = new PagamentoController();
 
     public void initialize() {
         preencherTabelaCobrancas();
+
+        tabelaCobrancas.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+                Cobranca cobrancaSelecionada = tabelaCobrancas.getSelectionModel().getSelectedItem();
+
+                if (cobrancaSelecionada != null) {
+                    int idCobranca = cobrancaSelecionada.getCobranca_id();
+                    double valorComMulta = cobrancaSelecionada.getValorTotalComMultas();
+                    boolean sucesso = pagamentoController.pagarCobranca(idCobranca, valorComMulta);
+
+                    if (sucesso) {
+                        System.out.println("Cobrança paga com sucesso!");
+                        preencherTabelaCobrancas(); // Atualiza a tabela
+                    } else {
+                        System.out.println("Erro ao pagar cobrança.");
+                    }
+                }
+            }
+        });
     }
 
     public void preencherTabelaCobrancas() {
@@ -59,8 +82,6 @@ public class RelatorioCobrancasController {
         colunaStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         ObservableList<Cobranca> listaCobrancas =FXCollections.observableArrayList(controller.gerarRelatorioCobrancas());
         tabelaCobrancas.setItems(listaCobrancas);
-
-
     }
 
 }
