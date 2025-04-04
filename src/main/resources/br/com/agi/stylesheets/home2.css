@@ -15,23 +15,17 @@
 }
 
 #buttonOption {
-    -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
-    -fx-border-radius: 20px;
-    -fx-background-radius: 50px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+    -fx-background-color: #ffff;
+    -fx-border-color: #0068ff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 }
 
 #buttonOption:hover {
-    -fx-background-color: linear-gradient(to right, #0055cc, #0033aa);
+    -fx-background-color: #dcdee3;
     -fx-text-fill: #f0f0f0; /* Texto mais claro no hover */
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3); /* Aumentar sombra no hover */
     -fx-cursor: hand; /* Indicador de cursor no hover */
 }
 
-#criticalButton:hover {
-    -fx-background-color: linear-gradient(to right, #cc0000, #990000);
-    -fx-text-fill: #f8f8f8;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
-    -fx-cursor: hand;
-}
 

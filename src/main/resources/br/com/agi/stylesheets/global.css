@@ -31,8 +31,12 @@
 }
 
 #criticalButton:hover {
-    -fx-background-color: #ffff;
+    -fx-background-color: linear-gradient(to right, #cc0000, #990000);
+    -fx-text-fill: #f8f8f8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
+    -fx-cursor: hand;
 }
+
 
 .errorLabel {
     -fx-text-fill: red;

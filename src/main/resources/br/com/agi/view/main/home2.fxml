@@ -19,12 +19,12 @@
          <top>
             <AnchorPane id="header" prefHeight="54.0" prefWidth="293.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label id="homeTitle" layoutY="2.0" text="Bem vindo ao FairCharge" AnchorPane.topAnchor="2.0" />
+                  <Label id="homeTitle" layoutY="2.0" text="FairCharge" AnchorPane.topAnchor="2.0" />
                </children>
             </AnchorPane>
          </top>
           <center>
-              <VBox alignment="TOP_CENTER" layoutX="280.0" layoutY="67.0">
+              <VBox id="backgroundHome" alignment="TOP_CENTER" layoutX="280.0" layoutY="67.0">
                   <children>
                   <HBox fx:id="sessaoFinanceira" alignment="CENTER" prefHeight="100.0">
                      <children>
@@ -44,7 +44,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                                  <Button id="buttonOption" onAction="#handleListarPagamentos" prefWidth="40.0">
+                                  <Button id="buttonOption" onAction="#handleListarPagamentos" prefHeight="40.0" prefWidth="40.0">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0">
                                        <image>
@@ -58,7 +58,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                                  <Button id="buttonOption" onAction="#handleAjustarTaxas" prefWidth="40.0">
+                                  <Button id="buttonOption" onAction="#handleAjustarTaxas" prefHeight="40.0" prefWidth="40.0">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0">
                                        <image>
@@ -72,7 +72,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                                  <Button id="buttonOption" onAction="#handleListarCobrancasCliente" prefWidth="40.0">
+                                  <Button id="buttonOption" onAction="#handleListarCobrancasCliente" prefHeight="40.0" prefWidth="40.0">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0">
                                        <image>
@@ -91,7 +91,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                                  <Button id="buttonOption" fx:id="gerenciarUsuarioButton" onAction="#handleGerenciarUsuario" prefWidth="40.0">
+                                  <Button id="buttonOption" fx:id="gerenciarUsuarioButton" onAction="#handleGerenciarUsuario" prefHeight="40.0" prefWidth="40.0">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0">
                                        <image>
