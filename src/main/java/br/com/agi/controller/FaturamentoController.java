@@ -5,7 +5,7 @@ import br.com.agi.model.Faturamento;
 import br.com.agi.model.FaturamentoCliente;
 
 public class FaturamentoController {
-    private FaturamentoDAO faturamentoDAO;
+    public FaturamentoDAO faturamentoDAO;
 
     public FaturamentoController() {
         this.faturamentoDAO = new FaturamentoDAO();

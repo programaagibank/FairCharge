@@ -18,6 +18,10 @@ public class Faturamento {
         this.detalhamentos = new ArrayList<>();
     }
 
+    public Faturamento() {
+
+    }
+
     public int getMes() {
         return mes;
     }

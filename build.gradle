@@ -16,8 +16,10 @@ dependencies {
     implementation "org.mindrot:jbcrypt:0.4"
     implementation 'org.camunda.bpm:camunda-engine:7.20.0'
     implementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:7.20.0'
+
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.mockito:mockito-core:5.5.0")
 }
 
 javafx {
