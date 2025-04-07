@@ -39,7 +39,7 @@ public class Navegador {
     }
 
     public static void getRelatorioBanco(String parametro, int mes, int ano, String CPFCNPJ) {
-        SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento", parametro, mes, ano, CPFCNPJ);
+        SceneLoader.loadSceneRelatorios(primaryStage, "faturamento/RelatorioFaturamento2", parametro, mes, ano, CPFCNPJ);
     }
 
     public static void getMenuCobranca() {
@@ -60,6 +60,10 @@ public class Navegador {
 
     public static void getPagamentosRealizados() {
         SceneLoader.loadScene(primaryStage, "pagamento/PagamentosRealizados");
+    }
+
+    public static void rodapeVoltar(String fxml) {
+        SceneLoader.loadScene(primaryStage, fxml);
     }
 
 }

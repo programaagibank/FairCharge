@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.RelatorioFaturamentoController">
+   <center>
+      <GridPane minHeight="-Infinity" minWidth="-Infinity">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="522.0" minWidth="10.0" prefWidth="210.33333333333331" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="124.33333333333331" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="61.66665776570639" minHeight="0.0" prefHeight="56.00000508626302" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="7.999986012776688" prefHeight="42.66666158040365" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="464.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label id="totaisLabels" contentDisplay="TOP" text="TOTAL DE COBRANÇAS REGISTRADAS:" wrapText="true">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label id="totaisLabels" prefHeight="49.0" prefWidth="478.0" text="TOTAL RECEBIDO:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label id="totaisLabels" prefHeight="49.0" prefWidth="478.0" text="TOTAL PENDENTE:" GridPane.rowIndex="2">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label id="totaisLabels" prefHeight="49.0" prefWidth="478.0" text="TOTAL INADIMPLENTES:" GridPane.rowIndex="3">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalCobrancas" prefHeight="49.0" prefWidth="478.0" text="0" GridPane.columnIndex="1">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalInadimplente" prefHeight="49.0" prefWidth="478.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalPendente" prefHeight="49.0" prefWidth="478.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalRecebido" prefHeight="49.0" prefWidth="478.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelScroll" lineSpacing="2.0" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <HBox id="detalhamento" maxWidth="1.7976931348623157E308" prefHeight="44.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="labelScroll" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" text="Detalhamento por categorias:" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ScrollPane fx:id="scrollPane" GridPane.columnSpan="2" GridPane.rowIndex="5">
+              <content>
+                <AnchorPane />
+              </content>
+            </ScrollPane>
+         </children>
+      </GridPane>
+   </center>
+   <top>
+      <HBox id="header" prefHeight="55.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label id="tituloLabel" fx:id="mesAno" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="382.0" text="Relatório Bancário 03/2025" wrapText="true" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="31.0" layoutY="18.0" onMouseClicked="#homePhoto">
+                     <image>
+                        <Image url="@../../photos/casa.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="-2.0" layoutY="16.0" onMouseClicked="#exportPhoto">
+                     <image>
+                        <Image url="@../../photos/pdfFile.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </top>
+   <stylesheets>
+      <URL value="@../../stylesheets/global.css" />
+      <URL value="@../../stylesheets/relatorioFaturamento.css" />
+   </stylesheets>
+   <bottom>
+      <fx:include source="../rodaPe.fxml" />
+   </bottom>
+</BorderPane>
