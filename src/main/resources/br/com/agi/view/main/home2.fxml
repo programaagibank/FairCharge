@@ -1,125 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.HomeController">
+
+<ScrollPane id="backgroundHome" fitToHeight="true" fitToWidth="true" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.HomeController">
   <content>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-         <top>
-            <AnchorPane id="header" prefHeight="54.0" prefWidth="293.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label id="homeTitle" layoutY="2.0" text="FairCharge" AnchorPane.topAnchor="2.0" />
-               </children>
-            </AnchorPane>
-         </top>
           <center>
-              <VBox id="backgroundHome" alignment="TOP_CENTER" layoutX="280.0" layoutY="67.0">
-                  <children>
-                  <HBox fx:id="sessaoFinanceira" alignment="CENTER" prefHeight="100.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                                  <Button id="buttonOption" onAction="#handleRelatorioFaturamento" prefHeight="40.0" prefWidth="40.0">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0">
-                                       <image>
-                                          <Image url="@../../photos/grafico-histograma.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Label text="Faturamento" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                                  <Button id="buttonOption" onAction="#handleListarPagamentos" prefHeight="40.0" prefWidth="40.0">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0">
-                                       <image>
-                                          <Image url="@../../photos/moedas.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Label text="Pagamento" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                                  <Button id="buttonOption" onAction="#handleAjustarTaxas" prefHeight="40.0" prefWidth="40.0">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0">
-                                       <image>
-                                          <Image url="@../../photos/definicoes.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Label text="Taxas" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                                  <Button id="buttonOption" onAction="#handleListarCobrancasCliente" prefHeight="40.0" prefWidth="40.0">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0">
-                                       <image>
-                                          <Image url="@../../photos/documento.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Label text="Cobranças" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <Separator prefHeight="20.0" prefWidth="200.0" />
-                  <HBox fx:id="sessaoAdministrador" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                                  <Button id="buttonOption" fx:id="gerenciarUsuarioButton" onAction="#handleGerenciarUsuario" prefHeight="40.0" prefWidth="40.0">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0">
-                                       <image>
-                                          <Image url="@../../photos/do-utilizador.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Label text="Usuários" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  </children>
-              </VBox>
+            <Pane id="backgroundHome">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <children>
+                  <Button id="buttonOption" graphicTextGap="0.0" layoutX="16.0" layoutY="86.0" onAction="#handleRelatorioFaturamento" prefWidth="300" text="Relatório de Faturamento" />
+                  <Button id="buttonOption" layoutX="16.0" layoutY="156.0" onAction="#handleListarPagamentos" prefWidth="300" text="Listar Pagamentos" />
+                  <Button id="buttonOption" layoutX="16.0" layoutY="225.0" onAction="#handleAjustarTaxas" prefWidth="300" text="Ajustar Taxas" />
+                  <Button id="buttonOption" layoutX="16.0" layoutY="295.0" onAction="#handleListarCobrancasCliente" prefWidth="300" text="Menu Cobranças" />
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="35.0" layoutY="97.0">
+                     <image>
+                        <Image url="@../../photos/grafico-histograma.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="35.0" layoutY="167.0">
+                     <image>
+                        <Image url="@../../photos/moedas.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="35.0" layoutY="235.0">
+                     <image>
+                        <Image url="@../../photos/ajustamento.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="35.0" layoutY="235.0">
+                     <image>
+                        <Image url="@../../photos/tax_18891707.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="32.0" layoutY="304.0">
+                     <image>
+                        <Image url="@../../photos/transaction-history_8289462.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
           </center>
          <bottom>
             <ButtonBar buttonMinWidth="100.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <buttons>
-                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0">
-                           <image>
-                              <Image url="@../../photos/casa.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                       <Button id="criticalButton" fx:id="criticalButton" onAction="#handleSair">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0">
@@ -132,6 +67,9 @@
               </buttons>
             </ButtonBar>
          </bottom>
+         <top>
+            <fx:include source="../header.fxml" />
+         </top>
       </BorderPane>
   </content>
    <stylesheets>
