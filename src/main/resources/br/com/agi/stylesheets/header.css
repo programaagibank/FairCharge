@@ -4,6 +4,12 @@
     -fx-text-fill: #ffff;
 
 }
+
 #options:hover {
     -fx-cursor: hand;
+}
+
+#header {
+    -fx-background-color: #0068ff;
+    -fx-background-radius: 0px 0px 10px 10px;
 }
