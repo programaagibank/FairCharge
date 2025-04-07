@@ -2,22 +2,38 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="backgroundHome" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.MenuFaturamentoController">
+<AnchorPane fx:id="backgroundHome" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.MenuFaturamentoController">
    <fx:include source="../header.fxml" />
-
-    <!-- Container de Botões -->
-    <VBox id="menuContainer" alignment="CENTER" layoutX="274.0" layoutY="156.0" spacing="13.0">
-        <children>
-         <Label id="homeTitle" text="Menu Faturamento" />
-            <Button id="buttonOption" onAction="#handleFaturamentoBanco" prefWidth="300" text="Faturamento do Banco" />
-            <Button id="buttonOption" onAction="#handleFaturamentoCliente" prefWidth="300" text="Faturamento de Cliente" />
-            <Button id="criticalButton" onAction="#handleSair" prefWidth="300" text="Voltar" />
-        </children>
-    </VBox>
+   <ButtonBar buttonMinWidth="100.0" layoutY="557.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
+      <buttons>
+         <Button id="criticalButton" fx:id="criticalButton" onAction="#handleSair">
+            <graphic>
+               <ImageView fitHeight="20.0" fitWidth="20.0">
+                  <image>
+                     <Image url="@../../photos/angulo-esquerdo.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+      </buttons>
+   </ButtonBar>
+      <Button id="buttonOption" layoutX="17.0" layoutY="214.0" onAction="#handleFaturamentoBanco" prefWidth="300" text="Faturamento do Banco" />
+      <Button id="buttonOption" layoutX="17.0" layoutY="300.0" onAction="#handleFaturamentoCliente" prefWidth="300" text="Faturamento de Cliente" />
+   <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="31.0" layoutY="225.0">
+      <image>
+         <Image url="@../../photos/Banco.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="29.0" layoutY="309.0">
+      <image>
+         <Image url="@../../photos/Money.png" />
+      </image>
+   </ImageView>
    <stylesheets>
       <URL value="@../../stylesheets/global.css" />
       <URL value="@../../stylesheets/menuFaturamento.css" />
