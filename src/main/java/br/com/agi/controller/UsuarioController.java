@@ -11,12 +11,18 @@ public class UsuarioController {
 
     public boolean cadastroUsuario(String nome, String email, String senha, String permissao) {
         boolean vlrsCadastro = param.verificaCadastroVazio(nome, email, senha, permissao);
-        if (vlrsCadastro) {
-            dao.cadastrarUsuario(nome, email, senha, permissao);
-            return true;
-        } else {
+
+        if (!vlrsCadastro) {
             return false;
         }
+
+        if (senha.length() < 6) {
+            System.out.println("Erro: A senha deve conter pelo menos 6 caracteres.");
+            return false;
+        }
+
+        dao.cadastrarUsuario(nome, email, senha, permissao);
+        return true;
     }
 
     public boolean acessarLogin(String email, String senha){
@@ -33,6 +39,10 @@ public class UsuarioController {
     }
 
     public boolean atualizarSenha(String novaSenha, String email) {
+        if (novaSenha.length() < 6) {
+            System.out.println("Erro: A nova senha deve conter pelo menos 6 caracteres.");
+            return false;
+        }
         return dao.updateSenha(novaSenha, email);
     }
 
@@ -60,8 +70,8 @@ public class UsuarioController {
         return dao.listarUnicoUsuario(email);
     }
 
-    public boolean atualizarUsuarioFX(Usuario usuario) {
-        return dao.atualizarUsuarioFX(usuario);
+    public boolean atualizarUsuarioFX(String emailOriginal, Usuario usuario) {
+        return dao.atualizarUsuarioFX(emailOriginal, usuario);
     }
 }
 

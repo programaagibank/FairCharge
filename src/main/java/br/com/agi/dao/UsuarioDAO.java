@@ -7,10 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.agi.controller.CifradorSenha;
-import br.com.agi.controller.UsuarioController;
 import br.com.agi.model.Usuario;
 import br.com.agi.utils.SessaoLogon;
-import br.com.agi.view.GerenciadorUsuarioView;
 
 import br.com.agi.database.databaseConnection;
 
@@ -219,7 +217,7 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    public boolean atualizarUsuarioFX(Usuario usuario) {
+    public boolean atualizarUsuarioFX(String emailOriginal, Usuario usuario) {
         String sql = "UPDATE Usuario SET nome = ?, email = ?, senha = ?, permissao = ? WHERE email = ?";
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -229,7 +227,7 @@ public class UsuarioDAO {
             stmt.setString(2, usuario.getEmail());
             stmt.setString(3, senhaCriptografada);
             stmt.setInt(4, usuario.getPermissao());
-            stmt.setString(5, usuario.getEmail());
+            stmt.setString(5, emailOriginal);
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;

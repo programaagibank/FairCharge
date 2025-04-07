@@ -59,9 +59,11 @@ public class GerenciadorUsuariosController {
     void handleEditarUsuario() {
         Usuario usuarioSelecionado = userTable.getSelectionModel().getSelectedItem();
         if (usuarioSelecionado != null) {
+            String emailOriginal = usuarioSelecionado.getEmail();
+
             Optional<Usuario> resultado = DialogHelper.solicitarEdicaoUsuario(usuarioSelecionado);
             resultado.ifPresent(usuarioEditado -> {
-                boolean sucesso = controller.atualizarUsuarioFX(usuarioEditado);
+                boolean sucesso = controller.atualizarUsuarioFX(emailOriginal, usuarioEditado);
 
                 if (sucesso) {
                     Alerta.mostrarInformacao("Sucesso", "Usuário Editado", "As informações do usuário foram atualizadas com sucesso!");
@@ -75,18 +77,35 @@ public class GerenciadorUsuariosController {
         }
     }
 
+
     @FXML
     void handleAdicionarUsuario() {
         Optional<Usuario> resultado = DialogHelper.solicitarInformacoesUsuario();
-
         resultado.ifPresent(novoUsuario -> {
-            boolean sucesso = controller.cadastroUsuario(novoUsuario.getNome(), novoUsuario.getEmail(), novoUsuario.getSenha(), String.valueOf(novoUsuario.getPermissao()));
+
+            if (!novoUsuario.getEmail().matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+                Alerta.mostrarErro("Erro", "E-mail inválido", "O e-mail deve estar em um formato válido, como nome@dominio.com");
+                return;
+            }
+
+            boolean sucesso = controller.cadastroUsuario(
+                    novoUsuario.getNome(),
+                    novoUsuario.getEmail(),
+                    novoUsuario.getSenha(),
+                    String.valueOf(novoUsuario.getPermissao())
+            );
 
             if (sucesso) {
                 Alerta.mostrarInformacao("Sucesso", "Usuário Adicionado", "O usuário foi cadastrado com sucesso!");
                 preencherTabela();
             } else {
-                Alerta.mostrarErro("Erro", "Erro ao Adicionar Usuário", "Não foi possível cadastrar o usuário.");
+                Alerta.mostrarErro(
+                        "Erro",
+                        "Erro ao Adicionar Usuário",
+                        "Não foi possível cadastrar o usuário. Verifique se:\n" +
+                                "- A senha tem pelo menos 6 caracteres;\n" +
+                                "- O e-mail termina com @gmail.com ou @yahoo.com."
+                );
             }
         });
     }
