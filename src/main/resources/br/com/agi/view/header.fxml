@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="header" prefHeight="50.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <ImageView fx:id="logoImage" fitHeight="148.0" fitWidth="200.0" layoutX="48.0" layoutY="-14.0" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="-25.0">
-        <image>
-            <Image url="@../photos/FAIRCHARGE.png" />
-        </image>
-    </ImageView>
+<AnchorPane id="header" fx:id="header" prefHeight="55.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.headerController">
+   <children>
+      <Label id="homeTitle" layoutX="14.0" layoutY="3.0" text="FairCharge" />
+      <ImageView id="options" fitHeight="20.0" fitWidth="20.0" layoutX="242.0" layoutY="18.0" onMouseClicked="#AbrirPerfil">
+         <image>
+            <Image url="@../photos/do-utilizador.png" />
+         </image>
+      </ImageView>
+      <ImageView id="options" fitHeight="20.0" fitWidth="20.0" layoutX="292.0" layoutY="18.0" onMouseClicked="#AbrirCasa">
+         <image>
+            <Image url="@../photos/casa.png" />
+         </image>
+      </ImageView>
+   </children>
+   <stylesheets>
+      <URL value="@../stylesheets/global.css" />
+      <URL value="@../stylesheets/header.css" />
+   </stylesheets>
 </AnchorPane>

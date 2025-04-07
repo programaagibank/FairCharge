@@ -11,8 +11,7 @@
 }
 
 #buttonOption {
-    -fx-background-color: #ffff;
-    -fx-border-color: #0068ff;
+    -fx-background-color: #0068ff;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
@@ -23,5 +22,3 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3); /* Aumentar sombra no hover */
     -fx-cursor: hand; /* Indicador de cursor no hover */
 }
-
-

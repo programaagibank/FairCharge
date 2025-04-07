@@ -1,6 +1,6 @@
 .button {
     -fx-background-color: #0068ff;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #ffff;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
     -fx-padding: 10px;
@@ -9,7 +9,7 @@
 }
 
 #header {
-    -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
+    -fx-background-color: #0068ff;
 }
 
 .button:hover {
@@ -53,4 +53,5 @@
     -fx-font-weight: bold;
     -fx-text-fill: #1766d3;
 }
+
 
