@@ -8,10 +8,6 @@
     -fx-font-size: 14px;
 }
 
-#header {
-    -fx-background-color: #0068ff;
-}
-
 .button:hover {
     -fx-background-color: #9BA4B5;
 }
