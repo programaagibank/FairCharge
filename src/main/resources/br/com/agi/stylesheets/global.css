@@ -9,7 +9,10 @@
 }
 
 .button:hover {
-    -fx-background-color: #9BA4B5;
+   -fx-background-color: #f0f1f5;
+   -fx-text-fill: #0068ff; /* Texto mais claro no hover */
+   -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
+   -fx-cursor: hand; /* Indicador de cursor no hover */
 }
 
 .button:pressed {

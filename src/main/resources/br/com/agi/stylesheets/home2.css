@@ -17,8 +17,8 @@
 }
 
 #buttonOption:hover {
-    -fx-background-color: #dcdee3;
-    -fx-text-fill: #f0f0f0; /* Texto mais claro no hover */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3); /* Aumentar sombra no hover */
+    -fx-background-color: #f0f1f5;
+    -fx-text-fill: #0068ff; /* Texto mais claro no hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
     -fx-cursor: hand; /* Indicador de cursor no hover */
 }
