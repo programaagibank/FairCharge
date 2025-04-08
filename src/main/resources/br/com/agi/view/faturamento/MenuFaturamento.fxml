@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane fx:id="backgroundHome" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.MenuFaturamentoController">
    <fx:include source="../header.fxml" />
@@ -24,16 +25,21 @@
    </ButtonBar>
       <Button id="buttonOption" layoutX="17.0" layoutY="214.0" onAction="#handleFaturamentoBanco" prefWidth="300" text="Faturamento do Banco" />
       <Button id="buttonOption" layoutX="17.0" layoutY="300.0" onAction="#handleFaturamentoCliente" prefWidth="300" text="Faturamento de Cliente" />
-   <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="31.0" layoutY="225.0">
+   <Pane id="bordaIcone" layoutX="18.0" layoutY="215.0" prefHeight="38.0" prefWidth="36.0" />
+   <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="25.0" layoutY="224.0">
       <image>
          <Image url="@../../photos/Banco.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="29.0" layoutY="309.0">
-      <image>
-         <Image url="@../../photos/Money.png" />
-      </image>
-   </ImageView>
+   <Pane id="bordaIcone" layoutX="18.0" layoutY="301.0" prefHeight="38.0" prefWidth="36.0">
+      <children>
+         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="8.0">
+            <image>
+               <Image url="@../../photos/Money.png" />
+            </image>
+         </ImageView>
+      </children>
+   </Pane>
    <stylesheets>
       <URL value="@../../stylesheets/global.css" />
       <URL value="@../../stylesheets/menuFaturamento.css" />
