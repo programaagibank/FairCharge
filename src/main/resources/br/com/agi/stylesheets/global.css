@@ -53,4 +53,9 @@
     -fx-text-fill: #1766d3;
 }
 
+#bordaIcone {
+    -fx-background-color: #f0f1f5;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
 

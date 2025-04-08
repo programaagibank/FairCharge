@@ -22,9 +22,3 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
     -fx-cursor: hand; /* Indicador de cursor no hover */
 }
-
-#bordaIcone {
-    -fx-background-color: #f0f1f5;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-}
