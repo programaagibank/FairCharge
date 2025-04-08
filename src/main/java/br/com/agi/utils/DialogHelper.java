@@ -13,8 +13,11 @@ public class DialogHelper {
 
     public static Optional<Usuario> solicitarInformacoesUsuario() {
         Dialog<Usuario> dialog = new Dialog<>();
-        dialog.setTitle("Adicionar Usuário");
         dialog.setHeaderText("Preencha as informações do novo usuário:");
+
+        dialog.getDialogPane().getStylesheets().add(
+                DialogHelper.class.getResource("/br/com/agi/stylesheets/dialogHelp.css").toExternalForm()
+        );
 
         ButtonType adicionarButtonType = new ButtonType("Adicionar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(adicionarButtonType, ButtonType.CANCEL);
@@ -86,8 +89,11 @@ public class DialogHelper {
 
     public static Optional<Usuario> solicitarEdicaoUsuario(Usuario usuarioAtual) {
         Dialog<Usuario> dialog = new Dialog<>();
-        dialog.setTitle("Editar Usuário");
         dialog.setHeaderText("Altere as informações do usuário:");
+
+        dialog.getDialogPane().getStylesheets().add(
+                DialogHelper.class.getResource("/br/com/agi/stylesheets/dialogHelp.css").toExternalForm()
+        );
 
         ButtonType salvarButtonType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(salvarButtonType, ButtonType.CANCEL);
@@ -134,24 +140,23 @@ public class DialogHelper {
     }
 
     public static String[] solicitarMesAno() {
-        // Criando a caixa de diálogo
         Dialog<String[]> dialog = new Dialog<>();
-        dialog.setTitle("Selecionar Mês e Ano");
         dialog.setHeaderText("Informe o mês e o ano:");
+
+        dialog.getDialogPane().getStylesheets().add(
+                DialogHelper.class.getResource("/br/com/agi/stylesheets/dialogHelp.css").toExternalForm()
+        );
 
         ButtonType salvarButtonType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(salvarButtonType, ButtonType.CANCEL);
 
-        // ComboBox para o mês
         ComboBox<String> mesComboBox = new ComboBox<>();
         mesComboBox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
         mesComboBox.setValue("1");
 
-        // TextField para o ano
         TextField anoField = new TextField();
         anoField.setPromptText("Ano");
 
-        // GridPane para organização dos componentes
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -160,10 +165,8 @@ public class DialogHelper {
         grid.add(new Label("Ano:"), 0, 1);
         grid.add(anoField, 1, 1);
 
-        // Adicionando o GridPane à caixa de diálogo
         dialog.getDialogPane().setContent(grid);
 
-        // Conversão do resultado ao pressionar "Salvar"
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == salvarButtonType) {
                 String mesSelecionado = mesComboBox.getValue();
@@ -173,15 +176,17 @@ public class DialogHelper {
             return null;
         });
 
-        // Exibindo a caixa de diálogo e aguardando a entrada do usuário
         return dialog.showAndWait().orElse(null);
     }
 
     public static String[] solicitarMesAnoCPFCNPJ() {
 
         Dialog<String[]> dialog = new Dialog<>();
-        dialog.setTitle("Selecionar Dados");
         dialog.setHeaderText("Informe o mês, o ano e o CPF/CNPJ:");
+
+        dialog.getDialogPane().getStylesheets().add(
+                DialogHelper.class.getResource("/br/com/agi/stylesheets/dialogHelp.css").toExternalForm()
+        );
 
         ButtonType salvarButtonType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(salvarButtonType, ButtonType.CANCEL);
@@ -230,8 +235,11 @@ public class DialogHelper {
 
     public static Integer solicitarQuantidade() {
         Dialog<Integer> dialog = new Dialog<>();
-        dialog.setTitle("Gerar Cobranças");
         dialog.setHeaderText("Informe a quantidade de cobranças a serem geradas:");
+
+        dialog.getDialogPane().getStylesheets().add(
+                DialogHelper.class.getResource("/br/com/agi/stylesheets/dialogHelp.css").toExternalForm()
+        );
 
         ButtonType salvarButtonType = new ButtonType("Salvar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(salvarButtonType, ButtonType.CANCEL);
