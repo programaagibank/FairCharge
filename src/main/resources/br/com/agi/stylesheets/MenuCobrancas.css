@@ -25,7 +25,7 @@
 }
 
 #cobrancasVencidas{
-    -fx-font-size: 32px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #1766d3;
 }

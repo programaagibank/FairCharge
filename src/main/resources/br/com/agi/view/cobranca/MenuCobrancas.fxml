@@ -1,35 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="backgroundHome" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.MenuCobrancasController">
-   <fx:include source="../header.fxml" />
-
-    <!-- Container de Botões -->
-    <VBox id="menuContainer" alignment="CENTER" layoutX="279.0" layoutY="107.0" spacing="15.0">
-        <children>
-         <Label id="homeTitle" text="Menu de Cobranças" />
-            <Button id="buttonOption" onAction="#handleVisualizarVencidas" prefWidth="300" text="Visualizar Cobranças Vencidas" />
-            <Button id="buttonOption" onAction="#handleAtualizarVencidas" prefWidth="300" text="Atualizar Cobranças Vencidas" />
-            <Button id="buttonOption" onAction="#handleGerarRelatorioCobrancas" prefWidth="300.0" text="Gerar Relatório de Cobranças" />
-         <Button id="buttonOption" fx:id="botaoGerarCobrancas" onAction="#handleGerarCobrancas" prefWidth="300.0" text="Gerar Cobranças" />
-            <Button id="criticalButton" onAction="#handleSair" prefWidth="300" text="Voltar" />
-        </children>
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
-    </VBox>
-   <VBox alignment="TOP_CENTER" layoutX="68.0" layoutY="225.0" prefHeight="131.0" prefWidth="155.0">
+<AnchorPane fx:id="backgroundHome" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.MenuCobrancasController">
+   <fx:include source="../header2.fxml" />
+   <Button id="buttonOption" graphicTextGap="0.0" layoutX="18.0" layoutY="232.0" maxHeight="40.0" minHeight="40.0" onAction="#handleVisualizarVencidas" prefHeight="40.0" prefWidth="300" text="Cobranças vencidas" />
+   <Button id="buttonOption" layoutX="18.0" layoutY="302.0" maxHeight="40.0" minHeight="40.0" onAction="#handleAtualizarVencidas" prefWidth="300" text="Atualizar cobrança" />
+   <Button id="buttonOption" layoutX="18.0" layoutY="371.0" maxHeight="40.0" minHeight="40.0" onAction="#handleGerarRelatorioCobrancas" prefWidth="300" text="Relatório cobrança" />
+   <Button id="buttonOption" fx:id="botaoGerarCobrancas" layoutX="18.0" layoutY="441.0" maxHeight="40.0" minHeight="40.0" onAction="#handleGerarCobrancas" prefWidth="300" text="Gerar cobrança" />
+   <VBox alignment="TOP_CENTER" layoutX="93.0" layoutY="130.0" prefHeight="102.0" prefWidth="155.0" />
+   <ButtonBar buttonMinWidth="100.0" layoutX="3.0" layoutY="554.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
+      <buttons>
+         <Button id="criticalButton" fx:id="criticalButton" onAction="#handleSair">
+            <graphic>
+               <ImageView fitHeight="20.0" fitWidth="20.0">
+                  <image>
+                     <Image url="@../../photos/angulo-esquerdo.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+      </buttons>
+   </ButtonBar>
+   <Text fill="WHITE" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cobrança">
+      <font>
+         <Font name="System Bold" size="25.0" />
+      </font>
+   </Text>
+   <Label id="textoVencidas" alignment="TOP_LEFT" layoutX="14.0" layoutY="144.0" prefHeight="25.0" prefWidth="259.0" text="Quantidade de Cobranças vencidas:" textAlignment="CENTER" wrapText="true" />
+   <Label fx:id="cobrancasVencidas" alignment="CENTER" contentDisplay="CENTER" layoutX="267.0" layoutY="132.0" prefHeight="47.0" prefWidth="51.0" text="0" wrapText="true">
+      <font>
+         <Font size="6.0" />
+      </font>
+   </Label>
+   <Pane id="bordaIcone" layoutX="19.0" layoutY="233.0" prefHeight="38.0" prefWidth="38.0">
       <children>
-         <Label id="textoVencidas" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="50.0" text="Quantidade de Cobranças vencidas:" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS" />
-         <Label fx:id="cobrancasVencidas" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="155.0" text="0" wrapText="true" />
+         <ImageView fitHeight="28.0" fitWidth="30.0" layoutX="4.0" layoutY="6.0">
+            <image>
+               <Image url="@../../photos/Cobranças%20vencidas.png" />
+            </image>
+         </ImageView>
       </children>
-   </VBox>
+   </Pane>
+   <Pane id="bordaIcone" layoutX="19.0" layoutY="303.0" prefHeight="38.0" prefWidth="38.0">
+      <children>
+         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="5.0">
+            <image>
+               <Image url="@../../photos/Atualizar%20cobrança.png" />
+            </image>
+         </ImageView>
+      </children>
+   </Pane>
+   <Pane id="bordaIcone" layoutX="19.0" layoutY="372.0" prefHeight="38.0" prefWidth="38.0">
+      <children>
+         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="5.0">
+            <image>
+               <Image url="@../../photos/Relatório%20cobrança.png" />
+            </image>
+         </ImageView>
+      </children>
+   </Pane>
+   <Pane id="bordaIcone" layoutX="19.0" layoutY="442.0" prefHeight="38.0" prefWidth="38.0">
+      <children>
+         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="5.0">
+            <image>
+               <Image url="@../../photos/Gerar%20cobrança.png" />
+            </image>
+         </ImageView>
+      </children>
+   </Pane>
    <stylesheets>
       <URL value="@../../stylesheets/global.css" />
       <URL value="@../../stylesheets/MenuCobrancas.css" />

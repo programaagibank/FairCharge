@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="header" fx:id="header" prefHeight="55.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.headerController">
+   <children>
+      <ImageView id="options" fitHeight="20.0" fitWidth="20.0" layoutX="292.0" layoutY="18.0" onMouseClicked="#AbrirCasa">
+         <image>
+            <Image url="@../photos/casa.png" />
+         </image>
+      </ImageView>
+   </children>
+   <stylesheets>
+      <URL value="@../stylesheets/global.css" />
+      <URL value="@../stylesheets/header.css" />
+   </stylesheets>
+</AnchorPane>

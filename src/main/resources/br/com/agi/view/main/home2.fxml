@@ -4,88 +4,84 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<ScrollPane id="backgroundHome" fitToHeight="true" fitToWidth="true" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.HomeController">
-  <content>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-          <center>
-            <Pane id="backgroundHome">
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
+
+<BorderPane id="backgroundHome" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.HomeController">
+    <center>
+      <Pane id="backgroundHome">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <Button id="buttonOption" graphicTextGap="0.0" layoutX="16.0" layoutY="86.0" onAction="#handleRelatorioFaturamento" prefWidth="300" text="Relatório de Faturamento" />
+            <Button id="buttonOption" layoutX="16.0" layoutY="156.0" onAction="#handleListarPagamentos" prefWidth="300" text="Listar Pagamentos" />
+            <Button id="buttonOption" layoutX="16.0" layoutY="225.0" onAction="#handleAjustarTaxas" prefWidth="300" text="Ajustar Taxas" />
+            <Button id="buttonOption" layoutX="16.0" layoutY="295.0" onAction="#handleListarCobrancasCliente" prefWidth="300" text="Menu Cobranças" />
+            <Pane id="bordaIcone" layoutX="17.0" layoutY="87.0" prefHeight="38.0" prefWidth="36.0" />
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="25.0" layoutY="97.0">
+               <image>
+                  <Image url="@../../photos/grafico-histograma.png" />
+               </image>
+            </ImageView>
+            <Pane id="bordaIcone" layoutX="17.0" layoutY="157.0" prefHeight="38.0" prefWidth="36.0">
                <children>
-                  <Button id="buttonOption" graphicTextGap="0.0" layoutX="16.0" layoutY="86.0" onAction="#handleRelatorioFaturamento" prefWidth="300" text="Relatório de Faturamento" />
-                  <Button id="buttonOption" layoutX="16.0" layoutY="156.0" onAction="#handleListarPagamentos" prefWidth="300" text="Listar Pagamentos" />
-                  <Button id="buttonOption" layoutX="16.0" layoutY="225.0" onAction="#handleAjustarTaxas" prefWidth="300" text="Ajustar Taxas" />
-                  <Button id="buttonOption" layoutX="16.0" layoutY="295.0" onAction="#handleListarCobrancasCliente" prefWidth="300" text="Menu Cobranças" />
-                  <Pane id="bordaIcone" layoutX="17.0" layoutY="87.0" prefHeight="38.0" prefWidth="36.0" />
-                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="25.0" layoutY="97.0">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="8.0" layoutY="9.0">
                      <image>
-                        <Image url="@../../photos/grafico-histograma.png" />
+                        <Image url="@../../photos/moedas.png" />
                      </image>
                   </ImageView>
-                  <Pane id="bordaIcone" layoutX="17.0" layoutY="157.0" prefHeight="38.0" prefWidth="36.0">
-                     <children>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="8.0" layoutY="9.0">
-                           <image>
-                              <Image url="@../../photos/moedas.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="35.0" layoutY="235.0">
-                     <image>
-                        <Image url="@../../photos/ajustamento.png" />
-                     </image>
-                  </ImageView>
-                  <Pane id="bordaIcone" layoutX="17.0" layoutY="226.0" prefHeight="38.0" prefWidth="36.0">
-                     <children>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="8.0" layoutY="10.0">
-                           <image>
-                              <Image url="@../../photos/tax_18891707.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane id="bordaIcone" layoutX="17.0" layoutY="296.0" prefHeight="38.0" prefWidth="36.0">
-                     <children>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="8.0" layoutY="9.0">
-                           <image>
-                              <Image url="@../../photos/transaction-history_8289462.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
                </children>
             </Pane>
-          </center>
-         <bottom>
-            <ButtonBar buttonMinWidth="100.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <buttons>
-                      <Button id="criticalButton" fx:id="criticalButton" onAction="#handleSair">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0">
-                           <image>
-                              <Image url="@../../photos/angulo-esquerdo.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-              </buttons>
-            </ButtonBar>
-         </bottom>
-         <top>
-            <fx:include source="../header.fxml" />
-         </top>
-      </BorderPane>
-  </content>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="35.0" layoutY="235.0">
+               <image>
+                  <Image url="@../../photos/ajustamento.png" />
+               </image>
+            </ImageView>
+            <Pane id="bordaIcone" layoutX="17.0" layoutY="226.0" prefHeight="38.0" prefWidth="36.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="8.0" layoutY="10.0">
+                     <image>
+                        <Image url="@../../photos/tax_18891707.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane id="bordaIcone" layoutX="17.0" layoutY="296.0" prefHeight="38.0" prefWidth="36.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="8.0" layoutY="9.0">
+                     <image>
+                        <Image url="@../../photos/transaction-history_8289462.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+    </center>
+   <bottom>
+      <ButtonBar buttonMinWidth="100.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+                <Button id="criticalButton" fx:id="criticalButton" onAction="#handleSair">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../../photos/angulo-esquerdo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+        </buttons>
+      </ButtonBar>
+   </bottom>
+   <top>
+      <fx:include source="../header.fxml" />
+   </top>
    <stylesheets>
       <URL value="@../../stylesheets/global.css" />
       <URL value="@../../stylesheets/home2.css" />
    </stylesheets>
-</ScrollPane>
+</BorderPane>
