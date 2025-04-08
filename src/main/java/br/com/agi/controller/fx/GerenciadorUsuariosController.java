@@ -1,5 +1,5 @@
 package br.com.agi.controller.fx;
-
+import br.com.agi.utils.Parametros;
 import br.com.agi.controller.UsuarioController;
 import br.com.agi.model.Usuario;
 import br.com.agi.utils.Alerta;
@@ -17,6 +17,7 @@ import java.util.Optional;
 
 public class GerenciadorUsuariosController {
     private UsuarioController controller = new UsuarioController();
+    private Parametros param = new Parametros();
 
     @FXML
     private TableView<Usuario> userTable;
@@ -63,6 +64,21 @@ public class GerenciadorUsuariosController {
 
             Optional<Usuario> resultado = DialogHelper.solicitarEdicaoUsuario(usuarioSelecionado);
             resultado.ifPresent(usuarioEditado -> {
+
+                if (!param.validarFormatoEmail(usuarioEditado.getEmail())) {
+                    Alerta.mostrarErro("Erro", "E-mail inválido", "O e-mail deve estar em um formato válido, como nome@dominio.com");
+                    return;
+                }
+
+                if (usuarioEditado.getSenha() == null || usuarioEditado.getSenha().isEmpty()) {
+                    usuarioEditado.setSenha(usuarioSelecionado.getSenha());
+                } else {
+                    if (!param.validarTamanhoSenha(usuarioEditado.getSenha())) {
+                        Alerta.mostrarErro("Erro", "Senha inválida", "A nova senha deve conter no mínimo 6 caracteres.");
+                        return;
+                    }
+                }
+
                 boolean sucesso = controller.atualizarUsuarioFX(emailOriginal, usuarioEditado);
 
                 if (sucesso) {
@@ -83,8 +99,12 @@ public class GerenciadorUsuariosController {
         Optional<Usuario> resultado = DialogHelper.solicitarInformacoesUsuario();
         resultado.ifPresent(novoUsuario -> {
 
-            if (!novoUsuario.getEmail().matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            if (!param.validarFormatoEmail(novoUsuario.getEmail())){
                 Alerta.mostrarErro("Erro", "E-mail inválido", "O e-mail deve estar em um formato válido, como nome@dominio.com");
+            }
+
+            if (!param.validarTamanhoSenha(novoUsuario.getSenha())) {
+                Alerta.mostrarErro("Erro", "Senha inválida", "A senha deve conter no mínimo 6 caracteres.");
                 return;
             }
 

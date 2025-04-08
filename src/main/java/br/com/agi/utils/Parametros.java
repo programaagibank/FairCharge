@@ -41,4 +41,15 @@ public class Parametros {
         }
     }
 
+    public boolean validarTamanhoSenha(String senha) {
+        if (senha == null || senha.length() < 6) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarFormatoEmail(String email) {
+        return email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+    }
+
 }

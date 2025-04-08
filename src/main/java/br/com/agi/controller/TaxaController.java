@@ -11,6 +11,7 @@ public class TaxaController {
 
     public TaxaController() {this.taxaDAO = new TaxaDAO(); }
 
+
     public TaxaJuros getTaxaJurosDiarios() {
         return taxaDAO.buscarTaxaJurosDiarios();
     }

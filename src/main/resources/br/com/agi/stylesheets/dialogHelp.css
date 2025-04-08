@@ -1,0 +1,41 @@
+.dialog-pane {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #2c3e50;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #2c3e50;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.dialog-pane .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.dialog-pane .text-field,
+.dialog-pane .password-field,
+.dialog-pane .combo-box {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 6;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+}
+
+.dialog-pane .button {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #3498db;
+}

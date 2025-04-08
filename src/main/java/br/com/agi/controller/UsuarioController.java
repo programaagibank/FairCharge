@@ -16,8 +16,7 @@ public class UsuarioController {
             return false;
         }
 
-        if (senha.length() < 6) {
-            System.out.println("Erro: A senha deve conter pelo menos 6 caracteres.");
+        if (!param.validarTamanhoSenha(senha)) {
             return false;
         }
 
@@ -39,10 +38,11 @@ public class UsuarioController {
     }
 
     public boolean atualizarSenha(String novaSenha, String email) {
-        if (novaSenha.length() < 6) {
-            System.out.println("Erro: A nova senha deve conter pelo menos 6 caracteres.");
+
+        if (!param.validarTamanhoSenha(novaSenha)) {
             return false;
         }
+
         return dao.updateSenha(novaSenha, email);
     }
 
