@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.TabelaBancoController">
+   <children>
+      <TableView fx:id="Tabela" editable="true" prefHeight="400.0" prefWidth="453.0">
+         <columns>
+            <TableColumn fx:id="IDColumn" prefWidth="95.33331549167633" text="ID" />
+            <TableColumn fx:id="ValorColumn" prefWidth="76.66667938232422" text="Valor" />
+            <TableColumn fx:id="VencimentoColumn" prefWidth="83.33331298828125" text="Vencimento" />
+            <TableColumn fx:id="StatusColumn" prefWidth="93.99993896484375" text="Status" />
+         </columns>
+      </TableView>
+   </children>
+</VBox>

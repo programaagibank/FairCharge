@@ -10,7 +10,6 @@ public class MenuFaturamentoController {
     @FXML
     void handleFaturamentoBanco() {
         String[] mesAno = DialogHelper.solicitarMesAno();
-
         Navegador.getRelatorioBanco("Banco", Integer.parseInt(mesAno[0]), Integer.parseInt(mesAno[1]), null);
     }
 
