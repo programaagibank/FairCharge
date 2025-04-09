@@ -3,3 +3,14 @@
     -fx-padding: 5px;
     -fx-border-radius: 5px;
 }
+#criticalButton {
+    -fx-background-color: #ffff;
+    -fx-text-fill: red;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-border-color: red;
+
+}
