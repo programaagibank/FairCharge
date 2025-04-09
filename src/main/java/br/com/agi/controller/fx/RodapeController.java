@@ -6,8 +6,8 @@ import javafx.fxml.FXML;
 public class RodapeController {
 
     @FXML
-    void handleSair() {
-        Navegador.getMenuRelatorio();
+    public void handleSair() {
+        Navegador.getHome();
     }
 
 }

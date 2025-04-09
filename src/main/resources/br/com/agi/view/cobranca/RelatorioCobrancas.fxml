@@ -2,40 +2,86 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="backgroundHome" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.RelatorioCobrancasController">
-    <fx:include source="../header.fxml" />
 
-    <!-- Container de Botões -->
-    <VBox id="menuContainer" alignment="CENTER" layoutX="129.0" layoutY="95.0" spacing="15.0">
-        <children>
-            <Label id="homeTitle" text="Relatório de Cobranças" />
-
-            <!-- Tabela de Cobranças Vencidas -->
-            <TableView fx:id="tabelaCobrancas" prefHeight="250.0" prefWidth="600.0">
-                <columns>
-                    <TableColumn fx:id="colunaIdCobranca" prefWidth="74.0" text="ID Cobrança" />
-                    <TableColumn fx:id="colunaIdFatura" prefWidth="63.0" text="ID Fatura" />
-                    <TableColumn fx:id="colunaNomeCliente" prefWidth="93.0" text="Nome Cliente" />
-                    <TableColumn fx:id="colunaValor" text="Valor" />
-                    <TableColumn fx:id="colunaValorMulta" prefWidth="100.0" text="Valor Com Multa" />
-                    <TableColumn fx:id="colunaDataVencimento" prefWidth="108.0" text="Data Vencimento" />
-                    <TableColumn fx:id="colunaStatus" prefWidth="81.0" text="Status" />
-                </columns>
-            </TableView>
-
-            <Button id="criticalButton" onAction="#handleSair" prefWidth="300" text="Voltar" />
-        </children>
-        <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-        </padding>
-    </VBox>
+<AnchorPane id="backgroundHome" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.RelatorioCobrancasController">
+   <children>
+      <BorderPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
+         <center>
+         
+                <!-- Container de Botões -->
+             <VBox alignment="TOP_CENTER" BorderPane.alignment="TOP_CENTER">
+                 <children>
+                  <GridPane maxHeight="150.0" minHeight="144.0" prefHeight="200.0" prefWidth="526.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="160.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="135.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label id="textoCobrancasPagas" text="Cobranças pagas do mês:" wrapText="true" />
+                        <Label fx:id="valorTotal" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="cobrancasPendentes" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="cobrancasPagas" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="0" GridPane.columnIndex="1" />
+                        <Label id="textoValorTotal" text="Valor total:" GridPane.rowIndex="2" />
+                        <Label id="textoCobrancasPendentes" prefWidth="205.0" text="Cobranças pendentes do mês:" wrapText="true" GridPane.rowIndex="1" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                  </GridPane>
+                  <HBox id="backgroundBar" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0">
+                     <children>
+                           <Label id="homeTitle" text="Relatório de Cobranças" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+         
+                        <!-- Tabela de Cobranças Vencidas -->
+                     <TableView fx:id="tabelaCobrancas" prefHeight="250.0" prefWidth="600.0">
+                         <columns>
+                             <TableColumn fx:id="colunaIdCobranca" prefWidth="74.0" text="ID Cobrança" />
+                             <TableColumn fx:id="colunaIdFatura" prefWidth="63.0" text="ID Fatura" />
+                             <TableColumn fx:id="colunaNomeCliente" prefWidth="93.0" text="Nome Cliente" />
+                             <TableColumn fx:id="colunaValor" text="Valor" />
+                             <TableColumn fx:id="colunaValorMulta" prefWidth="100.0" text="Valor Com Multa" />
+                             <TableColumn fx:id="colunaDataVencimento" prefWidth="108.0" text="Data Vencimento" />
+                             <TableColumn fx:id="colunaStatus" prefWidth="81.0" text="Status" />
+                         </columns>
+                     </TableView>
+                 </children>
+             </VBox>
+         </center>
+         <bottom>
+            <fx:include source="../rodaPe.fxml" />
+         </bottom>
+         <top>
+            <Pane prefHeight="56.0" prefWidth="335.0" BorderPane.alignment="CENTER">
+               <children>
+                  <fx:include source="../header2.fxml" />
+                  <Label id="homeTitle" layoutX="12.0" layoutY="13.0" text="Relatório geral de cobranças" />
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+   </children>
    <stylesheets>
       <URL value="@../../stylesheets/global.css" />
       <URL value="@../../stylesheets/relatorioCobrancas.css" />

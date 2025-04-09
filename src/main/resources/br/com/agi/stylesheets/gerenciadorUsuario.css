@@ -1,5 +1,40 @@
+#backgroundHome{
+    -fx-background-image: url("../photos/white.jpg");
+    -fx-background-size: cover;
+}
+
 .table-view {
     -fx-background-color: #f1f1f1;
     -fx-padding: 5px;
     -fx-border-radius: 5px;
+}
+
+#buttonOption {
+    -fx-background-color: #0068ff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+#buttonOption:hover {
+    -fx-background-color: #f0f1f5;
+    -fx-text-fill: #0068ff; /* Texto mais claro no hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
+    -fx-cursor: hand; /* Indicador de cursor no hover */
+}
+
+#criticalButton {
+    -fx-background-color: #ffff;
+    -fx-text-fill: red;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-border-color: red;
+}
+
+#bordaIconeDelete {
+    -fx-background-color: #ffff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 }
