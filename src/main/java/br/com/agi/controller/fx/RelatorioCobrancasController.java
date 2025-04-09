@@ -3,16 +3,19 @@ package br.com.agi.controller.fx;
 import br.com.agi.controller.CobrancaController;
 import br.com.agi.controller.PagamentoController;
 import br.com.agi.model.Cobranca;
+import br.com.agi.utils.FormatoMonetarioFX;
 import br.com.agi.utils.Navegador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class RelatorioCobrancasController {
@@ -42,14 +45,26 @@ public class RelatorioCobrancasController {
     private TableView<Cobranca> tabelaCobrancas;
 
     @FXML
-    void handleSair() {
-        Navegador.getMenuCobranca();
-    }
+    private Label cobrancasPagas;
+
+    @FXML
+    private Label cobrancasPendentes;
+
+    @FXML
+    private Label valorTotal;
 
     CobrancaController controller = new CobrancaController();
     PagamentoController pagamentoController = new PagamentoController();
 
     public void initialize() {
+        LocalDate dataAtual = LocalDate.now();
+        int mesAtual = dataAtual.getMonthValue();
+        int anoAtual = dataAtual.getYear();
+
+        cobrancasPagas.setText(String.valueOf(controller.cobrancasPagasMes(mesAtual, anoAtual)));
+        cobrancasPendentes.setText(String.valueOf(controller.cobrancasPendentesMes()));
+        valorTotal.setText(FormatoMonetarioFX.formatar(controller.cobrancasValorTotalMes()));
+
         preencherTabelaCobrancas();
 
         tabelaCobrancas.setOnMouseClicked((MouseEvent event) -> {
