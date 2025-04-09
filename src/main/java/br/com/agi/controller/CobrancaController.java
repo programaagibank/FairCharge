@@ -30,8 +30,19 @@ public class CobrancaController {
         return cobrancaDAO.buscaCobrancasVencidas();
     }
 
-
     public boolean gerarCobranca(Integer integer) {
         return cobrancaDAO.gerarCobranca(integer);
+    }
+
+    public int cobrancasPagasMes(int mes, int ano) {
+        return cobrancaDAO.gerarCobrancasPagasPorMes(mes, ano);
+    }
+
+    public int cobrancasPendentesMes() {
+        return cobrancaDAO.gerarCobrancasPendentesPorMes();
+    }
+
+    public double cobrancasValorTotalMes() {
+        return cobrancaDAO.gerarCobrancasValorTotalMes();
     }
 }

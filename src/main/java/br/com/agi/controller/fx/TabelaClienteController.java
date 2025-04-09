@@ -28,6 +28,8 @@ public class TabelaClienteController {
     @FXML
     private TableColumn<CobrancasFaturamento, String> VencimentoColumn;
 
+    private final FaturamentoController faturamentoController = new FaturamentoController();
+
     private int mes;
     private int ano;
     private String CPFCNPJ;
@@ -40,22 +42,26 @@ public class TabelaClienteController {
     }
 
     private void configurarColunas() {
-        IDColumn.setCellValueFactory(new PropertyValueFactory<>("idCobranca"));
-        ValorColumn.setCellValueFactory(new PropertyValueFactory<>("valorTotalFormatado"));
-        VencimentoColumn.setCellValueFactory(new PropertyValueFactory<>("vencimento"));
-        StatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        IDColumn.setCellValueFactory(new PropertyValueFactory<>("IdCobranca"));
+        ValorColumn.setCellValueFactory(new PropertyValueFactory<>("ValorTotalFormatado"));
+        VencimentoColumn.setCellValueFactory(new PropertyValueFactory<>("Vencimento"));
+        StatusColumn.setCellValueFactory(new PropertyValueFactory<>("Status"));
     }
 
-    FaturamentoController faturamentoController = new FaturamentoController();
-    FaturamentoCliente cliente = faturamentoController.gerarRelatorioCliente(CPFCNPJ, mes, ano);
 
     private void carregarDados() {
+        if (mes > 0 && ano > 0) {
 
-        List<CobrancasFaturamento> cobrancas = cliente.getCobrancas();
+            FaturamentoCliente cliente = faturamentoController.gerarRelatorioCliente(CPFCNPJ, mes, ano);
 
-        ObservableList<CobrancasFaturamento> listaCobrancas = FXCollections.observableArrayList(cobrancas);
+            List<CobrancasFaturamento> cobrancas = cliente.getCobrancas();
 
-        Tabela.setItems(listaCobrancas);
+            ObservableList<CobrancasFaturamento> listaCobrancas = FXCollections.observableArrayList(cobrancas);
+
+            Tabela.setItems(listaCobrancas);
+        } else {
+            System.err.println("Os valores de mes e ano não foram definidos corretamente!");
+        }
     }
 
     public void initialize() {

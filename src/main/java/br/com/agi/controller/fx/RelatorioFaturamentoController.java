@@ -64,32 +64,32 @@ public class RelatorioFaturamentoController {
         this.ano = ano;
         this.CPFCNPJ = CPFCNPJ;
 
-        carregarTabela(relatorio);
+        carregarTabela();
 
         if (relatorio.equals("Cliente")) relatorioCliente(mes, ano, CPFCNPJ);
         else if (relatorio.equals("Banco")) relatorioBanco(mes, ano);
     }
 
-    private void carregarTabela(String tipoRelatorio) {
+    private void carregarTabela() {
         try {
             String fxmlPath;
             FXMLLoader loader;
 
-            if (tipoRelatorio.equalsIgnoreCase("Banco")) {
+            if (relatorio.equals("Banco")) {
                 fxmlPath = "/br/com/agi/view/faturamento/TabelaBanco.fxml";
-            } else if (tipoRelatorio.equalsIgnoreCase("Cliente")) {
+            } else if (relatorio.equals("Cliente")) {
                 fxmlPath = "/br/com/agi/view/faturamento/TabelaCliente.fxml";
             } else {
-                throw new IllegalArgumentException("Tipo de relatório inválido: " + tipoRelatorio);
+                throw new IllegalArgumentException("Tipo de relatório inválido: " + relatorio);
             }
 
             loader = new FXMLLoader(getClass().getResource(fxmlPath));
             VBox tabelaPane = loader.load();
 
-            if (tipoRelatorio.equalsIgnoreCase("Banco")) {
+            if (relatorio.equals("Banco")) {
                 TabelaBancoController tabelaController = loader.getController();
                 tabelaController.setMesAno(mes, ano);
-            } else if (tipoRelatorio.equalsIgnoreCase("Cliente")) {
+            } else if (relatorio.equals("Cliente")) {
                 TabelaClienteController tabelaController = loader.getController();
                 tabelaController.setMesAnoCPFCNPJ(mes, ano, CPFCNPJ);
             }
@@ -104,7 +104,7 @@ public class RelatorioFaturamentoController {
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Erro ao carregar o FXML: " + tipoRelatorio);
+            System.out.println("Erro ao carregar o FXML: " + relatorio);
         }
     }
 
@@ -121,23 +121,7 @@ public class RelatorioFaturamentoController {
         formatador.formatarLabel(totalPendente, faturamento.getTotalPendente());
         formatador.formatarLabel(totalInadimplente, faturamento.getTotalInadimplente());
 
-
-
-
         labelScroll.setText("Detalhamento por categorias:");
-//        List<CategoriasFaturamento> categorias = faturamento.getDetalhamentos();
-//
-//        VBox categoriasDetalhadas = new VBox(10);
-//        for (CategoriasFaturamento categoria : categorias) {
-//            Label label = new Label(String.format("%-25s | Recebidos: %-10s | Pendentes: %-10s | Inadimplentes: %-10s | Cobranças Registradas: %-10d",
-//                    categoria.getCategoria(),
-//                    categoria.getRecebidosFormatado(),
-//                    categoria.getPendentesFormatado(),
-//                    categoria.getInadimplentesFormatado(),
-//                    categoria.getTotal_cobrancas()));
-//            categoriasDetalhadas.getChildren().add(label);
-//        }
-//        scrollPane.setContent(categoriasDetalhadas);
     }
 
     public void relatorioCliente(int mes, int ano, String cpfCnpj) {
@@ -145,24 +129,12 @@ public class RelatorioFaturamentoController {
         FaturamentoCliente cliente = faturamentoController.gerarRelatorioCliente(cpfCnpj, mes, ano);
         FormatoMonetarioFX formatador = new FormatoMonetarioFX();
 
-        mesAno.setText(cliente.getMes() + "/" + cliente.getAno());
+        mesAno.setText("Relatório Cliente: " +cliente.getCliente() + " " + cliente.getMes() + "/" + cliente.getAno());
         totalCobrancas.setText(String.valueOf(cliente.getTotalCobrancas()));
         formatador.formatarLabel(totalRecebido, cliente.getTotalRecebido());
         formatador.formatarLabel(totalPendente, cliente.getTotalPendente());
         formatador.formatarLabel(totalInadimplente, cliente.getTotalInadimplente());
 
-        labelScroll.setText("DETALHAMENTO POR COBRANÇAS:");
-//        List<CobrancasFaturamento> cobrancas = cliente.getCobrancas();
-//
-//        VBox categoriasDetalhadas = new VBox(10);
-//        for (CobrancasFaturamento cobranca : cobrancas) {
-//            Label label = new Label(String.format("ID: %-5s | Valor: %-10s | Vencimento: %-15s | Status: %-10s",
-//                    cobranca.getIdCobranca(),
-//                    cobranca.getValorTotalFormatado(),
-//                    cobranca.getVencimento(),
-//                    cobranca.getStatus()));
-//            categoriasDetalhadas.getChildren().add(label);
-//        }
-//        scrollPane.setContent(categoriasDetalhadas);
+        labelScroll.setText("Detalhamento por cobrança:");
     }
 }

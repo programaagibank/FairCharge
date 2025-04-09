@@ -17,6 +17,10 @@ public class PagamentoController {
         return pagamentoDAO.quantidadeFaturasPendentes(mes, ano);
     }
 
+    public double obterValorPagoPorMes(int mes, int ano) {
+        return pagamentoDAO.valorPagoMes(mes, ano);
+    }
+
     public List<Pagamento> listarCobrancasPagas() {
         return pagamentoDAO.listaCobrancasPagas();
     }
