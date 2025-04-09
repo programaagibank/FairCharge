@@ -9,6 +9,10 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+
+    maven{
+        url 'https://repo.itextsupport.com/releases'
+    }
 }
 
 dependencies {
@@ -16,6 +20,7 @@ dependencies {
     implementation "org.mindrot:jbcrypt:0.4"
     implementation 'org.camunda.bpm:camunda-engine:7.20.0'
     implementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:7.20.0'
+    implementation 'com.itextpdf:itext7-core:7.2.5'
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")

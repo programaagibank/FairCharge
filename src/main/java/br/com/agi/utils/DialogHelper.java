@@ -1,11 +1,8 @@
 package br.com.agi.utils;
-
 import br.com.agi.model.Usuario;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-
-
 import java.util.Optional;
 
 public class DialogHelper {

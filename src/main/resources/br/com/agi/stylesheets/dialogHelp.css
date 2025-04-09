@@ -11,7 +11,7 @@
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-padding: 10px;
-    -fx-background-radius: 8px 8px 0 0;
+    -fx-background-radius: 0 0 8px 8px;
 }
 
 .dialog-pane .label {

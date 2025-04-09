@@ -1,10 +1,13 @@
 package br.com.agi.controller.fx;
-
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import java.io.File;
 import br.com.agi.controller.FaturamentoController;
 import br.com.agi.model.CategoriasFaturamento;
 import br.com.agi.model.CobrancasFaturamento;
 import br.com.agi.model.Faturamento;
 import br.com.agi.model.FaturamentoCliente;
+import br.com.agi.utils.ExportadorPDF;
 import br.com.agi.utils.FormatoMonetarioFX;
 import br.com.agi.utils.Navegador;
 import javafx.fxml.FXML;
@@ -45,7 +48,43 @@ public class RelatorioFaturamentoController {
 
     @FXML
     void exportPhoto() {
+        try {
+            // Cria o seletor de arquivos
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Salvar Relatório em PDF");
 
+            // Filtro para salvar como PDF
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Arquivos PDF (*.pdf)", "*.pdf");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            // Sugestão de nome inicial
+            String nomeSugerido = "relatorio_" + relatorio.toLowerCase() + "_" + mes + "_" + ano + ".pdf";
+            fileChooser.setInitialFileName(nomeSugerido);
+
+            // Pega a janela atual (necessário para o showSaveDialog funcionar)
+            Stage stage = (Stage) tabelas.getScene().getWindow();
+            File file = fileChooser.showSaveDialog(stage);
+
+            if (file != null) {
+                if (relatorio.equals("Banco")) {
+                    FaturamentoController controller = new FaturamentoController();
+                    Faturamento faturamento = controller.gerarRelatorio(mes, ano);
+                    ExportadorPDF.exportarBanco(faturamento, file.getAbsolutePath());
+                } else if (relatorio.equals("Cliente")) {
+                    FaturamentoController controller = new FaturamentoController();
+                    FaturamentoCliente cliente = controller.gerarRelatorioCliente(CPFCNPJ, mes, ano);
+                    ExportadorPDF.exportarCliente(cliente, file.getAbsolutePath());
+                }
+
+                System.out.println("Relatório exportado com sucesso para: " + file.getAbsolutePath());
+            } else {
+                System.out.println("Exportação cancelada pelo usuário.");
+            }
+
+        } catch (Exception e) {
+            System.err.println("Erro ao exportar o relatório para PDF: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML
