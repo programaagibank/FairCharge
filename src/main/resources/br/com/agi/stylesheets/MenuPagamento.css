@@ -34,6 +34,10 @@
     -fx-text-fill: #1766d3;
 }
 
+#grafico:hover {
+    -fx-cursor: hand;
+}
+
 #buttonOption {
     -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
     -fx-text-fill: #ffffff;

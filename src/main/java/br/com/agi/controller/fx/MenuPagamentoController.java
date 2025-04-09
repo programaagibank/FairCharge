@@ -29,15 +29,6 @@ import java.util.stream.Collectors;
 public class MenuPagamentoController {
 
     @FXML
-    private LineChart<String, Number> grafico;
-
-    @FXML
-    private CategoryAxis xAxis; // Eixo X
-
-    @FXML
-    private NumberAxis yAxis; // Eixo Y
-
-    @FXML
     private TableColumn<Pagamento, Date> DataPagamentoColumn;
 
     @FXML
@@ -68,7 +59,7 @@ public class MenuPagamentoController {
     private Label totalPago;
 
     @FXML
-    void botaoGrafico() {
+    private void botaoGrafico() {
         Navegador.getGraficoPagamento();
     }
 
@@ -84,54 +75,10 @@ public class MenuPagamentoController {
         faturasPendentes.setText(String.valueOf(controller.obterQuantidadeFaturasPendentes(mesAtual, anoAtual)));
         totalPago.setText(FormatoMonetarioFX.formatar(controller.obterValorPagoPorMes(mesAtual, anoAtual)));
         preencherTabelaPagamento();
-        preencherGrafico();
+
     }
 
-    public void preencherGrafico() {
-        // Configuração do título e eixos
-        grafico.setTitle("Gastos por Cliente - Mensal/Anual");
-        xAxis.setLabel("Meses/Ano");
-        yAxis.setLabel("Gastos Totais (R$)");
 
-        // Obtém lista de pagamentos
-        List<Pagamento> pagamentos = controller.listarCobrancasPagas();
-
-        // Filtra pagamentos para o ano de 2025
-        int anoAtual = LocalDate.now().getYear();
-        int mesAtual = LocalDate.now().getMonthValue();
-
-        // Agrupa pagamentos por cliente
-        Map<String, List<Pagamento>> pagamentosPorCliente = pagamentos.stream()
-                .filter(pagamento -> pagamento.getDataPagamento().getYear() == anoAtual)
-                .collect(Collectors.groupingBy(Pagamento::getNomeCliente));
-
-        // Para cada cliente, cria uma série de dados
-        pagamentosPorCliente.forEach((cliente, listaPagamentos) -> {
-            XYChart.Series<String, Number> serie = new XYChart.Series<>();
-            serie.setName(cliente);
-
-            // Cria um mapa para representar os meses do ano de 2025 com valores zerados inicialmente
-            Map<String, Double> gastosPorMes = new LinkedHashMap<>();
-            for (int mes = 1; mes <= mesAtual; mes++) {
-                gastosPorMes.put(String.format("%02d/%d", mes, anoAtual), 0.0);
-            }
-
-            // Preenche o mapa com os valores dos pagamentos
-            listaPagamentos.forEach(pagamento -> {
-                String mesAno = String.format("%02d/%d",
-                        pagamento.getDataPagamento().getMonthValue(),
-                        pagamento.getDataPagamento().getYear());
-
-                gastosPorMes.put(mesAno, gastosPorMes.getOrDefault(mesAno, 0.0) + pagamento.getValorPago());
-            });
-
-            // Adiciona os dados do mapa à série
-            gastosPorMes.forEach((mesAno, gasto) -> serie.getData().add(new XYChart.Data<>(mesAno, gasto)));
-
-            // Adiciona a série ao gráfico
-            grafico.getData().add(serie);
-        });
-    }
 
     public void preencherTabelaPagamento() {
         IDCobrancaColumn.setCellValueFactory(new PropertyValueFactory<>("cobrancaId"));

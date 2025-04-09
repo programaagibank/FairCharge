@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="backgroundHome" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.GraficoPagamentoController">
+   <children>
+      <BorderPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
+         <center>
+
+                      <!-- Container de Botões -->
+             <VBox alignment="TOP_CENTER">
+               <children>
+                  <LineChart fx:id="grafico" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="335.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="yAxis" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+             </VBox>
+         </center>
+         <top>
+            <Pane prefHeight="56.0" prefWidth="335.0" BorderPane.alignment="CENTER">
+               <children>
+                  <fx:include source="../header2.fxml" />
+                  <Label id="homeTitle" layoutX="14.0" layoutY="9.0" text="Gráfico" />
+               </children>
+            </Pane>
+         </top>
+         <bottom>
+            <fx:include source="../rodaPe.fxml" />
+         </bottom>
+      </BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@../../stylesheets/global.css" />
+      <URL value="@../../stylesheets/MenuPagamento.css" />
+   </stylesheets>
+</AnchorPane>
