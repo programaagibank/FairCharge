@@ -33,11 +33,6 @@ public class HistoricoTaxaControllerFX {
     @FXML
     private TableView<TaxaMulta> tableTaxasMultas;
 
-    @FXML
-    void handleSair() {
-        Navegador.getMenuTaxa();
-    }
-
     TaxaController controller = new TaxaController();
 
     public void initialize() {

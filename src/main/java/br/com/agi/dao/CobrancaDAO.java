@@ -67,7 +67,6 @@ public class CobrancaDAO {
         return cobrancas;
     }
 
-
     public boolean atualizarCobrancasVencidas() {
         String sql = "UPDATE Cobranca c " +
                 "JOIN Fatura f ON c.fatura_id = f.fatura_id " +
@@ -167,5 +166,67 @@ public class CobrancaDAO {
             System.out.println("Erro ao listar cobranças: " + e.getMessage());
         }
         return false;
+    }
+
+    public int gerarCobrancasPagasPorMes(int mes, int ano) {
+        String sql = "SELECT Count(*) AS TOTAL  " +
+                "FROM Cobranca c " +
+                "JOIN Pagamento p ON c.pagamento_id = p.pagamento_id " +
+                "WHERE c.Status = 'Pago' " +
+                "AND YEAR(p.data_pagamento) = ? " +
+                "AND MONTH(p.data_pagamento) = ?;";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, ano);
+            stmt.setInt(2, mes);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("TOTAL");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao listar cobranças: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public int gerarCobrancasPendentesPorMes() {
+        String sql = "SELECT COUNT(distinct c.cobranca_id) AS TOTAL " +
+                "FROM Cobranca c " +
+                "LEFT JOIN Pagamento p ON c.pagamento_id = p.pagamento_id " +
+                "INNER JOIN Fatura f ON c.Fatura_id = c.Fatura_id " +
+                "WHERE c.Status IN ('Atrasado', 'Aberto')";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("TOTAL");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao listar cobranças: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public double gerarCobrancasValorTotalMes() {
+        String sql = "SELECT SUM(f.valor_fatura * (1 + IFNULL(m.percentual_multa, 0) / 100.0) * " +
+                "                    POWER(1 + IFNULL(j.percentual_juros_diario, 0) / 100.0, DATEDIFF(CURDATE(), f.data_vencimento))) AS somaTotal " +
+                "FROM Cobranca c " +
+                "JOIN Fatura f ON c.fatura_id = f.fatura_id " +
+                "LEFT JOIN Multa m ON c.multa_atraso_id = m.multa_id " +
+                "LEFT JOIN Juros j ON c.juros_diario_id = j.juros_id " +
+                "WHERE c.Status IN ('Atrasado', 'Aberto')";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("somaTotal");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao listar cobranças: " + e.getMessage());
+        }
+        return 0;
     }
 }

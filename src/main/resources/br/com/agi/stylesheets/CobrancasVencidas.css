@@ -3,54 +3,33 @@
     -fx-background-size: cover;
 }
 
-#menuContainer {
+/*#menuContainer {
     -fx-background-color: #ffffff;
     -fx-border-radius: 7px;
     -fx-background-radius: 7px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
     -fx-border-color: #d1d1d1;
     -fx-border-width: 1px;
+}*/
+
+#backgroundBar {
+    -fx-background-color: #0068FF;
 }
 
 #homeTitle {
-    -fx-font-size: 32px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1766d3;
-}
-
-#textoVencidas{
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #1766d3;
-}
-
-#cobrancasVencidas{
-    -fx-font-size: 32px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #1766d3;
-}
-
-#buttonOption {
-    -fx-background-color: linear-gradient(to right, #0068ff, #0055cc);
     -fx-text-fill: #ffffff;
-    -fx-border-radius: 7px;
-    -fx-background-radius: 7px;
+}
+
+#textoCobrancasPagas, #textoCobrancasPendentes, #textoValorTotal{
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-font-size: 16px; /* Fonte um pouco maior */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+    -fx-text-fill: #1766d3;
 }
 
-#buttonOption:hover {
-    -fx-background-color: #f0f1f5;
-    -fx-text-fill: #0068ff; /* Texto mais claro no hover */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
-    -fx-cursor: hand; /* Indicador de cursor no hover */
+#cobrancasPagas, #cobrancasPendentes, #valorTotal{
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1766d3;
 }
-
-#criticalButton:hover {
-    -fx-background-color: linear-gradient(to right, #cc0000, #990000);
-    -fx-text-fill: #f8f8f8;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
-    -fx-cursor: hand;
-}
-

@@ -13,7 +13,6 @@ public class HomeController {
         Navegador.getMenuTaxa();
     }
 
-
     @FXML
     void handleListarCobrancasCliente() {
         Navegador.getMenuCobranca();

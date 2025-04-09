@@ -3,7 +3,7 @@
     -fx-background-size: cover;
 }
 
-#menuContainer {
+/*#menuContainer {
     -fx-background-color: #ffffff;
     -fx-border-radius: 7px;
     -fx-background-radius: 7px;
@@ -12,16 +12,19 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
     -fx-border-color: #d1d1d1;
     -fx-border-width: 1px;
-}
-
-}
-
+}*/
 
 #homeTitle {
-    -fx-font-size: 32px;
+    -fx-font-size: 27px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1766d3;
-    -fx-padding: 10px;
+    -fx-text-fill: #ffffff;
+}
+
+#tableTitle {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0068ff;
+    -fx-margin 10px 10px 10px 10px;
 }
 
 #buttonOption {

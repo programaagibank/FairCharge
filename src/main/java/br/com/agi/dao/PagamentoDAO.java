@@ -97,7 +97,7 @@ public class PagamentoDAO {
         return 0;
     }
 
-    public List<Pagamento> listaCobrancasPagas() {
+    public List<Pagamento> listaCobrancasPagas()  {
         String sql = """
         SELECT
             c.cobranca_id,
@@ -243,4 +243,34 @@ public class PagamentoDAO {
         }
         return false;
     }
+
+    public double valorPagoMes(int mes, int ano) {
+        String sql = """
+                SELECT
+                    SUM(p.valor_pago) AS total_valor_pago
+                FROM
+                    Pagamento p
+                WHERE
+                    p.status = 'Confirmado'
+                    AND YEAR(p.data_pagamento) = ?
+                    AND MONTH(p.data_pagamento) = ?;
+        """;
+
+        try (Connection conn = databaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, ano);
+            stmt.setInt(2, mes);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble("total_valor_pago");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao calcular valor pago: " + e.getMessage());
+        }
+        return 0.0;
+    }
+
 }
