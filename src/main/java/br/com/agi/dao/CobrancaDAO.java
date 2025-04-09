@@ -129,7 +129,7 @@ public class CobrancaDAO {
                 double valorAtualizado = rs.getDouble("valor_atualizado");
 
 
-                Cobranca cobranca = new Cobranca(cobrancaId, faturaId, nomeCliente, status, valorAtualizado, dataVencimento);
+                Cobranca cobranca = new Cobranca(cobrancaId, faturaId, nomeCliente, valorFatura, valorAtualizado, dataVencimento, status);
                 cobrancas.add(cobranca);
             }
         } catch (SQLException e) {
