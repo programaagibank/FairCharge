@@ -2,9 +2,15 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -18,52 +24,64 @@
    <children>
       <BorderPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
          <center>
-         
-                      <!-- Container de Botões -->
-             <VBox id="backgroundHome" alignment="TOP_CENTER" BorderPane.alignment="TOP_CENTER">
-               <children>
-                  <GridPane maxHeight="150.0" minHeight="150.0" prefHeight="150.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="155.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="140.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+            <ScrollPane BorderPane.alignment="TOP_CENTER">
+               <content>
+               
+                            <!-- Container de Botões -->
+                   <VBox id="backgroundHome" alignment="TOP_CENTER">
                      <children>
-                        <Label id="textoPagas" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Faturas pagas do mês:" textAlignment="CENTER" wrapText="true" />
-                        <Label id="faturasPagas" fx:id="faturasPagas" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="30.0" text="0" wrapText="true" GridPane.columnIndex="1" />
-                        <Label id="textoPendentes" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Faturas pendentes do mês:" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1" />
-                        <Label id="faturasPendentes" fx:id="faturasPendentes" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="30.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label id="textoPago" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Total Pagos:" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2" />
-                        <Label id="valorPago" fx:id="totalPago" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="30.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <GridPane maxHeight="150.0" minHeight="150.0" prefHeight="150.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="155.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="140.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label id="textoPagas" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Faturas pagas do mês:" textAlignment="CENTER" wrapText="true" />
+                              <Label id="faturasPagas" fx:id="faturasPagas" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="30.0" text="0" wrapText="true" GridPane.columnIndex="1" />
+                              <Label id="textoPendentes" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Faturas pendentes do mês:" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1" />
+                              <Label id="faturasPendentes" fx:id="faturasPendentes" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="30.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label id="textoPago" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Total Pagos:" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2" />
+                              <Label id="valorPago" fx:id="totalPago" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="30.0" prefWidth="30.0" text="0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </GridPane>
+                        <HBox id="backgroundBar" maxHeight="1.7976931348623157E308" prefHeight="45.0">
+                           <children>
+                              <Label id="homeTitle" maxHeight="45.0" maxWidth="1.7976931348623157E308" minHeight="45.0" prefHeight="45.0" prefWidth="335.0" text="Pagamentos realizados" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                        <TableView fx:id="tabelaPagamentos" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="IDCobrancaColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="ID Cobrança" />
+                            <TableColumn fx:id="IDFaturaColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="ID Fatura" />
+                              <TableColumn fx:id="NomeClienteColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Nome Cliente" />
+                              <TableColumn fx:id="ValorFaturaColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Valor Fatura" />
+                              <TableColumn fx:id="ValorPagoColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Valor Pago" />
+                              <TableColumn fx:id="DataPagamentoColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Data Pagamento" />
+                          </columns>
+                        </TableView>
+                        <LineChart fx:id="grafico" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="335.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="yAxis" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </GridPane>
-                  <HBox id="backgroundBar" maxHeight="1.7976931348623157E308" prefHeight="45.0">
-                     <children>
-                        <Label id="homeTitle" maxHeight="45.0" maxWidth="1.7976931348623157E308" minHeight="45.0" prefHeight="45.0" prefWidth="335.0" text="Pagamentos realizados" />
-                     </children>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </HBox>
-                  <TableView fx:id="tabelaPagamentos" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="IDCobrancaColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="ID Cobrança" />
-                      <TableColumn fx:id="IDFaturaColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="ID Fatura" />
-                        <TableColumn fx:id="NomeClienteColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Nome Cliente" />
-                        <TableColumn fx:id="ValorFaturaColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Valor Fatura" />
-                        <TableColumn fx:id="ValorPagoColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Valor Pago" />
-                        <TableColumn fx:id="DataPagamentoColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="Data Pagamento" />
-                    </columns>
-                  </TableView>
-               </children>
-             </VBox>
+                   </VBox>
+               </content>
+            </ScrollPane>
          </center>
          <stylesheets>
             <URL value="@../../stylesheets/global.css" />
@@ -74,6 +92,11 @@
                <children>
                   <fx:include source="../header2.fxml" />
                   <Label id="homeTitle" layoutX="14.0" layoutY="9.0" text="Pagamento" />
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="253.0" layoutY="18.0" onMouseClicked="#botaoGrafico">
+                     <image>
+                        <Image url="@../../photos/grafico-histograma.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </top>

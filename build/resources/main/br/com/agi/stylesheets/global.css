@@ -1,6 +1,6 @@
 .button {
     -fx-background-color: #0068ff;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #ffff;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
     -fx-padding: 10px;
@@ -9,28 +9,37 @@
 }
 
 .button:hover {
-    -fx-background-color: #9BA4B5;
+   -fx-background-color: #f0f1f5;
+   -fx-text-fill: #0068ff; /* Texto mais claro no hover */
+   -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
+   -fx-cursor: hand; /* Indicador de cursor no hover */
 }
 
 .button:pressed {
     -fx-scale-x: 0.95;
     -fx-scale-y: 0.95;
-    -fx-effect: dropshadow(gaussian, greenyellow, 4, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, blue, 4, 0, 0, 0);
 }
 
-.criticalButton {
-    -fx-background-color: #ff4d4d;
-    -fx-text-fill: #ffffff;
+#criticalButton {
+    -fx-background-color: #ffff;
+    -fx-text-fill: red;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
     -fx-padding: 10px;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
+    -fx-border-color: red;
+
 }
 
-.criticalButton:hover {
-    -fx-background-color: #e60000;
+#criticalButton:hover {
+    -fx-background-color: linear-gradient(to right, #cc0000, #990000);
+    -fx-text-fill: #f8f8f8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 3);
+    -fx-cursor: hand;
 }
+
 
 .errorLabel {
     -fx-text-fill: red;
@@ -42,5 +51,15 @@
     -fx-font-size: 32px;
     -fx-font-weight: bold;
     -fx-text-fill: #1766d3;
+}
+
+#bordaIcone {
+    -fx-background-color: #f0f1f5;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+#backgroundBar {
+    -fx-background-color: #0068FF;
 }
 

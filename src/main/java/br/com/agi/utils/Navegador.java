@@ -66,4 +66,7 @@ public class Navegador {
         SceneLoader.loadScene(primaryStage, fxml);
     }
 
+    public static void getGraficoPagamento() {
+        SceneLoader.loadScene(primaryStage, "pagamento/graficoPagamento");
+    }
 }

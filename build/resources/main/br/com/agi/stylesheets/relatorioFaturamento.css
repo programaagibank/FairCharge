@@ -1,46 +1,23 @@
-GridPane {
-    -fx-padding: 20px;
-    -fx-border-radius: 10px;
-    -fx-border-width: 1px;
-}
-
-#mesAno, #totalCobrancas, #totalRecebido, #totalPendente, #totalInadimplente {
-    -fx-font-size: 24px;
+#totalCobrancas, #totalRecebido, #totalPendente, #totalInadimplente, #totaisLabels {
+    -fx-font-size: 15px;
     -fx-text-fill: #0068ff;
     -fx-font-weight: bold;
+    -fx-padding: 10px;
 }
 
-
-.Label {
-    -fx-font-family: "Arial, sans-serif";
-    -fx-font-size: 18px;
+#tituloLabel {
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-padding: 10px 0;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px;
 }
 
-#titleLabel {
-    -fx-font-size: 32px;
-    -fx-text-fill: #1766d3;
-    -fx-font-weight: bold;
-    -fx-padding: 20px 0;
-    -fx-alignment: center;
+#header {
+    -fx-background-color: #0068ff;
+    -fx-background-radius: 0px 0px 10px 10px;
 }
 
-
-
-#labelScroll {
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-padding: 15px 0;
+#detalhamento {
+    -fx-background-color: #0068ff;
+    -fx-padding: 10px;
 }
-
-ScrollPane {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #d1d1d1;
-    -fx-border-radius: 5px;
-    -fx-border-width: 1px;
-    -fx-padding: 15px;
-}
-

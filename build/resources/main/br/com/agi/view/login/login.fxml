@@ -12,17 +12,17 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="backgroundMain" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.LoginController">
-    <VBox fx:id="loginBackground" alignment="CENTER" fillWidth="false" layoutX="372.0" layoutY="88.0" prefHeight="374.0" prefWidth="415.0" spacing="10.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+    <VBox fx:id="loginBackground" alignment="CENTER" fillWidth="false" layoutX="372.0" layoutY="88.0" prefHeight="374.0" prefWidth="415.0" spacing="20.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
       <ImageView fitHeight="142.0" fitWidth="210.0">
          <image>
             <Image url="@../../photos/FAIRCHARGE.png" />
          </image>
       </ImageView>
-        <TextField id="camposTxt" fx:id="txtEmail" prefHeight="25.0" prefWidth="200.0" promptText="E-mail" />
-        <PasswordField id="camposTxt" fx:id="txtSenha" prefHeight="25.0" prefWidth="200.0" promptText="Senha" />
-        <Button id="button" defaultButton="true" onAction="#handleLogin" prefHeight="25.0" prefWidth="83.0" text="Entrar">
+        <TextField id="camposTxt" fx:id="txtEmail" prefHeight="33.0" prefWidth="293.0" promptText="E-mail" />
+        <PasswordField id="camposTxt" fx:id="txtSenha" prefHeight="33.0" prefWidth="291.0" promptText="Senha" />
+        <Button id="button" defaultButton="true" onAction="#handleLogin" prefHeight="40.0" prefWidth="294.0" text="Entrar">
          <VBox.margin>
-            <Insets top="15.0" />
+            <Insets top="20.0" />
          </VBox.margin></Button>
         <Label fx:id="lblErro" textAlignment="CENTER" textFill="red" visible="false" />
     </VBox>
