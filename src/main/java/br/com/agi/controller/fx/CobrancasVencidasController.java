@@ -58,7 +58,7 @@ public class CobrancasVencidasController {
         int anoAtual = dataAtual.getYear();
 
         cobrancasPagas.setText(String.valueOf(controller.cobrancasPagasMes(mesAtual, anoAtual)));
-        cobrancasPendentes.setText(String.valueOf(controller.cobrancasPendentesMes()));
+        cobrancasPendentes.setText(String.valueOf(controller.cobrancasPendentesMes(mesAtual, anoAtual)));
         valorTotal.setText(FormatoMonetarioFX.formatar(controller.cobrancasValorTotalMes()));
 
         preencherTabelaCobrancas();

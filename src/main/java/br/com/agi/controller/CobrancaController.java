@@ -38,8 +38,8 @@ public class CobrancaController {
         return cobrancaDAO.gerarCobrancasPagasPorMes(mes, ano);
     }
 
-    public int cobrancasPendentesMes() {
-        return cobrancaDAO.gerarCobrancasPendentesPorMes();
+    public int cobrancasPendentesMes(int mes, int ano) {
+        return cobrancaDAO.gerarCobrancasPendentesPorMes(mes, ano);
     }
 
     public double cobrancasValorTotalMes() {

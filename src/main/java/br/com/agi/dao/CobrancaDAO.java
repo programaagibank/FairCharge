@@ -190,14 +190,18 @@ public class CobrancaDAO {
         return 0;
     }
 
-    public int gerarCobrancasPendentesPorMes() {
+    public int gerarCobrancasPendentesPorMes(int mes, int ano) {
         String sql = "SELECT COUNT(distinct c.cobranca_id) AS TOTAL " +
                 "FROM Cobranca c " +
                 "LEFT JOIN Pagamento p ON c.pagamento_id = p.pagamento_id " +
                 "INNER JOIN Fatura f ON c.Fatura_id = c.Fatura_id " +
-                "WHERE c.Status IN ('Atrasado', 'Aberto')";
+                "WHERE c.Status IN ('Atrasado', 'Aberto')" +
+                "AND YEAR(p.data_pagamento) = ? " +
+                "AND MONTH(p.data_pagamento) = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, ano);
+            stmt.setInt(2, mes);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
