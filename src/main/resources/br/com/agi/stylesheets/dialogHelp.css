@@ -14,6 +14,11 @@
     -fx-background-radius: 0 0 8px 8px;
 }
 
+#dialog-label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
 .dialog-pane .label {
     -fx-font-weight: bold;
     -fx-text-fill: white;

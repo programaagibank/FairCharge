@@ -9,7 +9,7 @@
 <AnchorPane id="header" fx:id="header" prefHeight="55.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.headerController">
    <children>
       <Label id="homeTitle" layoutX="14.0" layoutY="3.0" text="FairCharge" />
-      <ImageView id="options" fitHeight="20.0" fitWidth="20.0" layoutX="242.0" layoutY="18.0" onMouseClicked="#AbrirPerfil">
+      <ImageView id="options" fx:id="botaoUsuario" fitHeight="20.0" fitWidth="20.0" layoutX="242.0" layoutY="18.0" onMouseClicked="#AbrirPerfil">
          <image>
             <Image url="@../photos/do-utilizador.png" />
          </image>

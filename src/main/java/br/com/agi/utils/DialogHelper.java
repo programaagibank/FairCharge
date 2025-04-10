@@ -32,16 +32,27 @@ public class DialogHelper {
         permissaoComboBox.getItems().addAll("Administrador", "Cliente");
         permissaoComboBox.setPromptText("Permissão");
 
+        Label nomeLabel = new Label("Nome:");
+        nomeLabel.setId("dialog-label");
+
+        Label emailLabel = new Label("Email:");
+        emailLabel.setId("dialog-label");
+
+        Label senhaLabel = new Label("Senha:");
+        senhaLabel.setId("dialog-label");
+
+        Label permissaoLabel = new Label("Permissão:");
+        permissaoLabel.setId("dialog-label");
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.add(new Label("Nome:"), 0, 0);
+        grid.add(nomeLabel, 0, 0);
         grid.add(nomeField, 1, 0);
-        grid.add(new Label("Email:"), 0, 1);
+        grid.add(emailLabel, 0, 1);
         grid.add(emailField, 1, 1);
-        grid.add(new Label("Senha:"), 0, 2);
+        grid.add(senhaLabel, 0, 2);
         grid.add(senhaField, 1, 2);
-        grid.add(new Label("Permissão:"), 0, 3);
+        grid.add(permissaoLabel, 0, 3);
         grid.add(permissaoComboBox, 1, 3);
 
         dialog.getDialogPane().setContent(grid);
@@ -111,13 +122,26 @@ public class DialogHelper {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.add(new Label("Nome:"), 0, 0);
+
+        Label nomeLabel = new Label("Nome:");
+        nomeLabel.setId("dialog-label");
+
+        Label emailLabel = new Label("Email:");
+        emailLabel.setId("dialog-label");
+
+        Label senhaLabel = new Label("Senha:");
+        senhaLabel.setId("dialog-label");
+
+        Label permissaoLabel = new Label("Permissão:");
+        permissaoLabel.setId("dialog-label");
+
+        grid.add(nomeField, 0, 0);
         grid.add(nomeField, 1, 0);
-        grid.add(new Label("Email:"), 0, 1);
+        grid.add(emailLabel, 0, 1);
         grid.add(emailField, 1, 1);
-        grid.add(new Label("Nova Senha:"), 0, 2);
+        grid.add(senhaLabel, 0, 2);
         grid.add(senhaField, 1, 2);
-        grid.add(new Label("Permissão:"), 0, 3);
+        grid.add(permissaoLabel, 0, 3);
         grid.add(permissaoComboBox, 1, 3);
 
         dialog.getDialogPane().setContent(grid);
@@ -154,12 +178,18 @@ public class DialogHelper {
         TextField anoField = new TextField();
         anoField.setPromptText("Ano");
 
+        Label mesLabel = new Label("Mês:");
+        mesLabel.setId("dialog-label");
+
+        Label anoLabel = new Label("Ano:");
+        anoLabel.setId("dialog-label");
+
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.add(new Label("Mês:"), 0, 0);
+        grid.add(mesLabel, 0, 0);
         grid.add(mesComboBox, 1, 0);
-        grid.add(new Label("Ano:"), 0, 1);
+        grid.add(anoLabel, 0, 1);
         grid.add(anoField, 1, 1);
 
         dialog.getDialogPane().setContent(grid);
@@ -198,14 +228,23 @@ public class DialogHelper {
         TextField documentoField = new TextField();
         documentoField.setPromptText("CPF ou CNPJ");
 
+        Label mesLabel = new Label("Mês:");
+        mesLabel.setId("dialog-label");
+
+        Label anoLabel = new Label("Ano:");
+        anoLabel.setId("dialog-label");
+
+        Label cpfCnpjLabel = new Label("CPF/CNPJ:");
+        cpfCnpjLabel.setId("dialog-label");
+
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.add(new Label("Mês:"), 0, 0);
+        grid.add(mesLabel, 0, 0);
         grid.add(mesComboBox, 1, 0);
-        grid.add(new Label("Ano:"), 0, 1);
+        grid.add(anoField, 0, 1);
         grid.add(anoField, 1, 1);
-        grid.add(new Label("CPF/CNPJ:"), 0, 2);
+        grid.add(cpfCnpjLabel, 0, 2);
         grid.add(documentoField, 1, 2);
 
         dialog.getDialogPane().setContent(grid);
@@ -244,10 +283,13 @@ public class DialogHelper {
         TextField quantidadeField = new TextField();
         quantidadeField.setPromptText("Quantidade");
 
+        Label qtdLabel = new Label("Quantidade:");
+        qtdLabel.setId("dialog-label");
+
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.add(new Label("Quantidade:"), 0, 0);
+        grid.add(qtdLabel, 0, 0);
         grid.add(quantidadeField, 1, 0);
 
         dialog.getDialogPane().setContent(grid);
