@@ -242,7 +242,7 @@ public class DialogHelper {
         grid.setVgap(10);
         grid.add(mesLabel, 0, 0);
         grid.add(mesComboBox, 1, 0);
-        grid.add(anoField, 0, 1);
+        grid.add(anoLabel, 0, 1);
         grid.add(anoField, 1, 1);
         grid.add(cpfCnpjLabel, 0, 2);
         grid.add(documentoField, 1, 2);
