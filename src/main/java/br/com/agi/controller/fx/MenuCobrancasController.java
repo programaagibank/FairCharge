@@ -10,11 +10,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 public class MenuCobrancasController {
 
     @FXML
     private Label cobrancasVencidas;
+
+    @FXML
+    private Pane paneGerarCobrancas;
 
     @FXML
     private Button botaoGerarCobrancas;
@@ -57,6 +61,8 @@ public class MenuCobrancasController {
         if (!usuario.isAdmin()) {
             botaoGerarCobrancas.setVisible(false);
             botaoGerarCobrancas.setManaged(false);
+            paneGerarCobrancas.setVisible(false);
+            paneGerarCobrancas.setManaged(false);
         }
     }
 

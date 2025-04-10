@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane id="backgroundHome" maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.RelatorioCobrancasController">
    <children>
       <BorderPane maxHeight="600.0" maxWidth="335.0" minHeight="600.0" minWidth="335.0" prefHeight="600.0" prefWidth="335.0">
@@ -38,7 +37,7 @@
                         <Label fx:id="valorTotal" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="cobrancasPendentes" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="cobrancasPagas" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="0" GridPane.columnIndex="1" />
-                        <Label id="textoValorTotal" text="Valor total:" GridPane.rowIndex="2" />
+                        <Label id="textoValorTotal" text="Valor pendente:" GridPane.rowIndex="2" />
                         <Label id="textoCobrancasPendentes" prefWidth="205.0" text="Cobranças pendentes do mês:" wrapText="true" GridPane.rowIndex="1" />
                      </children>
                      <VBox.margin>

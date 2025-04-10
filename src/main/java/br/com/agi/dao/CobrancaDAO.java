@@ -169,12 +169,13 @@ public class CobrancaDAO {
     }
 
     public int gerarCobrancasPagasPorMes(int mes, int ano) {
-        String sql = "SELECT Count(*) AS TOTAL  " +
+        String sql = "SELECT COUNT(distinct c.cobranca_id) AS TOTAL " +
                 "FROM Cobranca c " +
-                "JOIN Pagamento p ON c.pagamento_id = p.pagamento_id " +
-                "WHERE c.Status = 'Pago' " +
-                "AND YEAR(p.data_pagamento) = ? " +
-                "AND MONTH(p.data_pagamento) = ?;";
+                "LEFT JOIN Pagamento p ON c.pagamento_id = p.pagamento_id " +
+                "INNER JOIN Fatura f ON c.Fatura_id = c.Fatura_id " +
+                "WHERE c.Status IN ('Pago')" +
+                "AND YEAR(f.data_criacao) = ? " +
+                "AND MONTH(f.data_criacao) = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, ano);
@@ -194,10 +195,10 @@ public class CobrancaDAO {
         String sql = "SELECT COUNT(distinct c.cobranca_id) AS TOTAL " +
                 "FROM Cobranca c " +
                 "LEFT JOIN Pagamento p ON c.pagamento_id = p.pagamento_id " +
-                "INNER JOIN Fatura f ON c.Fatura_id = c.Fatura_id " +
+                "INNER JOIN Fatura f ON c.Fatura_id = f.Fatura_id " +
                 "WHERE c.Status IN ('Atrasado', 'Aberto')" +
-                "AND YEAR(p.data_pagamento) = ? " +
-                "AND MONTH(p.data_pagamento) = ?";
+                "AND YEAR(f.data_criacao) = ? " +
+                "AND MONTH(f.data_criacao) = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, ano);
@@ -213,16 +214,32 @@ public class CobrancaDAO {
         return 0;
     }
 
-    public double gerarCobrancasValorTotalMes() {
-        String sql = "SELECT SUM(f.valor_fatura * (1 + IFNULL(m.percentual_multa, 0) / 100.0) * " +
-                "                    POWER(1 + IFNULL(j.percentual_juros_diario, 0) / 100.0, DATEDIFF(CURDATE(), f.data_vencimento))) AS somaTotal " +
-                "FROM Cobranca c " +
-                "JOIN Fatura f ON c.fatura_id = f.fatura_id " +
-                "LEFT JOIN Multa m ON c.multa_atraso_id = m.multa_id " +
-                "LEFT JOIN Juros j ON c.juros_diario_id = j.juros_id " +
-                "WHERE c.Status IN ('Atrasado', 'Aberto')";
+    public double gerarCobrancasValorTotalMes(int mes, int ano) {
+        String sql = """
+    SELECT 
+        SUM(
+            f.valor_fatura * 
+            (1 + IFNULL(m.percentual_multa, 0) / 100.0) * 
+            POWER(1 + IFNULL(j.percentual_juros_diario, 0) / 100.0, DATEDIFF(CURDATE(), f.data_vencimento))
+        ) AS somaTotal
+    FROM 
+        Cobranca c
+    JOIN 
+        Fatura f ON c.fatura_id = f.fatura_id
+    LEFT JOIN 
+        Multa m ON c.multa_atraso_id = m.multa_id
+    LEFT JOIN 
+        Juros j ON c.juros_diario_id = j.juros_id
+    WHERE 
+        c.Status IN ('Atrasado', 'Aberto')
+        AND YEAR(f.data_criacao) = ?
+        AND MONTH(f.data_criacao) = ?;
+    """;
+
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, ano);
+            stmt.setInt(2, mes);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {

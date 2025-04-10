@@ -83,7 +83,7 @@ public class TaxaDAO {
     }
 
     public ObservableList<TaxaJuros> buscarTodasTaxasDiarias() {
-        String sql = "SELECT * FROM Juros ORDER BY data_criacao DESC";
+        String sql = "SELECT * FROM Juros ORDER BY juros_id DESC";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class TaxaDAO {
     }
 
     public ObservableList<TaxaMulta> buscarTodasTaxasMulta() {
-        String sql = "SELECT * FROM Multa ORDER BY data_criacao DESC";
+        String sql = "SELECT * FROM Multa ORDER BY multa_id DESC";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);

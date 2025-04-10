@@ -63,7 +63,7 @@ public class RelatorioCobrancasController {
 
         cobrancasPagas.setText(String.valueOf(controller.cobrancasPagasMes(mesAtual, anoAtual)));
         cobrancasPendentes.setText(String.valueOf(controller.cobrancasPendentesMes(mesAtual, anoAtual)));
-        valorTotal.setText(FormatoMonetarioFX.formatar(controller.cobrancasValorTotalMes()));
+        valorTotal.setText(FormatoMonetarioFX.formatar(controller.cobrancasValorTotalMes(mesAtual,anoAtual)));
 
         preencherTabelaCobrancas();
 

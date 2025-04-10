@@ -70,7 +70,7 @@
          </ImageView>
       </children>
    </Pane>
-   <Pane id="bordaIcone" layoutX="19.0" layoutY="442.0" prefHeight="38.0" prefWidth="38.0">
+   <Pane id="bordaIcone" fx:id="paneGerarCobrancas" layoutX="19.0" layoutY="442.0" prefHeight="38.0" prefWidth="38.0">
       <children>
          <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="5.0">
             <image>

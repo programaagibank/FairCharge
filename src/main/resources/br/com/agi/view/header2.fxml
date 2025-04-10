@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="header" fx:id="header" prefHeight="55.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.headerController">
+<AnchorPane id="header" fx:id="header" prefHeight="55.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.agi.controller.fx.header2Controller">
    <children>
       <ImageView id="options" fitHeight="20.0" fitWidth="20.0" layoutX="292.0" layoutY="18.0" onMouseClicked="#AbrirCasa">
          <image>
