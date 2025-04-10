@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 public class TaxaDAO {
 
     public TaxaJuros buscarTaxaJurosDiarios() {
-        String sql = "SELECT * FROM Juros ORDER BY data_criacao DESC LIMIT 1";
+        String sql = "SELECT * FROM Juros ORDER BY juros_id DESC LIMIT 1";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -49,7 +49,7 @@ public class TaxaDAO {
     }
 
     public TaxaMulta buscarMultaPorAtraso() {
-        String sql = "SELECT multa_id, percentual_multa, data_criacao FROM Multa ORDER BY data_criacao DESC LIMIT 1";
+        String sql = "SELECT multa_id, percentual_multa, data_criacao FROM Multa ORDER BY multa_id DESC LIMIT 1";
 
         try (Connection conn = databaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
