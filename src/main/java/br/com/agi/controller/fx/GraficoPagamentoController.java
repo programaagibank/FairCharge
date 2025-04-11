@@ -30,39 +30,41 @@ public class GraficoPagamentoController {
         preencherGrafico();
     }
     public void preencherGrafico() {
-        grafico.setTitle("Gastos por Cliente - Mensal/Anual");
+        grafico.setTitle("Valores Pagos - Mensal");
         xAxis.setLabel("Meses/Ano");
-        yAxis.setLabel("Gastos Totais (R$)");
+        yAxis.setLabel("Valores Pagos (R$)");
 
         List<Pagamento> pagamentos = controller.listarCobrancasPagas();
 
         int anoAtual = LocalDate.now().getYear();
         int mesAtual = LocalDate.now().getMonthValue();
 
-        Map<String, List<Pagamento>> pagamentosPorCliente = pagamentos.stream()
+        Map<String, Double> valoresPorMes = new LinkedHashMap<>();
+        // Inicializa os meses do ano atual com valor 0
+        for (int mes = 1; mes <= mesAtual; mes++) {
+            valoresPorMes.put(String.format("%02d/%d", mes, anoAtual), 0.0);
+        }
+
+        // Agrega os pagamentos por mês
+        pagamentos.stream()
                 .filter(pagamento -> pagamento.getDataPagamento().getYear() == anoAtual)
-                .collect(Collectors.groupingBy(Pagamento::getNomeCliente));
+                .forEach(pagamento -> {
+                    String mesAno = String.format("%02d/%d",
+                            pagamento.getDataPagamento().getMonthValue(),
+                            pagamento.getDataPagamento().getYear());
+                    valoresPorMes.put(mesAno, valoresPorMes.getOrDefault(mesAno, 0.0) + pagamento.getValorPago());
+                });
 
-        pagamentosPorCliente.forEach((cliente, listaPagamentos) -> {
-            XYChart.Series<String, Number> serie = new XYChart.Series<>();
-            serie.setName(cliente);
+        // Cria a série para o gráfico
+        XYChart.Series<String, Number> serie = new XYChart.Series<>();
+        serie.setName("Valores Pagos");
 
-            Map<String, Double> gastosPorMes = new LinkedHashMap<>();
-            for (int mes = 1; mes <= mesAtual; mes++) {
-                gastosPorMes.put(String.format("%02d/%d", mes, anoAtual), 0.0);
-            }
-
-            listaPagamentos.forEach(pagamento -> {
-                String mesAno = String.format("%02d/%d",
-                        pagamento.getDataPagamento().getMonthValue(),
-                        pagamento.getDataPagamento().getYear());
-
-                gastosPorMes.put(mesAno, gastosPorMes.getOrDefault(mesAno, 0.0) + pagamento.getValorPago());
-            });
-
-            gastosPorMes.forEach((mesAno, gasto) -> serie.getData().add(new XYChart.Data<>(mesAno, gasto)));
-
-            grafico.getData().add(serie);
+        valoresPorMes.forEach((mesAno, valor) -> {
+            serie.getData().add(new XYChart.Data<>(mesAno, valor));
         });
+
+        grafico.getData().clear(); // Limpa dados existentes antes de adicionar a nova série
+        grafico.getData().add(serie);
     }
+
 }
